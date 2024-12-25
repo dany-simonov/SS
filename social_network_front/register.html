@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySphere - Регистрация</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-title">
+                <img src="images/logo.svg" alt="StudySphere Logo" class="logo">
+                <h1>StudySphere</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="login.html">Войти</a></li>
+                    <li><a href="register.html">Регистрация</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="auth-form">
+            <h2>Регистрация</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Номер телефона:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </section>
+        <div class="background-text"></div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 StudySphere. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/imask"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var phoneInput = document.getElementById('phone');
+            var maskOptions = {
+                mask: '8 (000) 000 00 00',
+                lazy: false
+            };
+            var mask = IMask(phoneInput, maskOptions);
+        });
+    </script>
+</body>
+</html>

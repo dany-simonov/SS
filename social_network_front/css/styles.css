@@ -1,0 +1,267 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Шапка сайта */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-title h1 {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Навигация */
+nav ul {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+    list-style: none;
+}
+
+nav a {
+    color: #008819;
+    text-decoration: none;
+    position: relative;
+    padding: 10px 15px;
+    font-size: 20px;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #008819;
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Основной контент */
+main {
+    padding: 2rem 0;
+    position: relative;
+    min-height: calc(100vh - 200px);
+}
+
+/* Фоновые надписи */
+main::before {
+    content: 'StudySphere';
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 256px;
+    color: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+main::after {
+    content: 'StudySphere';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 256px;
+    color: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.background-text::before {
+    content: 'StudySphere';
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 256px;
+    color: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Формы */
+.auth-form {
+    max-width: 500px;
+    margin: 50px auto 0;
+    padding: 3rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.auth-form h2 {
+    font-size: 28px;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+button {
+    background-color: #008819;
+    color: #ffffff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #006614;
+}
+
+/* Посты */
+.create-post {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.post {
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.post-header {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.author {
+    color: #008819;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.date {
+    color: #666666;
+    font-size: 0.9rem;
+}
+
+/* Профиль */
+.profile {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.profile-header {
+    margin-bottom: 2rem;
+}
+
+.profile-info {
+    color: #666666;
+}
+
+/* Подвал */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #000000;
+    padding: 1rem 0;
+    margin-top: 100px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    main::before,
+    main::after,
+    .background-text::before {
+        font-size: 128px;
+    }
+    
+    .auth-form {
+        margin: 20px auto 0;
+        padding: 1.5rem;
+    }
+}

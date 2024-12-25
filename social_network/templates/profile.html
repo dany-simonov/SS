@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="profile">
+        <h1>Профиль {{ user.username }}</h1>
+        <p>Email: {{ user.email }}</p>
+    </div>
+
+    <div class="posts">
+        <h2>Публикации</h2>
+        {% for post in user.posts %}
+            <div class="post">
+                <p>{{ post.content }}</p>
+                <small>{{ post.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
