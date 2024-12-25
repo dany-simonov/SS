@@ -24,5 +24,3 @@ StudySphere - A social network for study groups
     * Background: White
     * Text: Black
     * Accent: Green (#008819)
-* Contacts:
-    [Your name/organization]
