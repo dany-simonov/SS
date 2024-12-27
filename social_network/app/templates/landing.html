@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySphere - Общение без отвлечений для учебы</title>
+    <style>
+        :root {
+            --primary-green: #008819;
+            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: #000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+        }
+
+        .title {
+            font-size: 3rem;
+            color: var(--primary-green);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-title {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="title-container">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere Logo" class="logo">
+                <h1 class="title">StudySphere - Общение без отвлечений для учебы</h1>
+            </div>
+        </header>
+
+        <div class="benefits">
+            <div class="benefit-card">
+                <h3 class="benefit-title">Без отвлечений</h3>
+                <p>Фокусируйтесь на учебе, а не на отвлекающих факторах. Наша платформа создана для максимальной концентрации.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Единомышленники</h3>
+                <p>Общайтесь с другими студентами, делитесь знаниями, работайте вместе. Найдите свою учебную нишу.</p>
+            </div>
+            <div class="benefit-card">
+                <h3 class="benefit-title">Эффективное обучение</h3>
+                <p>Совместное обучение, обмен опытом, работа над проектами — все в одном месте.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Зарегистрируйтесь и начните общаться</a>
+            <a href="{{ url_for('auth.login') }}" class="btn btn-secondary">Уже есть аккаунт? Войти</a>
+        </div>
+
+        <footer class="footer">
+            <p>© 2024 StudySphere. Все права защищены.</p>
+            <p>Платформа для эффективного обучения и общения</p>
+        </footer>
+    </div>
+</body>
+</html>
