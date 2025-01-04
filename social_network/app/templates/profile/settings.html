@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="settings">
+    <h2>Настройки</h2>
+    
+    <div class="settings-section">
+        <h3>Связь с разработчиками</h3>
+        <a href="mailto:support@studysphere.com" class="support-link">
+            support@studysphere.com
+        </a>
+    </div>
+
+    <div class="settings-section">
+        <h3>Обратная связь</h3>
+        <form method="POST" class="feedback-form">
+            <textarea name="feedback" rows="4" placeholder="Ваши отзывы и предложения"></textarea>
+            <button type="submit" class="btn-primary">Отправить</button>
+        </form>
+    </div>
+
+    <div class="settings-section">
+        <h3>Управление профилем</h3>
+        <div class="settings-buttons">
+            <a href="{{ url_for('profile.edit') }}" class="btn-secondary">Изменить профиль</a>
+            <a href="{{ url_for('auth.logout') }}" class="btn-danger">Выйти</a>
+        </div>
+    </div>
+</div>
+
+<style>
+.settings {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.settings-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.support-link {
+    color: var(--primary-green);
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.feedback-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.settings-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secondary {
+    background: white;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+</style>
+{% endblock %}

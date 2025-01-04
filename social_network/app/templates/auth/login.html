@@ -1,34 +1,16 @@
 {% extends "base.html" %}
-
 {% block content %}
-<section class="auth-form">
+<div class="auth-form">
     <h2>Вход в систему</h2>
-    <form method="POST">
-        {{ form.csrf_token }}
+    <form method="POST" action="{{ url_for('auth.login') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="form-group">
-            <label for="phone">Номер телефона:</label>
-            <input type="tel" id="phone" name="phone" required>
+            <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
         </div>
         <div class="form-group">
-            <label for="password">Пароль:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" name="password" placeholder="Ваш пароль" required>
         </div>
         <button type="submit">Войти</button>
     </form>
-</section>
-<div class="background-text"></div>
-{% endblock %}
-
-{% block scripts %}
-<script src="https://unpkg.com/imask"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var phoneInput = document.getElementById('phone');
-        var maskOptions = {
-            mask: '8 (000) 000 00 00',
-            lazy: false
-        };
-        var mask = IMask(phoneInput, maskOptions);
-    });
-</script>
+</div>
 {% endblock %}
