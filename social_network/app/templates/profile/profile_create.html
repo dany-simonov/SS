@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-create">
+    <h2>Создание профиля</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            <label>Имя</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Никнейм</label>
+            <div class="username-input">
+                <span>@</span>
+                <input type="text" name="username" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Аватар</label>
+            <input type="file" name="avatar" accept="image/*">
+        </div>
+
+        <div class="form-group">
+            <label>Увлечения</label>
+            <textarea name="interests" rows="4" placeholder="Введите ваши увлечения, разделяя их запятыми"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Создать профиль</button>
+    </form>
+</div>
+
+<style>
+.profile-create {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.username-input {
+    display: flex;
+    align-items: center;
+}
+
+.username-input span {
+    margin-right: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+</style>
+{% endblock %}
