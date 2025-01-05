@@ -3,60 +3,20 @@
 {% block content %}
 <div class="profile-container">
     <div class="profile-header">
-        <div class="profile-avatar">
-            <img src="{{ user.avatar_url or url_for('static', filename='images/default_avatar.png') }}"
-                 alt="Profile avatar" id="profileAvatar">
+        <h2>Профиль пользователя</h2>
+    </div>
+    <div class="profile-info">
+        <div class="info-group">
+            <label>Имя пользователя:</label>
+            <p>{{ current_user.username }}</p>
         </div>
-        <div class="profile-info">
-            <h1>{{ user.username }}</h1>
-            <p class="email">{{ user.email }}</p>
-            {% if user.interests %}
-                <p class="interests">{{ user.interests }}</p>
-            {% endif %}
+        <div class="info-group">
+            <label>Телефон:</label>
+            <p>{{ current_user.phone }}</p>
         </div>
     </div>
-
-    {% if current_user.id == user.id %}
-    <div class="profile-edit">
-        <h2>Редактировать профиль</h2>
-        <form id="profileForm" method="POST">
-            {{ form.csrf_token }}
-            <div class="form-group">
-                <label for="avatar_url">Ссылка на аватар:</label>
-                <input type="url" id="avatar_url" name="avatar_url"
-                       value="{{ user.avatar_url or '' }}"
-                       placeholder="https://example.com/avatar.jpg">
-            </div>
-            
-            <div class="form-group">
-                <label for="interests">Интересы:</label>
-                <textarea id="interests" name="interests"
-                          placeholder="Расскажите о своих интересах">{{ user.interests or '' }}</textarea>
-            </div>
-            
-            <button type="submit">Сохранить изменения</button>
-        </form>
-    </div>
-    {% endif %}
-
-    <div class="user-posts">
-        <h2>Публикации</h2>
-        {% for post in user.posts %}
-            <div class="post">
-                <div class="post-header">
-                    <span class="date">{{ post.timestamp.strftime('%d.%m.%Y %H:%M') }}</span>
-                </div>
-                <div class="post-content">
-                    {{ post.content }}
-                </div>
-            </div>
-        {% else %}
-            <p class="no-posts">Нет публикаций</p>
-        {% endfor %}
+    <div class="profile-actions">
+        <a href="{{ url_for('settings') }}" class="btn secondary">Настройки профиля</a>
     </div>
 </div>
-
-{% if current_user.id == user.id %}
-<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
-{% endif %}
 {% endblock %}
