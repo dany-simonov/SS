@@ -1,20 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.getElementById('themeToggle');
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
     
-    // Проверяем сохраненную тему
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        themeToggle.textContent = '☀️';
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-theme');
     }
-
-    // Обработчик переключения темы
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-theme');
-        const isDark = document.body.classList.contains('dark-theme');
-        themeToggle.textContent = isDark ? '☀️' : '🌙';
+    
+    if (themeToggle) {
+        themeToggle.textContent = localStorage.getItem('theme') === 'dark' ? '☀️' : '🌙';
         
-        // Сохраняем выбор темы
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+            themeToggle.textContent = body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        });
+    }
 });

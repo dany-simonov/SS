@@ -3,46 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySphere</title>
+    <title>{% block title %}StudySphere{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/svg+xml">
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="logo-title">
-                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="logo">
-                <h1>StudySphere</h1>
+        <nav>
+            <div class="logo">
+                <a href="{{ url_for('landing') }}">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
+                    StudySphere
+                </a>
             </div>
-            <nav>
-                <ul>
-                    <li><button id="themeToggle" class="theme-toggle">🌙</button></li>
-                    {% if current_user.is_authenticated %}
-                        <li><a href="{{ url_for('main.index') }}">Главная</a></li>
-                        <li><a href="{{ url_for('main.profile') }}">Профиль</a></li>
-                        <li><a href="{{ url_for('auth.logout') }}">Выйти</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('auth.login') }}">Войти</a></li>
-                        <li><a href="{{ url_for('auth.register') }}">Регистрация</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
+            <div class="nav-links">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('profile') }}">Профиль</a>
+                    <a href="{{ url_for('settings') }}">Настройки</a>
+                    <a href="{{ url_for('logout') }}">Выход</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Вход</a>
+                    <a href="{{ url_for('register') }}">Регистрация</a>
+                {% endif %}
+            </div>
+        </nav>
     </header>
 
     <main>
-        <div class="container">
-            {% block content %}{% endblock %}
-        </div>
-        <div class="background-text"></div>
+        {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 StudySphere. Все права защищены.</p>
-        </div>
-    </footer>
-
     <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
