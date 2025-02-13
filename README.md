@@ -1,4 +1,4 @@
-StudySphere - A social network for study groups
+StudySphere - A social network for study groups and is in development
 
 * Description: A social network for study groups that allows you to share knowledge and collaborate.
 * Technologies used:
