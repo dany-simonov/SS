@@ -1,187 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudySphere - Общение без отвлечений для учебы</title>
-    <style>
-        :root {
-            --primary-green: #008819;
-            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            color: #000;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .nav-links {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            gap: 20px;
-        }
-
-        .support-btn {
-            color: var(--primary-green);
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--primary-green);
-            border-radius: 5px;
-        }
-
-        .title-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        /* Остальные стили остаются без изменений */
-
-        .features-section {
-            margin: 4rem 0;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            padding: 1.5rem;
-            background: var(--bg-gradient);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .btn-contact {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: var(--primary-green);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }      
-
-        /* .nav-links {
-            position: absolute;
-            right: 0;
-            top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        } */
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-        }
-
-        /* .support-btn {
-            color: var(--primary-green);
-            border: 2px solid var(--primary-green);
-            border-radius: 5px;
-        } */
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <div class="nav-links">
-                <a href="{{ url_for('support') }}" class="support-btn">Поддержка</a>
-                <a href="{{ url_for('register') }}" class="btn btn-secondary">Регистрация</a>
-                <a href="{{ url_for('login') }}" class="btn btn-secondary">Вход</a>
-            </div>
-            <div class="title-container">
-                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere Logo" class="logo">
-                <h1 class="title">StudySphere - Общение без отвлечений для учебы</h1>
-            </div>
-        </header>        
-
-        <div class="benefits">
-            <div class="benefit-card">
-                <h3 class="benefit-title">Без отвлечений</h3>
-                <p>Фокусируйтесь на учебе, а не на отвлекающих факторах. Наша платформа создана для максимальной концентрации.</p>
-            </div>
-            <div class="benefit-card">
-                <h3 class="benefit-title">Единомышленники</h3>
-                <p>Общайтесь с другими студентами, делитесь знаниями, работайте вместе. Найдите свою учебную нишу.</p>
-            </div>
-            <div class="benefit-card">
-                <h3 class="benefit-title">Эффективное обучение</h3>
-                <p>Совместное обучение, обмен опытом, работа над проектами — все в одном месте.</p>
-            </div>
-        </div>
-
-        <section class="features-section">
-            <h2>Дополнительные преимущества</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h3>Прямой контакт с разработчиком</h3>
-                    <p>Ваше мнение важно. Свяжитесь с нами напрямую, чтобы обсудить идеи и предложения.</p>
-                    <a href="{{ url_for('support') }}" class="btn-contact">Связаться с разработчиком</a>
-                </div>
-                <div class="feature-item">
-                    <h3>Безопасность данных</h3>
-                    <p>Мы используем 16-битное шифрование для защиты ваших сообщений и паролей.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Интуитивно понятный интерфейс</h3>
-                    <p>Мы ценим ваше время, поэтому создали удобную платформу для продуктивной работы.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-section">
-            <a href="{{ url_for('register') }}" class="btn btn-primary">Зарегистрируйтесь и начните общаться</a>
-            <a href="{{ url_for('login') }}" class="btn btn-secondary">Уже есть аккаунт? Войти</a>
-        </div>
-
-        <footer class="footer">
-            <p>© 2024 StudySphere. Все права защищены.</p>
-            <p>Платформа для эффективного обучения и общения</p>
-        </footer>
-    </div>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -330,6 +146,20 @@
             font-weight: bold;
         }
 
+        .ai-chat-btn {
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .ai-chat-btn:hover {
+            background: #45a049;
+        }
+
         .footer {
             background: #f5f5f5;
             padding: 2rem;
@@ -348,6 +178,7 @@
     <div class="container">
         <header class="header">
             <div class="nav-links">
+                <a href="{{ url_for('ai_chat') }}" class="ai-chat-btn">Чат с AI</a>
                 <a href="{{ url_for('support') }}" class="support-btn">Поддержка</a>
                 <a href="{{ url_for('register') }}" class="btn btn-secondary">Регистрация</a>
                 <a href="{{ url_for('login') }}" class="btn btn-secondary">Вход</a>
