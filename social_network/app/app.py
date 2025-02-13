@@ -4,10 +4,21 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 import g4f
 
-providers = [
-    g4f.Provider.You
+excluded_providers = [
+    'ImageLabs'
 ]
- 
+
+providers = [
+    g4f.Provider.ChatGLM,
+    g4f.Provider.Free2GPT,
+    g4f.Provider.GizAI
+]
+
+print(f"Loaded working providers: {[provider.__name__ for provider in providers]}")
+
+g4f.debug.logging = True
+g4f.check_version = False
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'StudySphere_2024_SuperSecretKey_789@#$'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -17,7 +28,6 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-# Здесь будут модели (можно потом вынести в models.py)
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
@@ -95,25 +105,40 @@ def ai_chat():
         if not user_message:
             return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})
 
-        system_prompt = "Ты - помощник StudySphere, образовательной платформы. Твоя задача помогать студентам с учебными вопросами."
+        system_prompt = """Ты - дружелюбный AI-ассистент StudySphere. Твои основные задачи:
+            - Помогать с учебными вопросами по любым предметам
+            - Объяснять сложные темы простым языком
+            - Давать практические советы по обучению
+            - Поддерживать мотивацию к учёбе
+            - Общаться в дружелюбном тоне
+            - Можешь шутить и поддерживать неформальную беседу
+            - При этом всегда оставаться полезным и информативным
+            
+            Отвечай кратко и по существу, избегай длинных рассуждений."""
 
-        try:
-            response = g4f.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_message}
-                ],
-                stream=False
-            )
-            
-            if response:
-                return jsonify({'success': True, 'response': response})
+
+        for provider in providers:
+            try:
+                print(f"\nПробуем провайдера: {provider.__name__}")
+                response = g4f.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_message}
+                    ],
+                    provider=provider,
+                    timeout=60
+                )
                 
-        except Exception as e:
-            print(f"Ошибка чата: {str(e)}")
-            
-        return jsonify({'success': False, 'message': 'Попробуйте еще раз через минуту'})
+                if response and len(str(response).strip()) > 0:
+                    print(f"Успешный ответ от провайдера {provider.__name__}")
+                    return jsonify({'success': True, 'response': str(response)})
+                    
+            except Exception as e:
+                print(f"Ошибка провайдера {provider.__name__}: {str(e)}")
+                continue
+                
+        return jsonify({'success': False, 'message': 'Сервис временно перегружен, попробуйте позже'})
 
     return render_template('ai_chat.html')
 
