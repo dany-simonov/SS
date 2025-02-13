@@ -4,17 +4,15 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 import g4f
 
-excluded_providers = [
-    'ImageLabs'
-]
-
-providers = [
+text_providers = [
     g4f.Provider.ChatGLM,
     g4f.Provider.Free2GPT,
     g4f.Provider.GizAI
 ]
 
-print(f"Loaded working providers: {[provider.__name__ for provider in providers]}")
+image_providers = [
+    g4f.Provider.ImageLabs
+]
 
 g4f.debug.logging = True
 g4f.check_version = False
@@ -96,11 +94,16 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+def is_valid_image_url(url):
+    valid_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']
+    return any(ext in url.lower() for ext in valid_extensions)
+
 @app.route('/ai-chat', methods=['GET', 'POST'])
 def ai_chat():
     if request.method == 'POST':
         data = request.get_json()
         user_message = data.get('message')
+        generation_type = data.get('type', 'text')
 
         if not user_message:
             return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})
@@ -116,31 +119,44 @@ def ai_chat():
             
             Отвечай кратко и по существу, избегай длинных рассуждений."""
 
-
+        providers = text_providers if generation_type == 'text' else image_providers
+        
         for provider in providers:
             try:
-                print(f"\nПробуем провайдера: {provider.__name__}")
-                response = g4f.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_message}
-                    ],
-                    provider=provider,
-                    timeout=60
-                )
+                # Текстовый режим
+                if generation_type == 'text':
+                    response = g4f.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_message}
+                        ],
+                        provider=provider,
+                        timeout=120
+                    )
+                    return jsonify({'success': True, 'response': response, 'type': 'text'})
                 
-                if response and len(str(response).strip()) > 0:
-                    print(f"Успешный ответ от провайдера {provider.__name__}")
-                    return jsonify({'success': True, 'response': str(response)})
+                # Режим изображений
+                else:
+                    image_url = g4f.ChatCompletion.create(
+                        model="image-model",
+                        messages=[{"role": "user", "content": user_message}],
+                        provider=provider,
+                        timeout=120
+                    )
+                    
+                    if image_url and is_valid_image_url(image_url):
+                        response = f'<div class="image-container"><img src="{image_url}" style="max-width: 100%; border-radius: 5px;"></div>'
+                        return jsonify({'success': True, 'response': response, 'type': 'image'})
                     
             except Exception as e:
                 print(f"Ошибка провайдера {provider.__name__}: {str(e)}")
                 continue
                 
-        return jsonify({'success': False, 'message': 'Сервис временно перегружен, попробуйте позже'})
+        return jsonify({'success': False, 'message': 'Попробуйте еще раз через минуту'})
 
     return render_template('ai_chat.html')
+
 
 if __name__ == '__main__':
     with app.app_context():
