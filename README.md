@@ -1,16 +1,39 @@
-StudySphere - A social network for study groups and is in development
+StudySphere - AI-Powered Educational Platform
 
-* Description: A social network for study groups that allows you to share knowledge and collaborate.
-* Technologies used:
-    * Backend: Python (Flask), SQLAlchemy, SQLite
-    * Frontend: HTML, CSS, JavaScript
-* Functionality:
-    * Registration and login
-    * Feed of posts
-    * Creating posts
-    * User profiles
-* Colors:
-    * Background: White
-    * Text: Black
-    * Accent: Green (#008819)
-website under development...
+Overview
+StudySphere is an innovative educational platform that leverages multiple AI models to provide personalized learning assistance. 
+Currently in active development, the platform aims to revolutionize the way students interact with educational content.
+
+Features
+
+Multi-Model AI Chat System
+
+   Support for multiple AI providers (ChatGLM, Free3GPT, GizAI)
+   Text and image generation capabilities
+   Enhanced generation mode for complex queries
+
+User Management
+
+   Secure authentication system
+   Personal profile management
+   Phone number verification
+
+Interactive Interface
+
+   Responsive chat interface
+   Real-time message updates
+   Model switching on-the-fly
+
+Technical Stack
+Backend: Flask, SQLAlchemy
+Frontend: HTML, CSS, JavaScript
+Database: SQLite
+AI Integration: g4f librar
+
+Development Status
+🚧 Active Development 🚧
+
+New AI models integration in progress
+Enhanced user interface updates coming soon
+Performance optimizations planned
+Creating a social network
