@@ -103,57 +103,68 @@ def ai_chat():
     if request.method == 'POST':
         data = request.get_json()
         user_message = data.get('message')
+        selected_model = data.get('model', 'ChatGLM')
         generation_type = data.get('type', 'text')
 
         if not user_message:
             return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})
-
-        system_prompt = """Ты - дружелюбный AI-ассистент StudySphere. Твои основные задачи:
-            - Помогать с учебными вопросами по любым предметам
-            - Объяснять сложные темы простым языком
-            - Давать практические советы по обучению
-            - Поддерживать мотивацию к учёбе
-            - Общаться в дружелюбном тоне
-            - Можешь шутить и поддерживать неформальную беседу
-            - При этом всегда оставаться полезным и информативным
-            
-            Отвечай кратко и по существу, избегай длинных рассуждений."""
-
-        providers = text_providers if generation_type == 'text' else image_providers
         
-        for provider in providers:
+        system_prompt = """Ты - дружелюбный AI-ассистент StudySphere. Твои основные задачи:
+                        - Помогать с учебными вопросами по любым предметам
+                        - Объяснять сложные темы простым языком  
+                        - Давать практические советы по обучению
+                        - Поддерживать мотивацию к учёбе
+                        - Общаться в дружелюбном тоне
+                        - Можешь шутить и поддерживать неформальную беседу
+                        - При этом всегда оставаться полезным и информативным
+                        Отвечай кратко и по существу, избегай длинных рассуждений."""
+
+        if generation_type == 'text':
             try:
-                # Текстовый режим
-                if generation_type == 'text':
-                    response = g4f.ChatCompletion.create(
-                        model="gpt-3.5-turbo",
-                        messages=[
-                            {"role": "system", "content": system_prompt},
-                            {"role": "user", "content": user_message}
-                        ],
-                        provider=provider,
-                        timeout=120
-                    )
-                    return jsonify({'success': True, 'response': response, 'type': 'text'})
+                # Выбираем провайдера на основе выбранной модели
+                provider_map = {
+                    'ChatGLM': g4f.Provider.ChatGLM,
+                    'Free3GPT': g4f.Provider.Free2GPT,
+                    'GizAI': g4f.Provider.GizAI
+                }
                 
-                # Режим изображений
-                else:
-                    image_url = g4f.ChatCompletion.create(
-                        model="image-model",
-                        messages=[{"role": "user", "content": user_message}],
-                        provider=provider,
-                        timeout=120
-                    )
-                    
-                    if image_url and is_valid_image_url(image_url):
-                        response = f'<div class="image-container"><img src="{image_url}" style="max-width: 100%; border-radius: 5px;"></div>'
-                        return jsonify({'success': True, 'response': response, 'type': 'image'})
+                provider = provider_map.get(selected_model)
+                print(f"Using {selected_model} provider and gpt-3.5-turbo model")
+
+                response = g4f.ChatCompletion.create(
+                    model="gpt-3.5-turbo",
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_message}
+                    ],
+                    provider=provider,
+                    timeout=120
+                )
+                
+                return jsonify({'success': True, 'response': response})
                     
             except Exception as e:
-                print(f"Ошибка провайдера {provider.__name__}: {str(e)}")
-                continue
-                
-        return jsonify({'success': False, 'message': 'Попробуйте еще раз через минуту'})
+                print(f"Ошибка модели {selected_model}: {str(e)}")
+                return jsonify({'success': False, 'message': f'Ошибка при использовании {selected_model}'})
+        else:
+            image_url = g4f.ChatCompletion.create(
+                model="image-model",
+                messages=[{"role": "user", "content": user_message}],
+                provider=provider,
+                timeout=120
+            )
+
+            if image_url and is_valid_image_url(image_url):
+                response = (
+                    f'<div class="image-container">'
+                    f'<img src="{image_url}" style="max-width: 100%; border-radius: 5px;">'
+                    f'</div>'
+                )
+                return jsonify({
+                    'success': True,
+                    'response': response,
+                    'type': 'image'
+                })
 
     return render_template('ai_chat.html')
 

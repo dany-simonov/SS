@@ -265,7 +265,7 @@
                     <option value="ChatGLM">ChatGLM</option>
                     <option value="Free3GPT">Free3GPT</option>
                     <option value="GizAI">GizAI</option>
-                </select>
+                </select>                
             </div>
             
             <button id="enhancedMode" class="enhanced-mode">
@@ -375,16 +375,19 @@
         
     function sendMessage() {
         const messageInput = document.getElementById('messageInput');
+        const modelType = document.getElementById('modelType');
         const generationType = document.getElementById('generationType');
         const message = messageInput.value.trim();
         
         if (!message) return;
 
+        // Добавим лог для проверки
+        console.log('Выбранная модель:', modelType.value);
+
         // Добавляем сообщение пользователя в чат
         addMessage(message, 'user');
         messageInput.value = '';
 
-        // Отправляем запрос к ИИ
         fetch('/ai-chat', {
             method: 'POST',
             headers: {
@@ -392,6 +395,7 @@
             },
             body: JSON.stringify({ 
                 message: message,
+                model: modelType.value,
                 type: generationType.value 
             })
         })
@@ -408,6 +412,7 @@
             console.error('Ошибка:', error);
         });
     }
+
 
     function addMessage(content, type) {
         const chatMessages = document.getElementById('chatMessages');
