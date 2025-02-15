@@ -30,16 +30,10 @@ Frontend: HTML, CSS, JavaScript
 Database: SQLite
 AI Integration: g4f librar
 
-Installation
-git clone https://github.com/yourusername/StudySphere.git
-cd StudySphere
-pip install -r requirements.txt
-python run.py
-
-
 Development Status
 🚧 Active Development 🚧
 
 New AI models integration in progress
 Enhanced user interface updates coming soon
 Performance optimizations planned
+Creating a social network
