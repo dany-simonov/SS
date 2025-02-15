@@ -84,7 +84,38 @@ function addMessage(content, type) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}-message`;
     
-    if (type === 'ai' && content.includes('<img')) {
+    if (type === 'ai') {
+        content = content
+            // Заголовки
+            .replace(/#{6}\s(.*?)(?:\n|$)/g, '<h6>$1</h6>')
+            .replace(/#{5}\s(.*?)(?:\n|$)/g, '<h5>$1</h5>')
+            .replace(/#{4}\s(.*?)(?:\n|$)/g, '<h4>$1</h4>')
+            .replace(/#{3}\s(.*?)(?:\n|$)/g, '<h3>$1</h3>')
+            .replace(/#{2}\s(.*?)(?:\n|$)/g, '<h2>$1</h2>')
+            .replace(/#{1}\s(.*?)(?:\n|$)/g, '<h1>$1</h1>')
+            
+            // Форматирование текста
+            .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/~~(.*?)~~/g, '<del>$1</del>')
+            .replace(/`(.*?)`/g, '<code>$1</code>')
+            
+            // Списки
+            .replace(/^\s*[-+*]\s+(.*?)(?:\n|$)/gm, '<li>$1</li>')
+            .replace(/^\s*(\d+)\.\s+(.*?)(?:\n|$)/gm, '<li>$2</li>')
+            
+            // Цитаты
+            .replace(/^\s*>\s+(.*?)(?:\n|$)/gm, '<blockquote>$1</blockquote>')
+            
+            // Горизонтальная линия
+            .replace(/^(?:[-*_]){3,}$/gm, '<hr>')
+            
+            // Ссылки
+            .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
+            
+            // Переносы строк
+            .replace(/\n/g, '<br>');
         messageDiv.innerHTML = content;
     } else {
         messageDiv.textContent = content;
