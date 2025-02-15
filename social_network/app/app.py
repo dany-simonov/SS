@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import g4f
+from enhanced_generation import EnhancedGeneration
+import asyncio
 
 text_providers = [
     g4f.Provider.ChatGLM,
@@ -105,6 +107,7 @@ def ai_chat():
         user_message = data.get('message')
         selected_model = data.get('model', 'ChatGLM')
         generation_type = data.get('type', 'text')
+        is_enhanced = data.get('enhanced', False)
 
         if not user_message:
             return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})
@@ -116,37 +119,43 @@ def ai_chat():
                         - Поддерживать мотивацию к учёбе
                         - Общаться в дружелюбном тоне
                         - Можешь шутить и поддерживать неформальную беседу
-                        - При этом всегда оставаться полезным и информативным
-                        Отвечай кратко и по существу, избегай длинных рассуждений."""
+                        - При этом всегда оставаться полезным и информативным."""
 
         if generation_type == 'text':
             try:
-                # Выбираем провайдера на основе выбранной модели
-                provider_map = {
-                    'ChatGLM': g4f.Provider.ChatGLM,
-                    'Free3GPT': g4f.Provider.Free2GPT,
-                    'GizAI': g4f.Provider.GizAI
-                }
-                
-                provider = provider_map.get(selected_model)
-                print(f"Using {selected_model} provider and gpt-3.5-turbo model")
+                if is_enhanced:
+                    # Используем улучшенную генерацию
+                    enhanced_gen = EnhancedGeneration()
+                    result = asyncio.run(enhanced_gen.get_response(user_message))
+                    return jsonify(result)
+                else:
+                    # Обычная генерация с выбранной моделью
+                    provider_map = {
+                        'ChatGLM': g4f.Provider.ChatGLM,
+                        'Free3GPT': g4f.Provider.Free2GPT,
+                        'GizAI': g4f.Provider.GizAI
+                    }
+                    
+                    provider = provider_map.get(selected_model)
+                    print(f"Using {selected_model} provider and gpt-3.5-turbo model")
 
-                response = g4f.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_message}
-                    ],
-                    provider=provider,
-                    timeout=120
-                )
-                
-                return jsonify({'success': True, 'response': response})
+                    response = g4f.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_message}
+                        ],
+                        provider=provider,
+                        timeout=120
+                    )
+                    
+                    return jsonify({'success': True, 'response': response})
                     
             except Exception as e:
                 print(f"Ошибка модели {selected_model}: {str(e)}")
                 return jsonify({'success': False, 'message': f'Ошибка при использовании {selected_model}'})
         else:
+            # Генерация изображений (без улучшенной генерации)
             image_url = g4f.ChatCompletion.create(
                 model="image-model",
                 messages=[{"role": "user", "content": user_message}],
