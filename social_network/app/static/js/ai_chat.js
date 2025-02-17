@@ -2,12 +2,15 @@
 document.getElementById('generationType').addEventListener('change', function() {
     const modelSelect = document.getElementById('modelType');
     const enhancedControls = document.querySelector('.enhanced-controls');
+    const enhancedExplanation = document.querySelector('.enhanced-explanation');
     if (this.value === 'text') {
         modelSelect.style.display = 'block';
         enhancedControls.style.display = 'flex';
+        enhancedExplanation.style.display = 'block';
     } else {
         modelSelect.style.display = 'none';
         enhancedControls.style.display = 'none';
+        enhancedExplanation.style.display = 'none';
     }
 });
 
