@@ -96,9 +96,20 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-def is_valid_image_url(url):
-    valid_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']
-    return any(ext in url.lower() for ext in valid_extensions)
+def is_valid_image_url(url: str) -> bool:
+    """Проверяет валидность URL изображения"""
+    if not url:
+        return False
+    
+    valid_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp']
+    return any(url.lower().endswith(ext) for ext in valid_extensions)
+
+def extract_image_url(html_response: str) -> str:
+    """Извлекает URL изображения из HTML-ответа"""
+    import re
+    url_pattern = r'https://[^\s<>"]+?(?:jpg|jpeg|png|gif|webp)'
+    matches = re.findall(url_pattern, html_response)
+    return matches[0] if matches else ''
 
 @app.route('/ai-chat', methods=['GET', 'POST'])
 def ai_chat():
@@ -155,24 +166,36 @@ def ai_chat():
                 print(f"Ошибка модели {selected_model}: {str(e)}")
                 return jsonify({'success': False, 'message': f'Ошибка при использовании {selected_model}'})
         else:
-            # Генерация изображений (без улучшенной генерации)
-            image_url = g4f.ChatCompletion.create(
-                model="image-model",
-                messages=[{"role": "user", "content": user_message}],
-                provider=provider,
-                timeout=120
-            )
-
-            if image_url and is_valid_image_url(image_url):
-                response = (
-                    f'<div class="image-container">'
-                    f'<img src="{image_url}" style="max-width: 100%; border-radius: 5px;">'
-                    f'</div>'
+            try:
+                image_provider = image_providers[0]
+                raw_response = g4f.ChatCompletion.create(
+                    model="image-model",
+                    messages=[{"role": "user", "content": user_message}],
+                    provider=image_provider,
+                    timeout=120
                 )
+                image_url = extract_image_url(raw_response)
+                if image_url:
+                    response = (
+                        f'<div class="image-container">'
+                        f'<img src="{image_url}" style="max-width: 100%; border-radius: 5px;">'
+                        f'</div>'
+                    )
+                    return jsonify({
+                        'success': True,
+                        'response': response,
+                        'type': 'image'
+                    })
+                else:
+                    return jsonify({
+                        'success': False,
+                        'message': 'Не удалось сгенерировать изображение'
+                    })
+                    
+            except Exception as e:
                 return jsonify({
-                    'success': True,
-                    'response': response,
-                    'type': 'image'
+                    'success': False,
+                    'message': f'Ошибка при генерации изображения: {str(e)}'
                 })
 
     return render_template('ai_chat.html')
