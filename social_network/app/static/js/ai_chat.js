@@ -1,18 +1,46 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const messageInput = document.getElementById('messageInput');
+    
+    messageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+});
+
 // Обработка переключения режима генерации
 document.getElementById('generationType').addEventListener('change', function() {
-    const modelSelect = document.getElementById('modelType');
-    const enhancedControls = document.querySelector('.enhanced-controls');
+    const modelType = document.getElementById('modelType');
+    const enhancedMode = document.getElementById('enhancedMode');
     const enhancedExplanation = document.querySelector('.enhanced-explanation');
-    if (this.value === 'text') {
-        modelSelect.style.display = 'block';
-        enhancedControls.style.display = 'flex';
-        enhancedExplanation.style.display = 'block';
-    } else {
-        modelSelect.style.display = 'none';
-        enhancedControls.style.display = 'none';
+    const enhancedExplanationBtn = document.querySelector('.enhanced-explanation-btn');
+   
+    if (this.value === 'image') {
+        modelType.style.display = 'none';
+        enhancedMode.style.display = 'none';
         enhancedExplanation.style.display = 'none';
+        enhancedExplanationBtn.style.display = 'none';
+    } else {
+        modelType.style.display = 'block';
+        enhancedMode.style.display = 'inline-block';
+        enhancedExplanation.style.display = 'block';
+        enhancedExplanationBtn.style.display = 'inline-block';
     }
 });
+
+copyButton.onclick = function() {
+    const textToCopy = messageContent.textContent;
+    navigator.clipboard.writeText(textToCopy);
+    
+    // Меняем на активную зеленую иконку
+    copyButton.src = '/static/images/Copy_active.svg';
+    
+    // Возвращаем обычную иконку через 3 секунды
+    setTimeout(() => {
+        copyButton.src = '/static/images/Copy.svg';
+    }, 5000);
+};
 
 // Обработка улучшенной генерации
 const enhancedButton = document.getElementById('enhancedMode');
@@ -86,8 +114,12 @@ function addMessage(content, type) {
     const chatMessages = document.getElementById('chatMessages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}-message`;
-    
+   
     if (type === 'ai') {
+        // Создаем контейнер для сообщения и кнопки копирования
+        const messageContainer = document.createElement('div');
+        messageContainer.style.position = 'relative';
+        
         content = content
             // Заголовки
             .replace(/#{6}\s(.*?)(?:\n|$)/g, '<h6>$1</h6>')
@@ -96,37 +128,63 @@ function addMessage(content, type) {
             .replace(/#{3}\s(.*?)(?:\n|$)/g, '<h3>$1</h3>')
             .replace(/#{2}\s(.*?)(?:\n|$)/g, '<h2>$1</h2>')
             .replace(/#{1}\s(.*?)(?:\n|$)/g, '<h1>$1</h1>')
-            
+           
             // Форматирование текста
             .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/~~(.*?)~~/g, '<del>$1</del>')
             .replace(/`(.*?)`/g, '<code>$1</code>')
-            
+           
             // Списки
             .replace(/^\s*[-+*]\s+(.*?)(?:\n|$)/gm, '<li>$1</li>')
             .replace(/^\s*(\d+)\.\s+(.*?)(?:\n|$)/gm, '<li>$2</li>')
-            
+           
             // Цитаты
             .replace(/^\s*>\s+(.*?)(?:\n|$)/gm, '<blockquote>$1</blockquote>')
-            
+           
             // Горизонтальная линия
             .replace(/^(?:[-*_]){3,}$/gm, '<hr>')
-            
+           
             // Ссылки
             .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
-            
+           
             // Переносы строк
             .replace(/\n/g, '<br>');
-        messageDiv.innerHTML = content;
+
+        // Добавляем текст сообщения
+        const messageContent = document.createElement('div');
+        messageContent.innerHTML = content;
+        messageContainer.appendChild(messageContent);
+        
+        // Добавляем кнопку копирования для текстовых сообщений
+        if (!content.includes('image-container')) {
+            const copyButton = document.createElement('img');
+            copyButton.src = '/static/images/Copy.svg';
+            copyButton.style.cursor = 'pointer';
+            copyButton.style.position = 'absolute';
+            copyButton.style.right = '10px';
+            copyButton.style.bottom = '10px';
+            copyButton.style.width = '20px';
+            copyButton.style.height = '20px';
+            
+            copyButton.onclick = function() {
+                const textToCopy = messageContent.textContent;
+                navigator.clipboard.writeText(textToCopy);
+            };
+            
+            messageContainer.appendChild(copyButton);
+        }
+        
+        messageDiv.appendChild(messageContainer);
     } else {
         messageDiv.textContent = content;
     }
-    
+   
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
 
 // Перетаскивание модального окна
 let isDragging = false;
