@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебник Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #2c3e50;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: #ffffff;
+            padding: 1.5rem;
+            border-bottom: 2px solid #eaecef;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #34679d;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        nav a:hover {
+            background: #f0f8ff;
+            text-decoration: underline;
+        }
+
+        .chapter {
+            margin: 3rem 0;
+            padding: 2rem;
+            border-left: 5px solid;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .chapter:hover {
+            transform: translateX(10px);
+        }
+
+        .chapter0 { border-color: #89CFF0; background: #e3f2fd; }
+        .chapter1 { border-color: #90EE90; background: #d4edda; }
+        .chapter2 { border-color: #F08080; background: #ffebee; }
+        .chapter3 { border-color: #FFD700; background: #fff3cd; }
+        .chapter4 { border-color: #FFB6C1; background: #fff5f5; }
+        .chapter5 { border-color: #D3D3D3; background: #f8f9fa; }
+        .chapter6 { border-color: #DDA0DD; background: #f3e0f7; }
+        .chapter7 { border-color: #FFA07A; background: #ffeccf; }
+
+        pre {
+            background: #2d2d2d;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
+        }
+
+        .accent {
+            color: #FF4500;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #34679d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .back-to-top:hover {
+            background: #1a3c6b;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                justify-content: center;
+                padding: 1rem;
+            }
+            
+            .chapter {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#chapter0">0. Ввод и вывод</a>
+        <a href="#chapter1">1. Операторы</a>
+        <a href="#chapter2">2. Условный оператор</a>
+        <a href="#chapter3">3. Цикл for</a>
+        <a href="#chapter4">4. Цикл while</a>
+        <a href="#chapter5">5. Списки</a>
+        <a href="#chapter6">6. Функции</a>
+        <a href="#chapter7">7. Словари</a>
+    </nav>
+
+    <main>
+        <!-- Глава 0: Ввод и вывод -->
+        <section class="chapter chapter0" id="chapter0">
+            <h2>0. Ввод и вывод</h2>
+            <p>Python — краткий и простой язык программирования. Интересные факты:</p>
+            <ol>
+                <li>Создан Гвидо ван Россумом в 1991</li>
+                <li>В честь комедийного шоу "Летающий цирк Монти Пайтона"</li>
+                <li>Используется такими гигантами как Google, YouTube и NASA</li>
+            </ol>
+
+            <h3>Основы работы</h3>
+            <pre><code class="python">
+# Вывод данных
+print("Hello, world!")
+
+# Ввод данных
+name = input("Введите имя: ")
+print(f"Привет, {name}!")
+
+# Типы данных
+age = 25            # int
+price = 19.99       # float
+text = "Python"     # str
+is_student = True   # bool
+            </code></pre>
+        </section>
+
+        <!-- Глава 1: Операторы -->
+        <section class="chapter chapter1" id="chapter1">
+            <h2>1. Операторы</h2>
+            <pre><code class="python">
+# Арифметические операторы
+print(5 + 3)    # 8
+print(10 - 2)   # 8
+print(4 * 2)    # 8
+print(16 / 2)   # 8.0
+
+# Специальные операторы
+print(10 % 3)   # 1 (остаток от деления)
+print(10 // 3)  # 3 (целочисленное деление)
+print(2 ** 3)   # 8 (возведение в степень)
+
+# Операторы сравнения
+print(5 == 5)   # True
+print(5 != 3)   # True
+print(10 > 5)   # True
+
+# Логические операторы
+print(True and False)  # False
+print(True or False)   # True
+print(not True)        # False
+            </code></pre>
+        </section>
+
+        <!-- Глава 2: Условный оператор -->
+        <section class="chapter chapter2" id="chapter2">
+            <h2>2. Условный оператор</h2>
+            <pre><code class="python">
+age = int(input("Возраст: "))
+
+if age < 18:
+    print("Доступ запрещен")
+elif age < 21:
+    print("Доступ ограничен")
+else:
+    print("Полный доступ")
+
+# Тернарный оператор
+status = "Adult" if age >= 18 else "Minor"
+print(status)
+            </code></pre>
+        </section>
+
+        <!-- Глава 3: Цикл for -->
+        <section class="chapter chapter3" id="chapter3">
+            <h2>3. Цикл for</h2>
+            <pre><code class="python">
+# Перебор элементов
+fruits = ["яблоко", "банан", "вишня"]
+for fruit in fruits:
+    print(fruit)
+
+# Использование range()
+for i in range(5):
+    print(i)  # 0,1,2,3,4
+
+for i in range(2, 10, 2):
+    print(i)  # 2,4,6,8
+            </code></pre>
+        </section>
+
+        <!-- Глава 4: Цикл while -->
+        <section class="chapter chapter4" id="chapter4">
+            <h2>4. Цикл while</h2>
+            <pre><code class="python">
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# Бесконечный цикл с break
+while True:
+    command = input("Введите 'exit' для выхода: ")
+    if command == 'exit':
+        break
+            </code></pre>
+        </section>
+
+        <!-- Глава 5: Списки -->
+        <section class="chapter chapter5" id="chapter5">
+            <h2>5. Списки</h2>
+            <pre><code class="python">
+# Создание списка
+numbers = [1, 2, 3, 4, 5]
+
+# Добавление элементов
+numbers.append(6)
+numbers.insert(0, 0)
+
+# Удаление элементов
+numbers.remove(3)
+popped = numbers.pop()
+
+# Срезы
+sublist = numbers[1:4]
+
+# Сортировка
+numbers.sort()
+numbers.sort(reverse=True)
+            </code></pre>
+        </section>
+
+        <!-- Глава 6: Функции -->
+        <section class="chapter chapter6" id="chapter6">
+            <h2>6. Функции</h2>
+            <pre><code class="python">
+def greet(name):
+    """Приветствует пользователя"""
+    return f"Привет, {name}!"
+
+def calculate(a, b):
+    return {
+        'sum': a + b,
+        'diff': a - b,
+        'prod': a * b
+    }
+
+# Лямбда-функция
+square = lambda x: x ** 2
+            </code></pre>
+        </section>
+
+        <!-- Глава 7: Словари -->
+        <section class="chapter chapter7" id="chapter7">
+            <h2>7. Словари</h2>
+            <pre><code class="python">
+user = {
+    'name': 'Алексей',
+    'age': 25,
+    'is_student': True
+}
+
+# Доступ к элементам
+print(user['name'])
+
+# Добавление/изменение
+user['email'] = 'alex@example.com'
+
+# Удаление
+del user['is_student']
+
+# Перебор
+for key, value in user.items():
+    print(f"{key}: {value}")
+            </code></pre>
+        </section>
+    </main>
+
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="back-to-top">↑ Наверх</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
