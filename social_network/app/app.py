@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import g4f
 from enhanced_generation import EnhancedGeneration
 import asyncio
+import re
 
 text_providers = [
     g4f.Provider.ChatGLM,
@@ -49,10 +50,13 @@ def load_user(id):
 def index():
     return redirect(url_for('landing'))
 
+@app.route('/textbook')
+def textbook():
+    return render_template('textbook.html')
+
 @app.route('/support')
 def support():
     return render_template('support.html')
-
 
 @app.route('/landing')
 def landing():
@@ -106,7 +110,6 @@ def is_valid_image_url(url: str) -> bool:
 
 def extract_image_url(html_response: str) -> str:
     """Извлекает URL изображения из HTML-ответа"""
-    import re
     url_pattern = r'https://[^\s<>"]+?(?:jpg|jpeg|png|gif|webp)'
     matches = re.findall(url_pattern, html_response)
     return matches[0] if matches else ''
