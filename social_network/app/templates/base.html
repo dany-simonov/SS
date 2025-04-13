@@ -4,39 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}StudySphere{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/svg+xml">
+    <style>
+        :root {
+            --primary-green: #008819;
+            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: #000;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding: 1rem;
+        }
+        .nav-links {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+        .support-btn {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-green);
+            border-radius: 5px;
+        }
+        .ai-chat-btn {
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+        .ai-chat-btn:hover {
+            background: #45a049;
+        }
+        .footer {
+            background: #f5f5f5;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+    {% block head %}{% endblock %}
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="{{ url_for('landing') }}">
-                    <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo">
-                    StudySphere
-                </a>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container" style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere Logo" style="height: 40px;">
+                <h2 style="font-size: 1.5rem; margin: 0;">StudySphere</h2>
             </div>
             <div class="nav-links">
+                <a href="{{ url_for('landing') }}">Главная</a>
+                <a href="{{ url_for('textbook') }}">Учебник</a>
+                <a href="{{ url_for('ai_chat') }}" class="ai-chat-btn">Чат с AI</a>
+                <a href="{{ url_for('support') }}" class="support-btn">Поддержка</a>
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('profile') }}">Профиль</a>
-                    <a href="{{ url_for('settings') }}">Настройки</a>
                     <a href="{{ url_for('logout') }}">Выход</a>
                 {% else %}
-                    <a href="{{ url_for('login') }}">Вход</a>
                     <a href="{{ url_for('register') }}">Регистрация</a>
+                    <a href="{{ url_for('login') }}">Вход</a>
                 {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('textbook') }}">Учебник</a>
-                </li>
             </div>
-        </nav>
-    </header>
+        </header>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
 
-    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+        <footer class="footer">
+            <div class="footer-content">
+                <p>© 2024-2025 StudySphere. Все права защищены.</p>
+                <p>Платформа для эффективного обучения и общения</p>
+            </div>
+        </footer>
+    </div>
+
     {% block scripts %}{% endblock %}
 </body>
 </html>

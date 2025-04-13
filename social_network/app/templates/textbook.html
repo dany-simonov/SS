@@ -52,7 +52,17 @@
         .chapter:hover {
             transform: translateX(10px);
         }
+        .chapter-links {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
 
+        .chapter-links a {
+            white-space: nowrap;
+        }
         .chapter0 { border-color: #89CFF0; background: #e3f2fd; }
         .chapter1 { border-color: #90EE90; background: #d4edda; }
         .chapter2 { border-color: #F08080; background: #ffebee; }
@@ -113,16 +123,17 @@
 </head>
 <body>
     <nav>
-        <a href="#chapter0">0. Ввод и вывод</a>
-        <a href="#chapter1">1. Операторы</a>
-        <a href="#chapter2">2. Условный оператор</a>
-        <a href="#chapter3">3. Цикл for</a>
-        <a href="#chapter4">4. Цикл while</a>
-        <a href="#chapter5">5. Списки</a>
-        <a href="#chapter6">6. Функции</a>
-        <a href="#chapter7">7. Словари</a>
+        <div class="chapter-links">
+            <a href="#chapter0">0. Ввод и вывод</a>
+            <a href="#chapter1">1. Операторы</a>
+            <a href="#chapter2">2. Условный оператор</a>
+            <a href="#chapter3">3. Цикл for</a>
+            <a href="#chapter4">4. Цикл while</a>
+            <a href="#chapter5">5. Списки</a>
+            <a href="#chapter6">6. Функции</a>
+            <a href="#chapter7">7. Словари</a>
+        </div>
     </nav>
-
     <main>
         <!-- Глава 0: Ввод и вывод -->
         <section class="chapter chapter0" id="chapter0">
