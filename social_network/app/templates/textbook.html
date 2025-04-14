@@ -119,6 +119,54 @@
                 padding: 1.5rem;
             }
         }
+
+        /* В учебнике уже есть базовые стили, добавляем специфичные */
+        .note {
+            background: #fff3cd;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .warning {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-left: 4px solid #ff5252;
+            margin: 1rem 0;
+        }
+
+        .data-types {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .data-types th, .data-types td {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .task {
+            background: #e8f4ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .errors {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .errors li {
+            background: #ffeeba;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
     </style>
 </head>
 <body>
@@ -136,181 +184,1386 @@
     </nav>
     <main>
         <!-- Глава 0: Ввод и вывод -->
-        <section class="chapter chapter0" id="chapter0">
-            <h2>0. Ввод и вывод</h2>
-            <p>Python — краткий и простой язык программирования. Интересные факты:</p>
-            <ol>
-                <li>Создан Гвидо ван Россумом в 1991</li>
-                <li>В честь комедийного шоу "Летающий цирк Монти Пайтона"</li>
-                <li>Используется такими гигантами как Google, YouTube и NASA</li>
-            </ol>
+<section class="chapter chapter0" id="chapter0">
+    <h2>0. Ввод и вывод</h2>
+    
+    <h3>0.1. Знакомство с Python</h3>
+    <p>Python — это современный язык программирования, который ценят за простоту и мощь. 
+       Он используется в веб-разработке, анализе данных, искусственном интеллекте и даже в космических проектах!</p>
+    
+    <h4>Интересные факты:</h4>
+    <ul>
+        <li>Создан Гвидо ван Россумом в 1991 году</li>
+        <li>Название вдохновлено шоу «Летающий цирк Монти Пайтона»</li>
+        <li>На Python написаны Instagram, YouTube и часть Google</li>
+    </ul>
 
-            <h3>Основы работы</h3>
-            <pre><code class="python">
-# Вывод данных
-print("Hello, world!")
+    <h3>0.2. Первая программа</h3>
+    <p>Начнем с классики — вывода текста на экран. В Python это делается через команду <code>print()</code>:</p>
+    <pre><code class="python">
+print("Hello, world!")  # Выведет: Hello, world!
+    </code></pre>
+    
+    <div class="note">
+        <strong>Важно запомнить:</strong>
+        <ul>
+            <li>Текст в кавычках <code>" "</code> или <code>' '</code> называется <em>строкой</em></li>
+            <li>Скобки <code>()</code> обязательны в Python 3!</li>
+        </ul>
+    </div>
 
-# Ввод данных
-name = input("Введите имя: ")
-print(f"Привет, {name}!")
+    <h3>0.3. Ввод данных</h3>
+    <p>Чтобы получить данные от пользователя, используйте <code>input()</code>:</p>
+    <pre><code class="python">
+name = input("Как тебя зовут? ")  # Пример: Как тебя зовут? Маша
+print("Привет,", name)            # Выведет: Привет, Маша
+    </code></pre>
+    
+    <div class="warning">
+        <strong>Важно:</strong> <code>input()</code> всегда возвращает строку. 
+        Чтобы работать с числами, преобразуйте тип:
+    </div>
+    <pre><code class="python">
+age = int(input("Сколько тебе лет? "))  # Пример: Сколько тебе лет? 25
+print("Через год тебе будет", age + 1)  # Выведет: Через год тебе будет 26
+    </code></pre>
 
-# Типы данных
-age = 25            # int
-price = 19.99       # float
-text = "Python"     # str
-is_student = True   # bool
-            </code></pre>
-        </section>
+    <h3>0.4. Типы данных</h3>
+    <p>Python различает несколько базовых типов:</p>
+    <table class="data-types">
+        <tr>
+            <th>Тип</th>
+            <th>Описание</th>
+            <th>Пример</th>
+        </tr>
+        <tr>
+            <td><code>int</code></td>
+            <td>Целые числа</td>
+            <td><code>42</code>, <code>-7</code></td>
+        </tr>
+        <tr>
+            <td><code>float</code></td>
+            <td>Дробные числа</td>
+            <td><code>3.14</code>, <code>-0.5</code></td>
+        </tr>
+        <tr>
+            <td><code>str</code></td>
+            <td>Строки</td>
+            <td><code>"Python"</code></td>
+        </tr>
+        <tr>
+            <td><code>bool</code></td>
+            <td>Логические значения</td>
+            <td><code>True</code>, <code>False</code></td>
+        </tr>
+    </table>
+
+    <h3>0.5. Практика</h3>
+    <div class="task">
+        <h4>Задача 1:</h4>
+        <p>Напишите программу, которая запрашивает два числа и выводит их сумму:</p>
+        <pre><code class="python">
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+print("Сумма:", a + b)
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2:</h4>
+        <p>Попросите пользователя ввести имя и возраст, затем выведите:</p>
+        <pre>Привет, [имя]! Тебе [возраст] лет.</pre>
+    </div>
+
+    <h3>0.6. Частые ошибки</h3>
+    <ul class="errors">
+        <li>❌ Забытые скобки: <code>print "Hello"</code> → ✅ <code>print("Hello")</code></li>
+        <li>❌ Неправильные кавычки: <code>print('Он сказал: "Привет"')</code> → ✅ <code>print("Он сказал: 'Привет'")</code></li>
+    </ul>
+
+    <h3>0.7. Что дальше?</h3>
+    <p>В следующей главе мы разберем <strong>операторы</strong> — инструменты для математических и логических операций. 
+       А пока потренируйтесь:</p>
+    <ul>
+        <li>Напишите программу, которая считает площадь прямоугольника (длина × ширина)</li>
+        <li>Спросите у пользователя его имя и повторите его 3 раза через пробел</li>
+    </ul>
+</section>
 
         <!-- Глава 1: Операторы -->
-        <section class="chapter chapter1" id="chapter1">
-            <h2>1. Операторы</h2>
-            <pre><code class="python">
-# Арифметические операторы
+<section class="chapter chapter1" id="chapter1">
+    <h2>1. Операторы</h2>
+    
+    <h3>1.1. Арифметические операторы</h3>
+    <p>Python поддерживает все базовые математические операции:</p>
+    
+    <table class="data-types">
+        <tr>
+            <th>Оператор</th>
+            <th>Описание</th>
+            <th>Пример</th>
+            <th>Результат</th>
+        </tr>
+        <tr>
+            <td><code>+</code></td>
+            <td>Сложение</td>
+            <td><code>5 + 3</code></td>
+            <td><code>8</code></td>
+        </tr>
+        <tr>
+            <td><code>-</code></td>
+            <td>Вычитание</td>
+            <td><code>10 - 4</code></td>
+            <td><code>6</code></td>
+        </tr>
+        <tr>
+            <td><code>*</code></td>
+            <td>Умножение</td>
+            <td><code>3 * 4</code></td>
+            <td><code>12</code></td>
+        </tr>
+        <tr>
+            <td><code>/</code></td>
+            <td>Деление</td>
+            <td><code>10 / 2</code></td>
+            <td><code>5.0</code></td>
+        </tr>
+        <tr>
+            <td><code>//</code></td>
+            <td>Целочисленное деление</td>
+            <td><code>10 // 3</code></td>
+            <td><code>3</code></td>
+        </tr>
+        <tr>
+            <td><code>%</code></td>
+            <td>Остаток от деления</td>
+            <td><code>10 % 3</code></td>
+            <td><code>1</code></td>
+        </tr>
+        <tr>
+            <td><code>**</code></td>
+            <td>Возведение в степень</td>
+            <td><code>2 ** 3</code></td>
+            <td><code>8</code></td>
+        </tr>
+    </table>
+
+    <pre><code class="python">
 print(5 + 3)    # 8
-print(10 - 2)   # 8
-print(4 * 2)    # 8
-print(16 / 2)   # 8.0
+print(10 % 3)   # 1
+print(2 ** 3)   # 8
+    </code></pre>
 
-# Специальные операторы
-print(10 % 3)   # 1 (остаток от деления)
-print(10 // 3)  # 3 (целочисленное деление)
-print(2 ** 3)   # 8 (возведение в степень)
+    <div class="note">
+        <strong>Важно:</strong> Результат деления <code>/</code> всегда float, 
+        даже если числа делятся нацело
+    </div>
 
-# Операторы сравнения
+    <h3>1.2. Приоритет операций</h3>
+    <p>Операции выполняются в следующем порядке:</p>
+    <ol>
+        <li>Скобки <code>()</code></li>
+        <li>Возведение в степень <code>**</code></li>
+        <li>Умножение, деление, остаток <code>* / % //</code></li>
+        <li>Сложение и вычитание <code>+ -</code></li>
+    </ol>
+
+    <pre><code class="python">
+print(2 + 3 * 4)      # 14 (3*4=12 → 2+12=14)
+print((2 + 3) * 4)    # 20 (скобки меняют приоритет)
+    </code></pre>
+
+    <div class="warning">
+        <strong>Осторожно!</strong> Операции с одинаковым приоритетом 
+        выполняются слева направо
+    </div>
+
+    <h3>1.3. Операторы сравнения</h3>
+    <table class="data-types">
+        <tr>
+            <th>Оператор</th>
+            <th>Описание</th>
+            <th>Пример</th>
+            <th>Результат</th>
+        </tr>
+        <tr>
+            <td><code>==</code></td>
+            <td>Равенство</td>
+            <td><code>5 == 5</code></td>
+            <td><code>True</code></td>
+        </tr>
+        <tr>
+            <td><code>!=</code></td>
+            <td>Неравенство</td>
+            <td><code>5 != 3</code></td>
+            <td><code>True</code></td>
+        </tr>
+        <tr>
+            <td><code>></code></td>
+            <td>Больше</td>
+            <td><code>10 > 5</code></td>
+            <td><code>True</code></td>
+        </tr>
+        <tr>
+            <td><code><</code></td>
+            <td>Меньше</td>
+            <td><code>3 < 5</code></td>
+            <td><code>True</code></td>
+        </tr>
+        <tr>
+            <td><code>>=</code></td>
+            <td>Больше или равно</td>
+            <td><code>5 >= 5</code></td>
+            <td><code>True</code></td>
+        </tr>
+        <tr>
+            <td><code><=</code></td>
+            <td>Меньше или равно</td>
+            <td><code>4 <= 5</code></td>
+            <td><code>True</code></td>
+        </tr>
+    </table>
+
+    <pre><code class="python">
 print(5 == 5)   # True
-print(5 != 3)   # True
-print(10 > 5)   # True
+print(10 < 5)   # False
+    </code></pre>
 
-# Логические операторы
-print(True and False)  # False
-print(True or False)   # True
-print(not True)        # False
-            </code></pre>
-        </section>
+    <h3>1.4. Логические операторы</h3>
+    <table class="data-types">
+        <tr>
+            <th>Оператор</th>
+            <th>Описание</th>
+            <th>Пример</th>
+            <th>Результат</th>
+        </tr>
+        <tr>
+            <td><code>and</code></td>
+            <td>Логическое И</td>
+            <td><code>True and False</code></td>
+            <td><code>False</code></td>
+        </tr>
+        <tr>
+            <td><code>or</code></td>
+            <td>Логическое ИЛИ</td>
+            <td><code>True or False</code></td>
+            <td><code>True</code></td>
+        </tr>
+        <tr>
+            <td><code>not</code></td>
+            <td>Логическое НЕ</td>
+            <td><code>not True</code></td>
+            <td><code>False</code></td>
+        </tr>
+    </table>
 
-        <!-- Глава 2: Условный оператор -->
-        <section class="chapter chapter2" id="chapter2">
-            <h2>2. Условный оператор</h2>
-            <pre><code class="python">
-age = int(input("Возраст: "))
+    <pre><code class="python">
+age = 25
+print(age > 18 and age < 30)  # True (25 между 18 и 30)
+print(not age > 30)           # True (25 не больше 30)
+    </code></pre>
 
-if age < 18:
-    print("Доступ запрещен")
-elif age < 21:
-    print("Доступ ограничен")
+    <div class="task">
+        <h4>Задача 3: Калькулятор индекса массы тела (BMI)</h4>
+        <pre><code class="python">
+weight = float(input("Вес (кг): "))
+height = float(input("Рост (м): "))
+bmi = weight / (height ** 2)
+print(f"Ваш BMI: {bmi:.1f}")
+        </code></pre>
+    </div>
+
+    <h3>1.5. Практика</h3>
+    <div class="task">
+        <h4>Задача 1: Проверка четности</h4>
+        <pre><code class="python">
+number = int(input("Введите число: "))
+if number % 2 == 0:
+    print("Четное")
 else:
-    print("Полный доступ")
+    print("Нечетное")
+        </code></pre>
+    </div>
 
-# Тернарный оператор
-status = "Adult" if age >= 18 else "Minor"
-print(status)
-            </code></pre>
-        </section>
+    <div class="task">
+        <h4>Задача 2: Деление на 3 и 5</h4>
+        <pre><code class="python">
+num = int(input("Введите число: "))
+if num % 3 == 0 and num % 5 == 0:
+    print("Делится на 3 и 5")
+else:
+    print("Не делится")
+        </code></pre>
+    </div>
 
-        <!-- Глава 3: Цикл for -->
-        <section class="chapter chapter3" id="chapter3">
-            <h2>3. Цикл for</h2>
-            <pre><code class="python">
-# Перебор элементов
+    <div class="task">
+        <h4>Задача 3: Годовой процент</h4>
+        <pre><code class="python">
+deposit = 10000
+rate = 0.07
+years = 5
+amount = deposit * (1 + rate) ** years
+print(f"Через {years} лет: {amount:.2f} руб.")
+        </code></pre>
+    </div>
+
+    <h3>1.6. Частые ошибки</h3>
+    <ul class="errors">
+        <li>❌ Присваивание вместо сравнения: <code>if x = 5:</code></li>
+        <li>❌ Неправильный приоритет: <code>print(2 + 3 * 2)</code> → 8, а не 10</li>
+        <li>❌ Забытые скобки: <code>print "Hello"</code> вместо <code>print("Hello")</code></li>
+    </ul>
+
+    <h3>1.7. Что дальше?</h3>
+    <p>В следующей главе мы:</p>
+    <ul>
+        <li>Научимся писать условные конструкции</li>
+        <li>Разберем вложенные условия</li>
+        <li>Познакомимся с тернарным оператором</li>
+    </ul>
+    <p>Дополнительные задачи для практики:</p>
+    <ol>
+        <li>Напишите программу, которая определяет, является ли год високосным</li>
+        <li>Реализуйте калькулятор с поддержкой основных операций</li>
+        <li>Создайте программу для решения квадратных уравнений</li>
+    </ol>
+</section>
+
+<!-- Глава 2: Условный оператор -->
+<section class="chapter chapter2" id="chapter2">
+    <h2>2. Условный оператор</h2>
+    
+    <h3>2.1. Базовый синтаксис</h3>
+    <p>Условный оператор <code>if</code> позволяет выполнять код при соблюдении условия:</p>
+    <pre><code class="python">
+if True:
+    print("Этот код выполнится всегда")
+    </code></pre>
+    
+    <div class="note">
+        <strong>Важно:</strong> Отступы (4 пробела) обязательны в Python!
+    </div>
+
+    <h3>2.2. Блок else</h3>
+    <p>Выполняется, когда условие ложно:</p>
+    <pre><code class="python">
+age = 15
+if age >= 18:
+    print("Доступ разрешен")
+else:
+    print("Доступ запрещен")  # Выполнится это
+    </code></pre>
+
+    <h3>2.3. Множественные условия (elif)</h3>
+    <pre><code class="python">
+score = 85
+if score >= 90:
+    print("Отлично")
+elif score >= 75:
+    print("Хорошо")  # Выполнится это
+elif score >= 60:
+    print("Удовлетворительно")
+else:
+    print("Не сдано")
+    </code></pre>
+
+    <div class="warning">
+        <strong>Внимание:</strong> Порядок условий в elif важен!
+    </div>
+
+    <h3>2.4. Вложенные условия</h3>
+    <pre><code class="python">
+num = 10
+if num > 0:
+    if num % 2 == 0:
+        print("Положительное четное число")
+    else:
+        print("Положительное нечетное число")
+else:
+    print("Число не положительное")
+    </code></pre>
+
+    <h3>2.5. Тернарный оператор</h3>
+    <p>Краткая запись условий:</p>
+    <pre><code class="python">
+x = 10
+result = "Положительный" if x > 0 else "Отрицательный/Ноль"
+print(result)
+    </code></pre>
+
+    <h3>2.6. Логические операторы в условиях</h3>
+    <pre><code class="python">
+year = 2024
+if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
+    print("Високосный год")
+else:
+    print("Не високосный")
+    </code></pre>
+
+    <h3>2.7. Примеры</h3>
+    <div class="task">
+        <h4>Определение четности</h4>
+        <pre><code class="python">
+number = int(input("Введите число: "))
+print("Четное" if number % 2 == 0 else "Нечетное")
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Калькулятор BMI с рекомендациями</h4>
+        <pre><code class="python">
+height = float(input("Рост (м): "))
+weight = float(input("Вес (кг): "))
+bmi = weight / (height ** 2)
+
+if bmi < 18.5:
+    print(f"BMI={bmi:.1f}: Недостаточный вес")
+elif 18.5 <= bmi < 25:
+    print(f"BMI={bmi:.1f}: Нормальный вес")
+else:
+    print(f"BMI={bmi:.1f}: Избыточный вес")
+        </code></pre>
+    </div>
+
+    <h3>2.8. Практика</h3>
+    <div class="task">
+        <h4>Задача 1: Калькулятор скидок</h4>
+        <pre><code class="python">
+price = float(input("Цена: "))
+if price > 1000:
+    print(f"Скидка 10%: {price * 0.9:.2f}")
+else:
+    print("Скидка 5%: ", price * 0.95)
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2: Определение типа треугольника</h4>
+        <pre><code class="python">
+a = int(input("Сторона A: "))
+b = int(input("Сторона B: "))
+c = int(input("Сторона C: "))
+
+if a + b > c and a + c > b and b + c > a:
+    if a == b == c:
+        print("Равносторонний")
+    elif a == b or a == c or b == c:
+        print("Равнобедренный")
+    else:
+        print("Разносторонний")
+else:
+    print("Треугольник не существует")
+        </code></pre>
+    </div>
+
+    <h3>2.9. Частые ошибки</h3>
+    <ul class="errors">
+        <li>❌ Пропущен двоеточие: <code>if x == 5</code> → ✅ <code>if x == 5:</code></li>
+        <li>❌ Сравнение строк через <code>==</code> с учетом регистра</li>
+        <li>❌ Использование <code>=</code> вместо <code>==</code></li>
+    </ul>
+
+    <h3>2.10. Что дальше?</h3>
+    <p>В следующей главе о циклах вы научитесь:</p>
+    <ul>
+        <li>Работать с циклом <code>for</code></li>
+        <li>Использовать <code>range()</code></li>
+        <li>Создавать бесконечные циклы с <code>while</code></li>
+    </ul>
+</section>
+
+<!-- Глава 3: Цикл for -->
+<section class="chapter chapter3" id="chapter3">
+    <h2>3. Цикл for</h2>
+    
+    <h3>3.1. Основы цикла for</h3>
+    <p>Цикл <code>for</code> используется для перебора последовательностей (списков, строк, словарей и т.д.):</p>
+    <pre><code class="python">
 fruits = ["яблоко", "банан", "вишня"]
 for fruit in fruits:
     print(fruit)
+    </code></pre>
+    
+    <div class="note">
+        <strong>Отличие от while:</strong> 
+        <code>for</code> используется когда известно количество итераций
+    </div>
 
-# Использование range()
+    <h3>3.2. Функция range()</h3>
+    <p>Генерация числовых последовательностей:</p>
+    <pre><code class="python">
+# От 0 до 4 (5 не включается)
 for i in range(5):
     print(i)  # 0,1,2,3,4
 
+# От 2 до 8 с шагом 2
 for i in range(2, 10, 2):
     print(i)  # 2,4,6,8
-            </code></pre>
-        </section>
+    </code></pre>
 
-        <!-- Глава 4: Цикл while -->
-        <section class="chapter chapter4" id="chapter4">
-            <h2>4. Цикл while</h2>
-            <pre><code class="python">
+    <h3>3.3. Перебор с индексами</h3>
+    <p>Использование <code>enumerate()</code>:</p>
+    <pre><code class="python">
+fruits = ["яблоко", "банан", "вишня"]
+for index, value in enumerate(fruits):
+    print(f"Индекс {index}: {value}")
+    </code></pre>
+
+    <h3>3.4. Вложенные циклы</h3>
+    <pre><code class="python">
+for i in range(3):
+    for j in range(2):
+        print(f"i={i}, j={j}")
+    </code></pre>
+
+    <div class="warning">
+        <strong>Осторожно!</strong> Следите за отступами во вложенных циклах
+    </div>
+
+    <h3>3.5. Работа со строками</h3>
+    <pre><code class="python">
+text = "Python"
+for char in text:
+    print(char)
+    
+# Вывод:
+# P
+# y
+# t
+# h
+# o
+# n
+    </code></pre>
+
+    <h3>3.6. Прерывание цикла</h3>
+    <pre><code class="python">
+for i in range(10):
+    if i == 5:
+        break
+    print(i)  # Выведет 0-4
+    </code></pre>
+
+    <h3>3.7. Пропуск итерации</h3>
+    <pre><code class="python">
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)  # Выведет 0,1,3,4
+    </code></pre>
+
+    <h3>3.8. Генераторы списков</h3>
+    <p>Создание списков в одну строку:</p>
+    <pre><code class="python">
+squares = [x**2 for x in range(5)]
+print(squares)  # [0, 1, 4, 9, 16]
+    </code></pre>
+
+    <h3>3.9. Примеры</h3>
+    <div class="task">
+        <h4>Таблица умножения</h4>
+        <pre><code class="python">
+for i in range(1, 11):
+    for j in range(1, 11):
+        print(f"{i}×{j}={i*j}", end="\t")
+    print()
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Анализ текста</h4>
+        <pre><code class="python">
+text = "Hello World!"
+vowels = "aeiou"
+count = 0
+
+for char in text.lower():
+    if char in vowels:
+        count +=1
+print(f"Гласных букв: {count}")  # 3
+        </code></pre>
+    </div>
+
+    <h3>3.10. Практика</h3>
+    <div class="task">
+        <h4>Задача 1: Сумма четных чисел</h4>
+        <pre><code class="python">
+total = 0
+for num in range(1, 101):
+    if num % 2 == 0:
+        total += num
+print(f"Сумма четных: {total}")  # 2550
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2: Поиск простых чисел</h4>
+        <pre><code class="python">
+for num in range(2, 20):
+    is_prime = True
+    for i in range(2, num):
+        if num % i == 0:
+            is_prime = False
+            break
+    if is_prime:
+        print(num)
+# Вывод: 2,3,5,7,11,13,17,19
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 3: Треугольник Паскаля</h4>
+        <pre><code class="python">
+n = 5
+for i in range(n):
+    print(' '*(n-i), end='')
+    row = [1]
+    for j in range(1, i+1):
+        row.append(row[j-1] * (i - j + 1) // j)
+    print(' '.join(map(str, row)))
+        </code></pre>
+    </div>
+
+    <h3>3.11. Частые ошибки</h3>
+    <ul class="errors">
+        <li>❌ Изменение списка во время итерации</li>
+        <li>❌ Забытые двоеточия после <code>for</code></li>
+        <li>❌ Ошибки с отступами во вложенных циклах</li>
+        <li>❌ Бесконечные циклы при неправильном использовании <code>range()</code></li>
+    </ul>
+
+    <h3>3.12. Что дальше?</h3>
+    <p>В следующей главе о цикле <code>while</code> вы узнаете:</p>
+    <ul>
+        <li>Как создавать бесконечные циклы</li>
+        <li>Работать с <code>break</code> и <code>continue</code></li>
+        <li>Обрабатывать пользовательский ввод в циклах</li>
+    </ul>
+</section>
+
+<!-- Глава 4: Цикл while -->
+<section class="chapter chapter4" id="chapter4">
+    <h2>4. Цикл while</h2>
+    
+    <h3>4.1. Базовый синтаксис</h3>
+    <p>Цикл <code>while</code> выполняется пока условие истинно:</p>
+    <pre><code class="python">
 count = 0
 while count < 5:
     print(count)
-    count += 1
+    count += 1  # Без этой строки цикл будет бесконечным
+    </code></pre>
+    
+    <div class="warning">
+        <strong>Опасность:</strong> Бесконечный цикл может повесить программу!
+    </div>
 
-# Бесконечный цикл с break
+    <h3>4.2. Управление циклом</h3>
+    <p>Операторы <code>break</code> и <code>continue</code>:</p>
+    <pre><code class="python">
+# Прерывание цикла
+i = 0
 while True:
-    command = input("Введите 'exit' для выхода: ")
-    if command == 'exit':
+    print(i)
+    i += 1
+    if i == 3:
+        break  # Выйдет при i=3
+
+# Пропуск итерации
+j = 0
+while j < 5:
+    j += 1
+    if j % 2 == 0:
+        continue
+    print(j)  # Выведет 1,3,5
+    </code></pre>
+
+    <h3>4.3. Бесконечные циклы с пользовательским вводом</h3>
+    <pre><code class="python">
+while True:
+    command = input("Введите команду (exit - выход): ")
+    if command == "exit":
         break
-            </code></pre>
-        </section>
+    print(f"Вы ввели: {command}")
+    </code></pre>
 
-        <!-- Глава 5: Списки -->
-        <section class="chapter chapter5" id="chapter5">
-            <h2>5. Списки</h2>
-            <pre><code class="python">
-# Создание списка
+    <h3>4.4. Обработка ошибок в циклах</h3>
+    <pre><code class="python">
+while True:
+    try:
+        num = int(input("Введите число: "))
+        break
+    except ValueError:
+        print("Это не число! Попробуйте еще")
+    </code></pre>
+
+    <h3>4.5. Вложенные циклы while</h3>
+    <pre><code class="python">
+i = 1
+while i <= 3:
+    j = 1
+    while j <= 3:
+        print(f"i={i}, j={j}")
+        j += 1
+    i += 1
+    </code></pre>
+
+    <h3>4.6. Имитация do-while</h3>
+    <p>Выполнение хотя бы одной итерации:</p>
+    <pre><code class="python">
+while True:
+    number = int(input("Введите положительное число: "))
+    if number > 0:
+        break
+    </code></pre>
+
+    <h3>4.7. Примеры</h3>
+    <div class="task">
+        <h4>Факториал</h4>
+        <pre><code class="python">
+n = int(input("Введите число: "))
+result = 1
+i = 1
+while i <= n:
+    result *= i
+    i += 1
+print(f"{n}! = {result}")
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Числа Фибоначчи</h4>
+        <pre><code class="python">
+n = int(input("Количество чисел: "))
+a, b = 0, 1
+count = 0
+while count < n:
+    print(a)
+    a, b = b, a + b
+    count += 1
+        </code></pre>
+    </div>
+
+    <h3>4.8. Практика</h3>
+    <div class="task">
+        <h4>Задача 1: Угадывание числа</h4>
+        <pre><code class="python">
+import random
+number = random.randint(1, 100)
+while True:
+    guess = int(input("Угадайте число (1-100): "))
+    if guess < number:
+        print("Больше")
+    elif guess > number:
+        print("Меньше")
+    else:
+        print("Победа!")
+        break
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2: Таблица умножения</h4>
+        <pre><code class="python">
+i = 1
+while i <= 10:
+    j = 1
+    while j <= 10:
+        print(f"{i}×{j}={i*j}", end="\t")
+        j += 1
+    print()
+    i += 1
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 3: Бинарный поиск</h4>
+        <pre><code class="python">
+arr = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
+target = 23
+low = 0
+high = len(arr) - 1
+found = False
+
+while low <= high:
+    mid = (low + high) // 2
+    if arr[mid] == target:
+        print(f"Найден на позиции {mid}")
+        found = True
+        break
+    elif arr[mid] < target:
+        low = mid + 1
+    else:
+        high = mid - 1
+
+if not found:
+    print("Элемент не найден")
+        </code></pre>
+    </div>
+
+    <h3>4.9. Частые ошибки</h3>
+    <ul class="errors">
+        <li>❌ Забытый инкремент счетчика: <code>count += 1</code></li>
+        <li>❌ Неправильное условие в <code>while</code></li>
+        <li>❌ Использование <code>=</code> вместо <code>==</code></li>
+        <li>❌ Несвоевременный выход из цикла</li>
+    </ul>
+
+    <h3>4.10. Что дальше?</h3>
+    <p>В следующей главе о списках вы узнаете:</p>
+    <ul>
+        <li>Как работать с динамическими массивами</li>
+        <li>Методы списков (<code>append()</code>, <code>remove()</code>)</li>
+        <li>Срезы и генераторы списков</li>
+    </ul>
+</section>
+
+<!-- Глава 5: Списки -->
+<section class="chapter chapter5" id="chapter5">
+    <h2>5. Списки</h2>
+    
+    <h3>5.1. Создание и базовые операции</h3>
+    <pre><code class="python">
+empty_list = []
 numbers = [1, 2, 3, 4, 5]
+mixed = [10, "текст", True, 3.14]
+nested = [[1, 2], [3, 4]]  # Вложенные списки
+    </code></pre>
+    
+    <div class="note">
+        <strong>Особенности:</strong>
+        <ul>
+            <li>Индексы начинаются с 0</li>
+            <li>Поддержка отрицательных индексов</li>
+            <li>Динамический размер</li>
+        </ul>
+    </div>
 
-# Добавление элементов
-numbers.append(6)
-numbers.insert(0, 0)
+    <h3>5.2. Индексация и срезы</h3>
+    <pre><code class="python">
+fruits = ["яблоко", "банан", "вишня", "апельсин"]
+print(fruits[0])      # яблоко
+print(fruits[-1])     # апельсин
+print(fruits[1:3])    # ['банан', 'вишня']
+print(fruits[::-1])   # Обратный порядок
+    </code></pre>
 
-# Удаление элементов
-numbers.remove(3)
-popped = numbers.pop()
+    <h3>5.3. Методы списков</h3>
+    <div class="task">
+        <h4>Добавление элементов</h4>
+        <pre><code class="python">
+nums = [1, 2]
+nums.append(3)       # [1, 2, 3]
+nums.insert(1, 1.5)  # [1, 1.5, 2, 3]
+nums.extend([4, 5])  # [1, 1.5, 2, 3, 4, 5]
+        </code></pre>
+    </div>
 
-# Срезы
-sublist = numbers[1:4]
+    <div class="task">
+        <h4>Удаление элементов</h4>
+        <pre><code class="python">
+nums = [1, 2, 3, 4, 5]
+nums.pop()     # Удаляет последний элемент → 5
+nums.pop(1)    # Удаляет элемент с индексом 1 → 2
+nums.remove(3) # Удаляет первое вхождение 3
+del nums[0]    # Удаляет по индексу
+        </code></pre>
+    </div>
 
-# Сортировка
-numbers.sort()
-numbers.sort(reverse=True)
-            </code></pre>
-        </section>
+    <h3>5.4. Сортировка и реверс</h3>
+    <pre><code class="python">
+arr = [3, 1, 4, 1, 5, 9]
+arr.sort()          # Изменяет список → [1, 1, 3, 4, 5, 9]
+sorted_arr = sorted(arr)  # Создает копию
+arr.reverse()       # Реверсирует список → [9, 5, 4, 3, 1, 1]
+    </code></pre>
 
-        <!-- Глава 6: Функции -->
-        <section class="chapter chapter6" id="chapter6">
-            <h2>6. Функции</h2>
-            <pre><code class="python">
-def greet(name):
-    """Приветствует пользователя"""
-    return f"Привет, {name}!"
+    <h3>5.5. Генераторы списков</h3>
+    <pre><code class="python">
+squares = [x**2 for x in range(10)]  # [0, 1, 4, ..., 81]
+evens = [x for x in range(20) if x % 2 == 0]
+matrix = [[i*j for j in range(5)] for i in range(5)]
+    </code></pre>
 
-def calculate(a, b):
-    return {
-        'sum': a + b,
-        'diff': a - b,
-        'prod': a * b
-    }
+    <h3>5.6. Вложенные списки</h3>
+    <pre><code class="python">
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+print(matrix[1][2])  # 6 (вторая строка, третий столбец)
+    </code></pre>
 
-# Лямбда-функция
+    <h3>5.7. Копирование списков</h3>
+    <pre><code class="python">
+a = [1, 2, 3]
+b = a.copy()      # Поверхностная копия
+c = list(a)
+d = a[:]          # Через срез
+    </code></pre>
+    
+    <div class="warning">
+        <strong>Внимание!</strong> Простое присваивание <code>b = a</code> создает ссылку, а не копию!
+    </div>
+
+    <h3>5.8. Практика</h3>
+    <div class="task">
+        <h4>Задача 1: Уникальные элементы</h4>
+        <pre><code class="python">
+def unique_elements(lst):
+    return list(set(lst))
+
+print(unique_elements([1, 2, 2, 3, 4, 4]))  # [1, 2, 3, 4]
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2: Матричные операции</h4>
+        <pre><code class="python">
+matrix = [[1, 2], [3, 4]]
+transposed = [list(row) for row in zip(*matrix)]
+print(transposed)  # [[1, 3], [2, 4]]
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 3: Анализ данных</h4>
+        <pre><code class="python">
+data = [12, 15, 14, 10, 15, 17, 15, 13]
+average = sum(data)/len(data)
+above_avg = [x for x in data if x > average]
+print(f"Среднее: {average}, Выше среднего: {above_avg}")
+        </code></pre>
+    </div>
+
+    <h3>5.9. Частые ошибки</h3>
+    <ul class="errors">
+        <li>❌ Изменение списка во время итерации</li>
+        <li>❌ Ошибки с индексами (выход за границы списка)</li>
+        <li>❌ Неправильное копирование списков</li>
+        <li>❌ Забытые запятые в литералах списков</li>
+    </ul>
+
+    <h3>5.10. Что дальше?</h3>
+    <p>В следующей главе о функциях вы узнаете:</p>
+    <ul>
+        <li>Как создавать собственные функции</li>
+        <li>Работать с аргументами и возвращаемыми значениями</li>
+        <li>Использовать lambda-функции</li>
+    </ul>
+</section>
+
+<!-- Глава 6: Функции -->
+<div class="chapter chapter6" id="chapter6">
+    <h2>6. Функции</h2>
+    
+    <p>Функции — это основной инструмент для организации кода в Python. Они позволяют избежать дублирования, упрощают чтение программы и делают её более модульной. В этой главе мы разберёмся, как создавать функции, передавать аргументы, возвращать значения и решать задачи с их помощью.</p>
+
+    <h3>6.1. Основы создания функций</h3>
+    <p>Функция определяется с помощью ключевого слова <code>def</code>, за которым следует имя функции и круглые скобки. Тело функции пишется с отступом:</p>
+    <pre><code class="python">
+def greet():
+    print("Привет, мир!")
+
+greet()  # Вызов функции
+    </code></pre>
+    
+    <div class="note">
+        <strong>Важно:</strong> Имя функции должно быть осмысленным и описывать её назначение.
+    </div>
+
+    <h3>6.2. Параметры и возвращаемое значение</h3>
+    <p>Функции могут принимать параметры и возвращать результат с помощью оператора <code>return</code>:</p>
+    <pre><code class="python">
+def add(a, b):
+    return a + b
+
+result = add(5, 7)
+print(result)  # Вывод: 12
+    </code></pre>
+    
+    <p>Если функция не содержит <code>return</code>, она возвращает <code>None</code>.</p>
+
+    <h3>6.3. Параметры по умолчанию</h3>
+    <p>Можно задать значения параметров по умолчанию. Если аргумент не передан, используется значение по умолчанию:</p>
+    <pre><code class="python">
+def greet(name="Гость"):
+    print(f"Привет, {name}!")
+
+greet()           # Привет, Гость!
+greet("Анна")     # Привет, Анна!
+    </code></pre>
+
+    <h3>6.4. Lambda-функции</h3>
+    <p>Lambda-функции — это анонимные функции, которые создаются без имени. Они полезны для коротких операций:</p>
+    <pre><code class="python">
 square = lambda x: x ** 2
-            </code></pre>
-        </section>
+print(square(5))  # Вывод: 25
+    </code></pre>
 
-        <!-- Глава 7: Словари -->
-        <section class="chapter chapter7" id="chapter7">
-            <h2>7. Словари</h2>
-            <pre><code class="python">
-user = {
-    'name': 'Алексей',
-    'age': 25,
-    'is_student': True
+    <h3>6.5. Рекурсия</h3>
+    <p>Функция может вызывать саму себя. Это называется рекурсией. Например, вычисление факториала:</p>
+    <pre><code class="python">
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)
+
+print(factorial(5))  # Вывод: 120
+    </code></pre>
+
+    <h3>6.6. Примеры использования функций</h3>
+    <div class="task">
+        <h4>Пример 1: Квадрат числа</h4>
+        <p>Эта функция принимает число и возвращает его квадрат:</p>
+        <pre><code class="python">
+def square(number):
+    """Возвращает квадрат числа."""
+    return number ** 2
+
+print(square(4))  # Вывод: 16
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Пример 2: Проверка на четность</h4>
+        <p>Функция проверяет, является ли число четным:</p>
+        <pre><code class="python">
+def is_even(number):
+    """Проверяет, является ли число четным."""
+    return number % 2 == 0
+
+print(is_even(4))  # True
+print(is_even(7))  # False
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Пример 3: Сумма элементов списка</h4>
+        <p>Функция проходит по списку и суммирует его элементы:</p>
+        <pre><code class="python">
+def sum_list(lst):
+    """Суммирует элементы списка."""
+    total = 0
+    for item in lst:
+        total += item
+    return total
+
+numbers = [1, 2, 3, 4, 5]
+print(sum_list(numbers))  # Вывод: 15
+        </code></pre>
+    </div>
+
+    <h3>6.7. Задачи</h3>
+    <div class="task">
+        <h4>Задача 1: Площадь круга</h4>
+        <p>Напишите функцию, которая принимает радиус круга и возвращает его площадь. Используйте формулу \( S = \pi r^2 \):</p>
+        <pre><code class="python">
+import math
+
+def circle_area(radius):
+    """Вычисляет площадь круга по радиусу."""
+    return math.pi * radius ** 2
+
+print(circle_area(5))  # Вывод: ~78.54
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2: Делится ли число на 3?</h4>
+        <p>Создайте функцию, которая проверяет, делится ли число на 3:</p>
+        <pre><code class="python">
+def is_divisible_by_three(number):
+    """Проверяет, делится ли число на 3."""
+    return number % 3 == 0
+
+print(is_divisible_by_three(9))   # True
+print(is_divisible_by_three(10))  # False
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 3: Максимум в списке</h4>
+        <p>Напишите функцию, которая находит максимальный элемент в списке:</p>
+        <pre><code class="python">
+def find_max(lst):
+    """Находит максимальный элемент в списке."""
+    if not lst:
+        return None
+    max_value = lst[0]
+    for item in lst:
+        if item > max_value:
+            max_value = item
+    return max_value
+
+numbers = [3, 1, 7, 4, 9]
+print(find_max(numbers))  # Вывод: 9
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 4: Количество четных чисел</h4>
+        <p>Функция подсчитывает количество четных чисел в списке:</p>
+        <pre><code class="python">
+def count_evens(lst):
+    """Подсчитывает количество четных чисел в списке."""
+    count = 0
+    for item in lst:
+        if item % 2 == 0:
+            count += 1
+    return count
+
+numbers = [1, 2, 3, 4, 5, 6]
+print(count_evens(numbers))  # Вывод: 3
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 5: Уникальные элементы</h4>
+        <p>Напишите функцию, которая возвращает список уникальных элементов:</p>
+        <pre><code class="python">
+def unique_elements(lst):
+    """Возвращает список уникальных элементов."""
+    unique = []
+    for item in lst:
+        if item not in unique:
+            unique.append(item)
+    return unique
+
+numbers = [1, 2, 2, 3, 4, 4, 5]
+print(unique_elements(numbers))  # Вывод: [1, 2, 3, 4, 5]
+        </code></pre>
+    </div>
+
+    <h3>6.8. Сложные задачи</h3>
+    <div class="task">
+        <h4>Задача 6: Числа Фибоначчи</h4>
+        <p>Реализуйте функцию, которая возвращает N-ное число Фибоначчи:</p>
+        <pre><code class="python">
+def fibonacci(n):
+    """Возвращает N-ное число Фибоначчи."""
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+
+print(fibonacci(10))  # Вывод: 55
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 7: Факториал</h4>
+        <p>Напишите функцию для вычисления факториала числа:</p>
+        <pre><code class="python">
+def factorial(n):
+    """Вычисляет факториал числа."""
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+print(factorial(5))  # Вывод: 120
+        </code></pre>
+    </div>
+
+    <h3>6.9. Что дальше?</h3>
+    <p>В следующей главе мы познакомимся со словарями — мощной структурой данных, которая позволяет хранить пары "ключ-значение".</p>
+</div>
+
+<!-- Глава 7: Словари -->
+<div class="chapter chapter7" id="chapter7">
+    <h2>7. Словари</h2>
+    
+    <p>Словарь — это мощная структура данных в Python, которая хранит пары "ключ-значение". Ключи должны быть уникальными и неизменяемыми (например, строки, числа или кортежи), а значения могут быть любого типа. Словари особенно полезны для работы с данными, где нужно быстро находить значения по ключу.</p>
+
+    <h3>7.1. Создание словарей</h3>
+    <p>Создать словарь можно несколькими способами:</p>
+    <pre><code class="python">
+# Использование фигурных скобок
+student = {'name': 'Иван', 'age': 20, 'course': 'Python'}
+
+# Использование функции dict()
+credentials = dict(email='user@example.com', password='123456')
+
+# Пустой словарь
+empty_dict = {}
+    </code></pre>
+    
+    <div class="note">
+        <strong>Важно:</strong> Ключи в словаре должны быть уникальными. Если добавить значение с уже существующим ключом, старое значение будет перезаписано.
+    </div>
+
+    <h3>7.2. Доступ к элементам</h3>
+    <p>Для доступа к значению по ключу используйте квадратные скобки или метод <code>get()</code>:</p>
+    <pre><code class="python">
+student = {'name': 'Иван', 'age': 20}
+print(student['name'])  # Вывод: Иван
+print(student.get('age'))  # Вывод: 20
+print(student.get('gender', 'Не указан'))  # Вывод: Не указан
+    </code></pre>
+    
+    <p>Метод <code>get()</code> позволяет указать значение по умолчанию, если ключ отсутствует.</p>
+
+    <h3>7.3. Изменение и добавление элементов</h3>
+    <p>Добавление нового ключа-значения или изменение существующего:</p>
+    <pre><code class="python">
+student = {'name': 'Иван', 'age': 20}
+student['age'] = 21  # Изменение значения
+student['city'] = 'Москва'  # Добавление нового ключа
+print(student)  # Вывод: {'name': 'Иван', 'age': 21, 'city': 'Москва'}
+    </code></pre>
+
+    <h3>7.4. Удаление элементов</h3>
+    <p>Удаление элементов из словаря:</p>
+    <pre><code class="python">
+student = {'name': 'Иван', 'age': 20, 'city': 'Москва'}
+del student['city']  # Удаление по ключу
+removed_value = student.pop('age')  # Удаление с возвратом значения
+print(removed_value)  # Вывод: 20
+print(student)  # Вывод: {'name': 'Иван'}
+    </code></pre>
+
+    <h3>7.5. Методы словарей</h3>
+    <p>Рассмотрим основные методы работы со словарями:</p>
+    <pre><code class="python">
+data = {'a': 1, 'b': 2, 'c': 3}
+
+# Получение всех ключей
+keys = data.keys()  # dict_keys(['a', 'b', 'c'])
+
+# Получение всех значений
+values = data.values()  # dict_values([1, 2, 3])
+
+# Получение пар ключ-значение
+items = data.items()  # dict_items([('a', 1), ('b', 2), ('c', 3)])
+
+# Очистка словаря
+data.clear()
+print(data)  # Вывод: {}
+    </code></pre>
+
+    <h3>7.6. Примеры использования словарей</h3>
+    <div class="task">
+        <h4>Пример 1: Подсчет частоты слов</h4>
+        <p>Словари отлично подходят для подсчета частоты встречаемости элементов. Например, подсчитаем количество повторений каждого слова в тексте:</p>
+        <pre><code class="python">
+text = "слово1 слово2 слово1 слово3 слово2 слово1"
+words = text.split()
+word_count = {}
+
+for word in words:
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+
+print(word_count)  # Вывод: {'слово1': 3, 'слово2': 2, 'слово3': 1}
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Пример 2: Объединение словарей</h4>
+        <p>Объединение двух словарей с помощью метода <code>update()</code>:</p>
+        <pre><code class="python">
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'b': 3, 'c': 4}
+dict1.update(dict2)
+print(dict1)  # Вывод: {'a': 1, 'b': 3, 'c': 4}
+        </code></pre>
+    </div>
+
+    <h3>7.7. Задачи</h3>
+    <div class="task">
+        <h4>Задача 1: Хранение данных пользователя</h4>
+        <p>Напишите программу, которая запрашивает у пользователя имя, возраст и город, а затем сохраняет эти данные в словарь:</p>
+        <pre><code class="python">
+user_data = {}
+user_data['name'] = input("Введите имя: ")
+user_data['age'] = int(input("Введите возраст: "))
+user_data['city'] = input("Введите город: ")
+
+print("Данные пользователя:")
+for key, value in user_data.items():
+    print(f"{key}: {value}")
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 2: Самое часто встречающееся слово</h4>
+        <p>Напишите функцию, которая находит самое часто встречающееся слово в строке:</p>
+        <pre><code class="python">
+def most_frequent_word(text):
+    words = text.split()
+    frequency = {}
+    for word in words:
+        frequency[word] = frequency.get(word, 0) + 1
+    max_word = max(frequency, key=frequency.get)
+    return max_word, frequency[max_word]
+
+text = "python java python c++ java python"
+result = most_frequent_word(text)
+print(f"Самое частое слово: {result[0]}, встречается {result[1]} раз")
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 3: Инвертирование словаря</h4>
+        <p>Напишите функцию, которая инвертирует словарь (ключи становятся значениями, а значения — ключами):</p>
+        <pre><code class="python">
+def invert_dict(d):
+    inverted = {}
+    for key, value in d.items():
+        inverted[value] = inverted.get(value, []) + [key]
+    return inverted
+
+data = {'a': 1, 'b': 2, 'c': 1}
+inverted_data = invert_dict(data)
+print(inverted_data)  # Вывод: {1: ['a', 'c'], 2: ['b']}
+        </code></pre>
+    </div>
+
+    <h3>7.8. Сложные задачи</h3>
+    <div class="task">
+        <h4>Задача 4: Англо-русский словарь</h4>
+        <p>Создайте программу, которая позволяет пользователю вводить английские слова и их переводы, а затем выводит перевод для заданного слова:</p>
+        <pre><code class="python">
+dictionary = {}
+n = int(input("Сколько слов добавить в словарь? "))
+
+for _ in range(n):
+    word = input("Введите слово на английском: ")
+    translation = input("Введите перевод: ")
+    dictionary[word] = translation
+
+search_word = input("Введите слово для перевода: ")
+print(dictionary.get(search_word, "Перевод не найден"))
+        </code></pre>
+    </div>
+
+    <div class="task">
+        <h4>Задача 5: Средний возраст друзей</h4>
+        <p>Напишите программу, которая вычисляет средний возраст друзей из словаря:</p>
+        <pre><code class="python">
+friends = {
+    'Анна': 25,
+    'Борис': 30,
+    'Виктория': 22,
+    'Глеб': 28
 }
 
-# Доступ к элементам
-print(user['name'])
+total_age = sum(friends.values())
+average_age = total_age / len(friends)
+print(f"Средний возраст друзей: {average_age:.1f} лет")
+        </code></pre>
+    </div>
 
-# Добавление/изменение
-user['email'] = 'alex@example.com'
-
-# Удаление
-del user['is_student']
-
-# Перебор
-for key, value in user.items():
-    print(f"{key}: {value}")
-            </code></pre>
-        </section>
+    <h3>7.9. Что дальше?</h3>
+    <p>А теперь пойдем решать задачи, с которыми вам поможет разобраться наш ИИ-ассистент.</p>
+</div>
     </main>
 
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="back-to-top">↑ Наверх</button>

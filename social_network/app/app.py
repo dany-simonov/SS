@@ -7,6 +7,8 @@ from enhanced_generation import EnhancedGeneration
 import asyncio
 import re
 
+#python social_network/app/app.py
+
 text_providers = [
     g4f.Provider.ChatGLM,
     g4f.Provider.Free2GPT,
