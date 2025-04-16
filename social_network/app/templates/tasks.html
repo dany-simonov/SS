@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задачи Python | StudySphere</title>
+    <style>
+        :root {
+            --primary-green: #008819;
+            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: #000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .nav-links {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+        }
+
+        .support-btn {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--primary-green);
+            border-radius: 5px;
+        }
+
+        .ai-chat-btn {
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .ai-chat-btn:hover {
+            background: #45a049;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Стили для карточек задач */
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .task-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .task-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .task-difficulty {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .easy { background: #e0f2e9; color: #2da160; }
+        .medium { background: #fff3e0; color: #f57c00; }
+        .hard { background: #fee8e7; color: #d32f2f; }
+
+        .task-title {
+            font-size: 18px;
+            margin: 10px 0;
+            color: var(--text-dark);
+        }
+
+        .task-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .open-button {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .open-button:hover {
+            background: #006614;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="nav-links">
+                <a href="{{ url_for('ai_chat') }}" class="ai-chat-btn">Чат с AI</a>
+                <a href="{{ url_for('textbook') }}" class="nav-link">Учебник</a>
+                <a href="{{ url_for('landing') }}" class="nav-link">Главная</a>
+                <a href="{{ url_for('support') }}" class="support-btn">Поддержка</a>
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">Регистрация</a>
+                <a href="{{ url_for('login') }}" class="btn btn-secondary">Вход</a>
+            </div>
+        </header>
+
+        <div class="tasks-grid">
+            <div class="task-card">
+                <span class="task-difficulty easy">Легко</span>
+                <h3 class="task-title">Сумма чисел от 1 до N</h3>
+                <p class="task-description">
+                    Напишите программу, которая находит сумму всех чисел от 1 до введенного числа N.
+                </p>
+                <button class="open-button">Открыть</button>
+            </div>
+
+            <div class="task-card">
+                <span class="task-difficulty medium">Средне</span>
+                <h3 class="task-title">Поиск простых чисел</h3>
+                <p class="task-description">
+                    Реализуйте алгоритм поиска всех простых чисел в заданном диапазоне.
+                </p>
+                <button class="open-button">Открыть</button>
+            </div>
+
+            <div class="task-card">
+                <span class="task-difficulty hard">Сложно</span>
+                <h3 class="task-title">Сортировка слиянием</h3>
+                <p class="task-description">
+                    Реализуйте алгоритм сортировки слиянием для массива чисел.
+                </p>
+                <button class="open-button">Открыть</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>© 2024-2025 StudySphere. Все права защищены.</p>
+                <p>Платформа для эффективного обучения и общения</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const openButtons = document.querySelectorAll('.open-button');
+        openButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const taskCard = this.closest('.task-card');
+                const taskTitle = taskCard.querySelector('.task-title').textContent;
+                window.location.href = `/task_view?title=${encodeURIComponent(taskTitle)}`;
+            });
+        });
+    </script>    
+</body>
+</html>

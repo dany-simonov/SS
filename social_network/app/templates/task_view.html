@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Решение задачи | StudySphere</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/task_view.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+        <script src="https://unpkg.com/prettier@2.8.8/standalone.js"></script>
+        <script src="https://unpkg.com/prettier@2.8.8/parser-python.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/show-hint.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/python-hint.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="task-controls">
+            <button id="saveTask" class="task-button">Сохранить задачу</button>
+            <button id="loadTask" class="task-button">Загрузить задачу</button>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('landing') }}" class="nav-link">Главная</a>
+            <a href="{{ url_for('ai_chat') }}" class="ai-chat-btn">Чат с AI</a>
+            <a href="{{ url_for('textbook') }}" class="nav-link">Учебник</a>
+            <a href="{{ url_for('support') }}" class="support-btn">Поддержка</a>
+        </div>
+    </div>
+
+    <div class="task-workspace">
+        <div class="chat-section">
+            <div class="section-header">
+                <h2>Чат с ИИ</h2>
+                <div class="section-controls">
+                    <button class="control-button" title="Свернуть">−</button>
+                    <button class="control-button" title="Развернуть">□</button>
+                </div>
+            </div>
+            <div id="chat-messages"></div>
+            <input type="text" id="chat-input" placeholder="Задайте вопрос...">
+        </div>
+
+        <div class="task-description">
+            <div class="section-header">
+                <h2>Описание задачи</h2>
+                <div class="section-controls">
+                    <button class="control-button" title="Свернуть">−</button>
+                    <button class="control-button" title="Развернуть">□</button>
+                </div>
+            </div>
+            <div id="task-content"></div>
+        </div>
+
+        <div class="code-editor">
+            <div class="section-header">
+                <h2>Редактор кода</h2>
+                <div class="section-controls">
+                    <button class="control-button" title="Свернуть">−</button>
+                    <button class="control-button" title="Развернуть">□</button>
+                </div>
+            </div>
+            <textarea id="code-editor" placeholder="Введите ваш код здесь..."></textarea>
+            <button class="run-button">Запустить код</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2024-2025 StudySphere. Все права защищены.</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/task_view.js') }}"></script>
+</body>
+</html>

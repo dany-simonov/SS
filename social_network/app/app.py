@@ -52,17 +52,30 @@ def load_user(id):
 def index():
     return redirect(url_for('landing'))
 
+@app.route('/landing')
+def landing():
+    return render_template('landing.html')
+
 @app.route('/textbook')
 def textbook():
     return render_template('textbook.html')
 
+@app.route('/tasks')
+def tasks():
+    return render_template('tasks.html')
+
+# @app.route('/task/<int:task_id>')
+# def task_view(task_id):
+#     return render_template('task_view.html', task_id=task_id)
+
+@app.route('/task_view')
+def task_view():
+    task_title = request.args.get('title')
+    return render_template('task_view.html', task_title=task_title)
+
 @app.route('/support')
 def support():
     return render_template('support.html')
-
-@app.route('/landing')
-def landing():
-    return render_template('landing.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -115,6 +128,29 @@ def extract_image_url(html_response: str) -> str:
     url_pattern = r'https://[^\s<>"]+?(?:jpg|jpeg|png|gif|webp)'
     matches = re.findall(url_pattern, html_response)
     return matches[0] if matches else ''
+
+@app.route('/execute-code', methods=['POST'])
+def execute_code():
+    code = request.json.get('code')
+    try:
+        # Создаем изолированное окружение для выполнения кода
+        local_dict = {}
+        exec(code, {"__builtins__": __builtins__}, local_dict)
+        
+        # Получаем результат выполнения
+        output = local_dict.get('result', 'Код выполнен успешно')
+        return jsonify({'success': True, 'output': output})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
+@app.route('/tasks/<int:task_id>')
+def get_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    return jsonify({
+        'title': task.title,
+        'description': task.description,
+        'initial_code': task.initial_code
+    })
 
 @app.route('/ai-chat', methods=['GET', 'POST'])
 def ai_chat():
