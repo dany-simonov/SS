@@ -177,13 +177,15 @@
     <div class="container">
         <header class="header">
             <div class="nav-links">
-                <a href="{{ url_for('ai_chat') }}" class="ai-chat-btn">Чат с AI</a>
-                <a href="{{ url_for('textbook') }}" class="nav-link">Учебник</a>
-                <a href="{{ url_for('show_tasks') }}" class="nav-link">Задачи</a>
-                <a href="{{ url_for('support') }}" class="support-btn">Поддержка</a>
-                <a href="{{ url_for('register') }}" class="btn btn-secondary">Регистрация</a>
-                <a href="{{ url_for('login') }}" class="btn btn-secondary">Вход</a>
+                <a href="{{ url_for('ai_chat_bp.ai_chat') }}" class="ai-chat-btn">Чат с AI</a>
+                <a href="{{ url_for('main.textbook') }}" class="nav-link">Учебник</a>
+                <a href="{{ url_for('main.show_tasks') }}" class="nav-link">Задачи</a>
+                <a href="{{ url_for('main.support') }}" class="support-btn">Поддержка</a>
+                <a href="{{ url_for('main.register') }}" class="btn btn-secondary">Регистрация</a>
+                <a href="{{ url_for('main.login') }}" class="btn btn-secondary">Вход</a>
             </div>
+    </header>
+</div>
         </header>
         <div class="logo-section">
             <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere Logo" class="logo">
@@ -212,7 +214,7 @@
                 <div class="feature-card">
                     <h3>Прямой контакт с разработчиком</h3>
                     <p>Ваше мнение важно. Свяжитесь с нами напрямую, чтобы обсудить идеи и предложения.</p>
-                    <a href="{{ url_for('support') }}" class="btn-contact">Связаться с разработчиком</a>
+                    <a href="{{ url_for('main.support') }}" class="btn-contact">Связаться с разработчиком</a>
                 </div>
                 <div class="feature-card">
                     <h3>Безопасность данных</h3>
@@ -228,8 +230,8 @@
         <div class="cta-section">
             <p class="cta-text">Присоединяйтесь к нам прямо сейчас!</p>
             <div class="cta-buttons">
-                <a href="{{ url_for('register') }}" class="btn-primary">Зарегистрируйся</a>
-                <a href="{{ url_for('login') }}" class="btn-primary">Войти</a>
+                <a href="{{ url_for('main.register') }}" class="btn-primary">Зарегистрируйся</a>
+                <a href="{{ url_for('main.login') }}" class="btn-primary">Войти</a>
             </div>
         </div>
 
