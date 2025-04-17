@@ -144,6 +144,19 @@
         .open-button:hover {
             background: #006614;
         }
+        .task-examples {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .task-examples small {
+            display: block;
+            margin: 5px 0;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -160,34 +173,22 @@
         </header>
 
         <div class="tasks-grid">
-            <div class="task-card">
-                <span class="task-difficulty easy">Легко</span>
-                <h3 class="task-title">Сумма чисел от 1 до N</h3>
-                <p class="task-description">
-                    Напишите программу, которая находит сумму всех чисел от 1 до введенного числа N.
-                </p>
-                <button class="open-button">Открыть</button>
-            </div>
-
-            <div class="task-card">
-                <span class="task-difficulty medium">Средне</span>
-                <h3 class="task-title">Поиск простых чисел</h3>
-                <p class="task-description">
-                    Реализуйте алгоритм поиска всех простых чисел в заданном диапазоне.
-                </p>
-                <button class="open-button">Открыть</button>
-            </div>
-
-            <div class="task-card">
-                <span class="task-difficulty hard">Сложно</span>
-                <h3 class="task-title">Сортировка слиянием</h3>
-                <p class="task-description">
-                    Реализуйте алгоритм сортировки слиянием для массива чисел.
-                </p>
-                <button class="open-button">Открыть</button>
-            </div>
+            {% for difficulty, task_list in tasks.items() %}
+                {% for task in task_list %}
+                    <div class="task-card">
+                        <span class="task-difficulty {{ difficulty }}">{{ task.difficulty.capitalize() }}</span>
+                        <h3 class="task-title">{{ task.title }}</h3>
+                        <p class="task-description">{{ task.description }}</p>
+                        <div class="task-examples">
+                            <small>Пример входных данных: {{ task.input_example }}</small>
+                            <small>Пример выходных данных: {{ task.output_example }}</small>
+                        </div>
+                        <button class="open-button" data-task-id="{{ task.id }}">Открыть</button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
         </div>
-
+        
         <footer class="footer">
             <div class="footer-content">
                 <p>© 2024-2025 StudySphere. Все права защищены.</p>

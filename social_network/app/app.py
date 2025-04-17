@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from tasks_data import TASKS
 import g4f
 from enhanced_generation import EnhancedGeneration
 import asyncio
@@ -60,13 +61,14 @@ def landing():
 def textbook():
     return render_template('textbook.html')
 
-@app.route('/tasks')
-def tasks():
-    return render_template('tasks.html')
+# @app.route('/tasks')
+# def tasks():
+#     return render_template('tasks.html')
 
-# @app.route('/task/<int:task_id>')
-# def task_view(task_id):
-#     return render_template('task_view.html', task_id=task_id)
+@app.route('/tasks')
+def show_tasks():
+    from tasks_data import TASKS
+    return render_template('tasks.html', tasks=TASKS)
 
 @app.route('/task_view')
 def task_view():
