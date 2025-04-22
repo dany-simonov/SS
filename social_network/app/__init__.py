@@ -7,8 +7,9 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 def create_app():
+
     app = Flask(__name__)
-    app.config.from_object('instance.config')  # Загрузка конфигурации
+    app.config.from_object('social_network.app.instance.config')  # Загрузка конфигурации
 
     db.init_app(app)
     migrate.init_app(app, db)

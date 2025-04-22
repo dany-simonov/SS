@@ -42,9 +42,6 @@ instance/
 *.crt
 *.pem
 
-# Миграции (если они генерируются автоматически)
-migrations/
-
 # Тестовые файлы
 .coverage
 htmlcov/
