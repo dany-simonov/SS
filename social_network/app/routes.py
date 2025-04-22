@@ -1,10 +1,12 @@
 from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template
+from social_network.app import db
+from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
 from social_network.app.ai_chat import handle_ai_chat
-from social_network.app.forms import LoginForm
+from social_network.app.forms import LoginForm, RegistrationForm
+
 
 main_bp = Blueprint('main', __name__)
-
 
 @main_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -15,6 +17,27 @@ def login():
     return redirect(url_for('main.landing'))
   return render_template('login.html', title='Sign In', form=form)
 
+
+@main_bp.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Проверка, существует ли пользователь с таким email или username
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash('Email already registered.', 'danger')
+            return redirect(url_for('register'))
+
+        # Создание нового пользователя
+        new_user = User(username=form.username.data, email=form.email.data)
+        new_user.set_password(form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash('Registration successful!', 'success')
+        return redirect(url_for('main.landing'))
+
+    return render_template('register.html', form=form)
 
 @main_bp.route('/')
 def index():
