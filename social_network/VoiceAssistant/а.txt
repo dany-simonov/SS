@@ -1,0 +1,19 @@
+├── models/
+│   └── model/                  # Распакованная модель Vosk
+│
+├── utils/
+│   ├── downloader.py           # Скачивание модели с Google Drive
+│   ├── recognizer.py           # Распознавание речи + фильтрация шума
+│   ├── tts.py                  # Синтез речи (pyttsx3)
+│   ├── commands.py             # Обработка офлайн/онлайн команд
+│   └── history.py              # Работа с историей сеанса
+│
+├── static/
+│   └── audio/                  # Файлы синтезированной речи
+│
+├── templates/
+│   └── assistant.html          # Интерфейс ассистента (всплывающее окно)
+│
+├── frontend.js                 # JS-клиент: микрофон, отправка аудио, рендер
+├── voice.py                    # Flask Blueprint для API
+└── __init__.py                 # Инициализация ассистента
