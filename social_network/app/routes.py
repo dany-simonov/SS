@@ -1,4 +1,5 @@
 from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template
+from flask_wtf import form
 from social_network.app import db
 from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
@@ -18,7 +19,7 @@ def login():
   return render_template('login.html', title='Sign In', form=form)
 
 
-@main_bp.route('/register', methods=['GET', 'POST'])
+@main_bp.route('/register', methods=['GET'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -28,16 +29,29 @@ def register():
             flash('Email already registered.', 'danger')
             return redirect(url_for('register'))
 
-        # Создание нового пользователя
-        new_user = User(username=form.username.data, email=form.email.data)
-        new_user.set_password(form.password.data)
+    return render_template('register.html', form=form)
+
+@main_bp.route('/register', methods=['POST'])
+def add_user():
+    # print(request.get_data())
+    data = request.form
+    print("================================================")
+    print("================================================")
+    print(data)
+    print("================================================")
+    print("================================================")
+    new_user = User()
+    new_user.username = data.get('username')
+    new_user.email = data.get('email')
+    new_user.set_password(data.get('password'))
+
+    try:
         db.session.add(new_user)
         db.session.commit()
-
-        flash('Registration successful!', 'success')
         return redirect(url_for('main.landing'))
-
-    return render_template('register.html', form=form)
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 @main_bp.route('/')
 def index():

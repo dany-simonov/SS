@@ -1,6 +1,5 @@
 from flask_login import UserMixin
 from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from social_network.app import db
 
@@ -9,7 +8,6 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    phone = db.Column(db.String(11), unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
     messages = db.relationship('Message', backref='author', lazy='dynamic')
 
