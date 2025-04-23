@@ -48,7 +48,7 @@ def add_user():
     try:
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('main.landing'))
+        return redirect(url_for('main.login'))
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
