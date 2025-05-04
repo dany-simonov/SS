@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Квиз — StudySphere</title>
+  <link rel="stylesheet" href="{{ url_for('quizzes_bp.static', filename='css/quiz.css') }}">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="{{ url_for('main.landing') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
+        <span class="logo-text">StudySphere</span>
+      </a>
+      <nav class="nav">
+        <a href="{{ url_for('ai_chat_bp.ai_chat') }}">Чат с ИИ</a>
+        <a href="{{ url_for('main.textbook') }}">Учебник</a>
+        <a href="{{ url_for('main.show_tasks') }}">Задачи</a>
+        <a href="{{ url_for('quizzes_bp.choose') }}" class="active">Квизы</a>
+        <a href="{{ url_for('main.support') }}">Поддержка</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="{{ url_for('main.register') }}" class="btn-auth">Регистрация</a>
+        <a href="{{ url_for('main.login') }}" class="btn-auth">Вход</a>
+      </div>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Quiz Page -->
+  <main class="quiz-page" style="padding:4rem 0;">
+    <div class="container">
+      <h1 style="text-align:center; margin-bottom:2rem;">
+        Квиз: {{ topic|capitalize }} — {{ {'easy':'Лёгкий','medium':'Средний','hard':'Сложный'}[level] }}
+      </h1>
+
+      <div id="questions">
+        {% for q in questions %}
+        <div class="question-block" data-id="{{ q.id }}" style="background:#f7f7f7; padding:1.5rem; border-radius:8px; margin-bottom:1.5rem;">
+          <p style="font-weight:500; margin-bottom:0.75rem;">{{ loop.index }}. {{ q.question }}</p>
+          {% if q.type == 'multiple' %}
+            <select class="q-answer" style="width:100%; padding:0.6rem; border:1px solid #ccc; border-radius:4px;">
+              <option value="" disabled selected>Выберите ответ</option>
+              {% for opt in q.options %}
+              <option value="{{ opt }}">{{ opt }}</option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="text" class="q-answer" placeholder="Ваш ответ" style="width:100%; padding:0.6rem; border:1px solid #ccc; border-radius:4px;">
+          {% endif %}
+          <button class="btn-send answer-btn" style="margin-top:0.75rem; padding:0.6rem 1.2rem; background:#008819; color:#fff; border:none; border-radius:4px; cursor:pointer;">
+            Ответить
+          </button>
+          <div class="feedback" style="margin-top:0.5rem; font-size:0.9rem;"></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <a href="{{ url_for('main.landing') }}" class="logo">
+          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
+          <span class="logo-text">StudySphere</span>
+        </a>
+        <p class="copy" style="margin-top:0.5rem;">© 2025 StudySphere. Все права защищены.</p>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/dany-simonov/SS" target="_blank" style="font-size:0.9rem; color:#333333;">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('quizzes_bp.static', filename='js/quiz.js') }}" defer></script>
+</body>
+</html>

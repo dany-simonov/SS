@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Поддержка — StudySphere</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/support.css') }}">
+  <title>Квизы — StudySphere</title>
+  <link rel="stylesheet" href="{{ url_for('quizzes_bp.static', filename='css/quizzes.css') }}">
 </head>
 <body>
 
@@ -20,8 +19,8 @@
         <a href="{{ url_for('ai_chat_bp.ai_chat') }}">Чат с ИИ</a>
         <a href="{{ url_for('main.textbook') }}">Учебник</a>
         <a href="{{ url_for('main.show_tasks') }}">Задачи</a>
-        <a href="{{ url_for('quizzes_bp.choose') }}">Квизы</a>
-        <a href="{{ url_for('main.support') }}" class="active">Поддержка</a>
+        <a href="{{ url_for('quizzes_bp.choose') }}" class="active">Квизы</a>
+        <a href="{{ url_for('main.support') }}">Поддержка</a>
       </nav>
       <div class="auth-buttons">
         <a href="{{ url_for('main.register') }}" class="btn-auth">Регистрация</a>
@@ -31,26 +30,28 @@
     </div>
   </header>
 
-  <!-- Support Form -->
-  <main class="support-page">
-    <div class="container support-inner">
-      <h1 class="support-title">Связь с поддержкой StudySphere</h1>
-      <p class="support-subtitle">Опишите вашу проблему или задайте вопрос, и мы ответим в ближайшее время.</p>
-
-      <form id="supportForm" class="support-form">
+  <!-- Выбор темы и сложности квиза -->
+  <main class="quiz-choose">
+    <div class="container">
+      <h1>Создать квиз</h1>
+      <form action="{{ url_for('quizzes_bp.start') }}" method="post" class="quiz-form">
         <div class="form-group">
-          <label for="name">Ваше имя</label>
-          <input type="text" id="name" name="name" required>
+          <label>Тема квиза:</label>
+          <select name="topic">
+            <option value="python">Программирование на Python</option>
+            <option value="calculus">Математический анализ</option>
+            <option value="logic">Логика</option>
+          </select>
         </div>
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+          <label>Уровень сложности:</label>
+          <select name="level">
+            <option value="easy">Лёгкий</option>
+            <option value="medium">Средний</option>
+            <option value="hard">Сложный</option>
+          </select>
         </div>
-        <div class="form-group">
-          <label for="message">Сообщение</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn-hero">Написать</button>
+        <button type="submit" class="btn-hero">Начать квиз</button>
       </form>
     </div>
   </main>
@@ -71,6 +72,5 @@
     </div>
   </footer>
 
-  <script src="{{ url_for('static', filename='js/support.js') }}"></script>
 </body>
 </html>
