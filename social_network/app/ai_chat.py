@@ -2,8 +2,7 @@ from flask import jsonify
 import asyncio
 import g4f
 from social_network.app.utils import extract_image_url
-# from enhanced_generation import EnhancedGeneration
-from .enhanced_generation import EnhancedGeneration
+from enhanced_generation import EnhancedGeneration
 
 text_providers = [
     g4f.Provider.ChatGLM,

@@ -1,8 +1,57 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template
+from flask_wtf import form
+from social_network.app import db
+from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
 from social_network.app.ai_chat import handle_ai_chat
+from social_network.app.forms import LoginForm, RegistrationForm
+
 
 main_bp = Blueprint('main', __name__)
+
+@main_bp.route('/login', methods=['GET', 'POST'])
+def login():
+  form = LoginForm()
+  if form.validate_on_submit():
+    flash('Login requested for user {}, remember_me={}'.format(
+      form.username.data, form.remember_me.data))
+    return redirect(url_for('main.landing'))
+  return render_template('login.html', title='Sign In', form=form)
+
+
+@main_bp.route('/register', methods=['GET'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Проверка, существует ли пользователь с таким email или username
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash('Email already registered.', 'danger')
+            return redirect(url_for('register'))
+
+    return render_template('register.html', form=form)
+
+@main_bp.route('/register', methods=['POST'])
+def add_user():
+    # print(request.get_data())
+    data = request.form
+    print("================================================")
+    print("================================================")
+    print(data)
+    print("================================================")
+    print("================================================")
+    new_user = User()
+    new_user.username = data.get('username')
+    new_user.email = data.get('email')
+    new_user.set_password(data.get('password'))
+
+    try:
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('main.login'))
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
 
 @main_bp.route('/')
 def index():
@@ -28,16 +77,6 @@ def task_view():
 @main_bp.route('/support', methods=['GET'])
 def support():
     return render_template('support.html')
-
-@main_bp.route('/register', methods=['GET', 'POST'])
-def register():
-    # Логика регистрации
-    return render_template('register.html')
-
-@main_bp.route('/login', methods=['GET', 'POST'])
-def login():
-    # Логика входа
-    return render_template('login.html')
 
 @main_bp.route('/execute-code', methods=['POST'])
 def execute_code():
