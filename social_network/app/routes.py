@@ -1,10 +1,11 @@
-from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template
+from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template, current_app
 from flask_wtf import form
 from social_network.app import db
 from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
 from social_network.app.ai_chat import handle_ai_chat
 from social_network.app.forms import LoginForm, RegistrationForm
+
 
 
 main_bp = Blueprint('main', __name__)
@@ -59,6 +60,11 @@ def index():
 
 @main_bp.route('/landing')
 def landing():
+    print("========================================================")
+    print("========================================================")
+    print(current_app.config["BASE_DIR"])
+    print("========================================================")
+    print("========================================================")
     return render_template('landing.html')
 
 @main_bp.route('/textbook')
