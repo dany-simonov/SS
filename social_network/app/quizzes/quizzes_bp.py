@@ -77,7 +77,6 @@ def answer():
 
     correct_answer = question.get('answer', '').strip().lower()
     explanation = question.get('explanation', '')
-
     return jsonify({
         "correct": user_answer == correct_answer,
         "correct_answer": question.get('answer', ''),
