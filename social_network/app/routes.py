@@ -20,10 +20,6 @@ def textbook():
 def show_tasks():
     return render_template('tasks.html', tasks=TASKS)
 
-# @main_bp.route('/task_view')
-# def task_view():
-#     task_title = request.args.get('title')
-#     return render_template('task_view.html', task_title=task_title)
 @main_bp.route('/tasks/<int:task_id>')
 def task_view(task_id):
     # ищем задачу во всех уровнях сложности
@@ -58,10 +54,10 @@ def execute_code():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
-ai_chat_bp = Blueprint('ai_chat', __name__)
+# ai_chat_bp = Blueprint('ai-chat', __name__)
 
-@ai_chat_bp.route('/ai_chat', methods=['GET', 'POST'])
-def ai_chat():
-    if request.method == 'POST':
-        return handle_ai_chat(request)
-    return render_template('ai_chat.html')
+# @ai_chat_bp.route('/ai-chat', methods=['GET', 'POST'])
+# def ai_chat():
+#     if request.method == 'POST':
+#         return handle_ai_chat(request)
+#     return render_template('ai_chat.html')

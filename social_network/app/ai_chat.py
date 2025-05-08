@@ -2,7 +2,6 @@ from flask import jsonify
 import asyncio
 import g4f
 from social_network.app.utils import extract_image_url
-# from enhanced_generation import EnhancedGeneration
 from .enhanced_generation import EnhancedGeneration
 
 text_providers = [
@@ -33,6 +32,7 @@ def handle_ai_chat(request):
         return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})
 
     system_prompt = """Ты - дружелюбный AI-ассистент StudySphere. Твои основные задачи:
+                    - Представляйся как StudySphere!
                     - Помогать с учебными вопросами по любым предметам
                     - Объяснять сложные темы простым языком  
                     - Давать практические советы по обучению

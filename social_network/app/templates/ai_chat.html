@@ -1,102 +1,108 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Чат - StudySphere</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ai_chat.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Чат — StudySphere</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ai_chat.css') }}">
 </head>
 <body>
-    <a href="/landing">
-        <img src="/static/images/logo.svg" alt="Logo" class="logo">
-    </a>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="{{ url_for('main.landing') }}">
+          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
+        </a>
+        <span class="logo-text">StudySphere</span>
+      </div>
+      <nav class="nav">
+        <a href="{{ url_for('ai_chat_bp.ai_chat') }}" class="active">Чат с ИИ</a>
+        <a href="{{ url_for('main.textbook') }}">Учебник</a>
+        <a href="{{ url_for('main.show_tasks') }}">Задачи</a>
+        <a href="{{ url_for('quizzes_bp.choose') }}">Квизы</a>
+        <a href="{{ url_for('main.support') }}">Поддержка</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="{{ url_for('main.register') }}" class="btn-auth">Регистрация</a>
+        <a href="{{ url_for('main.login') }}" class="btn-auth">Вход</a>
+      </div>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
 
+  <!-- Chat Page -->
+  <main class="chat-page container">
     <div class="chat-container">
-        <h2>Чат с AI ассистентом StudySphere</h2>
-        
+      <!-- Sidebar with Avatar and Controls -->
+      <aside class="chat-sidebar">
+        <div class="avatar-card">
+          <img id="avatar" src="{{ url_for('static', filename='images/Basic_Avatar.svg') }}" alt="Avatar">
+        </div>
         <div class="controls-container">
-            <div class="select-container">
-                <select id="generationType">
-                    <option value="text">Генерация текста</option>
-                    <option value="image">Генерация изображений</option>
-                </select>
-                
-                <select id="modelType" class="text-only">
-                    <option value="ChatGLM">ChatGLM</option>
-                    <option value="Free3GPT">Free3GPT</option>
-                    <option value="GizAI">GizAI</option>
-                </select>                
-            </div>
-            
-            <button id="enhancedMode" class="enhanced-mode">
-                Улучшенная генерация
-            </button>
-            <button onclick="showModal()" class="help-button">
-                Что такое улучшенная генерация?
-            </button>
+          <!-- Тип генерации -->
+          <select id="generationType" class="mode-btn">
+            <option value="text" selected>Генерация текста</option>
+            <option value="image">Генерация изображений</option>
+          </select>
+          <!-- Выбор модели -->
+          <select id="modelType" class="model-btn text-only">
+            <option value="ChatGLM">ChatGLM</option>
+            <option value="Free2GPT">Free3GPT</option>
+            <option value="GizAI">GizAI</option>
+          </select>
+          <!-- Улучшенная генерация -->
+          <button id="enhancedMode" class="enhanced-btn">Улучшенная генерация</button>
+          <!-- Что это -->
+          <button id="helpBtn" class="help-btn">Что такое улучшенная генерация?</button>
         </div>
+      </aside>
 
-        <div class="chat-messages" id="chatMessages"></div>
-        
-        <textarea class="message-input" id="messageInput" placeholder="Введите ваше сообщение..."></textarea>
-        <button class="send-button" onclick="sendMessage()">Отправить</button>
+      <!-- Main chat -->
+      <section class="chat-main">
+        <h2 class="chat-title">Чат с AI-ассистентом</h2>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="input-area">
+          <textarea id="messageInput" class="message-input" placeholder="Введите сообщение..."></textarea>
+          <button id="sendBtn" class="send-btn">Отправить</button>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <!-- Добавляем модальное окно -->
-<div id="helpModal" class="modal">
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
     <div class="modal-content">
-        <div class="modal-header">
-            <button class="modal-button" onclick="closeModal()">✖</button>
-        </div>
-        <div class="modal-body">
-            <h2 class="modal-title">Что такое улучшенная генерация?</h2>
-            
-            <div class="welcome-text">
-                <p><strong>Привет!</strong> Мы рады представить вам новую версию нашего чата, которая использует <span class="highlight">уникальную систему симбиоза трех нейросетей</span> для генерации ответов.</p>
-            </div>
-        
-            <h3 class="section-title">В чем секрет улучшенной генерации?</h3>
-            
-            <div class="features">
-                <div class="feature-item">
-                    <h4>🔍 Глубина и всесторонность</h4>
-                    <p>Вместо опоры на единственную нейросеть, мы используем три, каждая из которых обладает уникальными сильными сторонами. Это позволяет создавать ответы, которые глубже раскрывают тему, учитывают различные перспективы и предоставляют богатый информационный контекст.</p>
-                </div>
-        
-                <div class="feature-item">
-                    <h4>✓ Бескомпромиссная точность</h4>
-                    <p>Три независимые нейросети, работая в тандеме, создают общий и максимально выверенный ответ. Это гарантирует высокую степень надежности и достоверности предоставляемой информации.</p>
-                </div>
-        
-                <div class="feature-item">
-                    <h4>🔄 Гармоничный синтез</h4>
-                    <p>Наши нейросети анализируют ответы друг друга, вычленяя наиболее ценные элементы и объединяя их в единый, максимально полезный и качественный результат.</p>
-                </div>
-            </div>
-        
-            <h3 class="section-title">Почему увеличилось время ожидания?</h3>
-            <div class="info-box">
-                <p>Обработка вашего запроса требует немного больше времени, чем прежде. Это связано с необходимостью отправки запроса трем нейросетям, получения и тщательного анализа их ответов. Однако, мы уверены, что превосходное качество генерируемых ответов полностью оправдывает небольшую задержку.</p>
-            </div>
-        
-            <h3 class="section-title">Подробное разъяснение</h3>
-            <div class="explanation">
-                <p>Представьте, что вы обращаетесь за советом к команде экспертов:</p>
-                <ul>
-                    <li><strong>Ученый</strong> предоставляет точную информацию и факты</li>
-                    <li><strong>Писатель</strong> добавляет креативности и живости</li>
-                    <li><strong>Аналитик</strong> собирает все воедино и формулирует взвешенный вывод</li>
-                </ul>
-                <p>Наша система работает по аналогичному принципу, заменяя людей нейросетями. Каждая нейросеть предлагает свой уникальный взгляд, которые мы объединяем, чтобы предложить вам максимально полный, точный и интересный ответ.</p>
-            </div>
-        
-            <div class="conclusion">
-                <p>Мы убеждены, что новая система значительно повысит ценность и привлекательность нашего чата для вас. Пожалуйста, поделитесь своими впечатлениями о новой версии!</p>
-            </div>
-        </div>        
+      <div class="modal-header">
+        <h3>Что такое улучшенная генерация?</h3>
+        <button class="modal-close" id="closeModal">✖</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Улучшенная генерация</strong> — это каскад из трёх нейросетей, которые:</p>
+        <ul>
+          <li><strong>Анализируют</strong> ваш запрос (ChatGLM)</li>
+          <li><strong>Генерируют</strong> первый вариант ответа (GizAI)</li>
+          <li><strong>Синтезируют</strong> и полируют ответ (Free3GPT)</li>
+        </ul>
+        <p>Такой симбиоз повышает глубину, точность и согласованность ответа, пусть он займёт на пару секунд больше времени.</p>
+      </div>
     </div>
-</div>
+  </div>
 
-<script src="{{ url_for('static', filename='js/ai_chat.js') }}"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
+        <span class="logo-text">StudySphere</span>
+      </div>
+      <div class="copy">© 2025 StudySphere. Все права защищены.</div>
+      <div class="footer-right">
+        <a href="https://github.com/dany-simonov/SS" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/ai_chat.js') }}"></script>
 </body>
 </html>

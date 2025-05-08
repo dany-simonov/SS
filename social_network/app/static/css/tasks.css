@@ -11,20 +11,20 @@
   a { text-decoration:none!important; color:inherit; }
   .container { width:90%; max-width:1200px; margin:0 auto; }
   
-  /* Header */
-  .header { position:sticky; top:0; background:rgba(255,255,255,0.9); backdrop-filter:blur(6px); z-index:100; }
-  .header-inner { display:flex; align-items:center; justify-content:space-between; padding:1rem 0; }
-  .logo { display:flex; align-items:center; gap:0.5rem; }
-  .logo img { height:40px; }
-  .logo-text { font-size:1.2rem; font-weight:600; color:var(--gray-dark); }
-  .nav { display:flex; gap:2rem; }
-  .nav a { font-weight:500; color:var(--gray-dark); }
-  .nav a.active { color:var(--primary-green); }
-  .auth-buttons { display:flex; gap:1rem; }
-  .btn-auth { padding:0.4rem 1rem; border:1px solid var(--gray-dark); background:transparent; border-radius:4px; transition:background .3s; }
-  .btn-auth:hover { background:var(--gray-light); }
-  .burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
-  .burger span { width:25px; height:3px; background:var(--gray-dark); }
+/* Header */
+.header { position:sticky; top:0; background:rgba(255,255,255,0.9); backdrop-filter:blur(6px); z-index:100; }
+.header-inner { display:flex; align-items:center; justify-content:space-between; padding:1rem 0; }
+.logo { display:flex; align-items:center; gap:0.5rem; }
+.logo img { height:40px; }
+.logo-text { font-size:1.2rem; font-weight:600; color:var(--gray-dark); }
+.nav { display:flex; gap:2rem; }
+.nav a { font-weight:500; color:var(--gray-dark); }
+.nav a.active { color:var(--primary-green); }
+.auth-buttons { display:flex; gap:1rem; }
+.btn-auth { padding:0.4rem 1rem; border:1px solid var(--gray-dark); background:transparent; border-radius:4px; transition:background .3s; }
+.btn-auth:hover { background:var(--gray-light); }
+.burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
+.burger span { width:25px; height:3px; background:var(--gray-dark); }
   
   /* Tasks Page */
   .tasks-page { padding:4rem 0; background:var(--gray-light); }
