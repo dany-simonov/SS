@@ -3,7 +3,7 @@ from flask_login import login_required, current_user, login_user, logout_user
 from flask_wtf import form
 import sqlalchemy as sa
 from social_network.app import db, login_manager
-from social_network.app.models import User
+from social_network.app.models import User, Courses
 from social_network.app.tasks_data import TASKS
 from social_network.app.ai_chat import handle_ai_chat
 from social_network.app.forms import LoginForm, RegistrationForm, EditProfileForm
@@ -14,6 +14,8 @@ from flask_login import LoginManager
 def load_user(user_id):
     # Загрузка пользователя из базы данных
     return User.query.get(int(user_id))
+
+
 
 
 main_bp = Blueprint('main', __name__)
@@ -145,3 +147,8 @@ def account():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+
+@main_bp.route('/my-courses')
+def my_courses():
+    return render_template('courses.html', form=form)

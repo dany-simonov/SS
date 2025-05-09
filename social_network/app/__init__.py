@@ -19,6 +19,11 @@ def create_app():
     # Ленивый импорт Blueprints
     from social_network.app.routes import main_bp
     app.register_blueprint(main_bp)
+
     from social_network.app.ai_chat_bp import ai_chat_bp
     app.register_blueprint(ai_chat_bp, url_prefix='/ai-chat')
+
+    from social_network.app.script import import_tasks
+    app.register_blueprint(import_tasks)
+
     return app

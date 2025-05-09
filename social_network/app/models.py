@@ -20,6 +20,18 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+
+class Courses(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    difficulty = db.Column(db.Integer, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    input_example = db.Column(db.Text, nullable=False)
+    output_example = db.Column(db.Text, nullable=False)
+
+
+
+
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(500))
