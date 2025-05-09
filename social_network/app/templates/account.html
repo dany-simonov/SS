@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<body>
+    {% if user %}
+        <p><strong>Имя пользователя:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    {% else %}
+        <p>Пользователь не найден.</p>
+    {% endif %}
+
+    <h4>Edit Your Profile</h4>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.username.label }}<br>
+            {{ form.username(class="form-control") }}
+        </div>
+
+        <div>
+            {{ form.email.label }}<br>
+            {{ form.email(class="form-control") }}
+        </div>
+
+        <div>
+            {{ form.first_name.label }}<br>
+            {{ form.first_name(class="form-control") }}
+        </div>
+
+        <div>
+            {{ form.last_name.label }}<br>
+            {{ form.last_name(class="form-control") }}
+        </div>
+
+        <div>
+            {{ form.age.label }}<br>
+            {{ form.age(class="form-control") }}
+        </div>
+
+        <div>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</body>
+</html>
