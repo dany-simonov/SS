@@ -4,14 +4,25 @@ import g4f
 from social_network.app.utils import extract_image_url
 from .enhanced_generation import EnhancedGeneration
 
+# Текстовые провайдеры в порядке приоритета
 text_providers = [
-    g4f.Provider.ChatGLM,
+    g4f.Provider.Qwen_Qwen_2_5M,
+    g4f.Provider.PollinationsAI,
+    g4f.Provider.Websim,
     g4f.Provider.Free2GPT,
-    g4f.Provider.GizAI
+    g4f.Provider.Qwen_Qwen_2_5,
+    g4f.Provider.ChatGLM,
+    g4f.Provider.GizAI,
+    g4f.Provider.Qwen_Qwen_2_72B,
+    g4f.Provider.AnyProvider,
+    g4f.Provider.FreeGpt
 ]
 
+# Провайдеры для генерации изображений в порядке приоритета
 image_providers = [
-    g4f.Provider.ImageLabs
+    g4f.Provider.PollinationsImage,
+    g4f.Provider.ImageLabs,
+    g4f.Provider.BlackForestLabs_Flux1Dev
 ]
 
 g4f.debug.logging = True
@@ -24,7 +35,7 @@ async def get_enhanced_response(user_message):
 def handle_ai_chat(request):
     data = request.get_json()
     user_message = data.get('message')
-    selected_model = data.get('model', 'ChatGLM')
+    selected_model = data.get('model', 'Qwen_Qwen_2_5M')
     generation_type = data.get('type', 'text')
     is_enhanced = data.get('enhanced', False)
 
@@ -49,13 +60,27 @@ def handle_ai_chat(request):
                 result = loop.run_until_complete(get_enhanced_response(user_message))
                 return jsonify(result)
             else:
+                # Создаем словарь всех текстовых провайдеров
                 provider_map = {
+                    'Qwen_Qwen_2_5M': g4f.Provider.Qwen_Qwen_2_5M,
+                    'PollinationsAI': g4f.Provider.PollinationsAI,
+                    'Websim': g4f.Provider.Websim,
+                    'Free2GPT': g4f.Provider.Free2GPT,
+                    'Qwen_Qwen_2_5': g4f.Provider.Qwen_Qwen_2_5,
                     'ChatGLM': g4f.Provider.ChatGLM,
-                    'Free3GPT': g4f.Provider.Free2GPT,
-                    'GizAI': g4f.Provider.GizAI
+                    'GizAI': g4f.Provider.GizAI,
+                    'Qwen_Qwen_2_72B': g4f.Provider.Qwen_Qwen_2_72B,
+                    'AnyProvider': g4f.Provider.AnyProvider,
+                    'FreeGpt': g4f.Provider.FreeGpt
                 }
-
-                provider = provider_map.get(selected_model)
+                
+                # Получаем провайдера из словаря или используем первый в списке по умолчанию
+                provider = provider_map.get(selected_model, text_providers[0])
+                
+                # Если выбран FreeGpt, добавляем инструкцию по языку
+                if selected_model == 'FreeGpt':
+                    user_message = "Пожалуйста, ответь на русском языке: " + user_message
+                
                 response = g4f.ChatCompletion.create(
                     model="gpt-3.5-turbo",
                     messages=[
@@ -65,41 +90,71 @@ def handle_ai_chat(request):
                     provider=provider,
                     timeout=120
                 )
-
                 return jsonify({'success': True, 'response': response})
-
         except Exception as e:
-            return jsonify({'success': False, 'message': f'Ошибка при использовании {selected_model}'})
-
-    else:
-        try:
-            image_provider = image_providers[0]
-            raw_response = g4f.ChatCompletion.create(
-                model="image-model",
-                messages=[{"role": "user", "content": user_message}],
-                provider=image_provider,
-                timeout=120
-            )
-            image_url = extract_image_url(raw_response)
-            if image_url:
-                response = (
-                    f'<div class="image-container">'
-                    f'<img src="{image_url}" style="max-width: 100%; border-radius: 5px;">'
-                    f'</div>'
-                )
-                return jsonify({
-                    'success': True,
-                    'response': response,
-                    'type': 'image'
-                })
-            else:
-                return jsonify({
-                    'success': False,
-                    'message': 'Не удалось сгенерировать изображение'
-                })
-
-        except Exception as e:
+            # Пробуем использовать следующего провайдера в списке
+            for provider in text_providers:
+                try:
+                    provider_name = provider.__name__
+                    # Пропускаем текущий провайдер, который уже вызвал ошибку
+                    if provider_name == selected_model:
+                        continue
+                    
+                    # Если используем FreeGpt, добавляем инструкцию по языку
+                    current_message = user_message
+                    if provider == g4f.Provider.FreeGpt:
+                        current_message = "Пожалуйста, ответь на русском языке: " + user_message
+                    
+                    response = g4f.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": current_message}
+                        ],
+                        provider=provider,
+                        timeout=120
+                    )
+                    return jsonify({
+                        'success': True, 
+                        'response': response,
+                        'fallback_provider': provider_name
+                    })
+                except:
+                    continue
+            
+            # Если все провайдеры не сработали
             return jsonify({
-                'success': False,
-                'message': f'Ошибка при генерации изображения: {str(e)}'
+                'success': False, 
+                'message': f'Не удалось получить ответ. Все провайдеры перегруженны.'
             })
+    else:  # Для генерации изображений
+        # Пробуем каждый провайдер изображений по очереди
+        for image_provider in image_providers:
+            try:
+                raw_response = g4f.ChatCompletion.create(
+                    model="image-model",
+                    messages=[{"role": "user", "content": user_message}],
+                    provider=image_provider,
+                    timeout=120
+                )
+                image_url = extract_image_url(raw_response)
+                if image_url:
+                    response = (
+                        f'<div class="image-container">'
+                        f'<img src="{image_url}" style="max-width: 100%; border-radius: 5px;">'
+                        f'</div>'
+                    )
+                    return jsonify({
+                        'success': True,
+                        'response': response,
+                        'type': 'image',
+                        'provider': image_provider.__name__
+                    })
+            except Exception:
+                continue
+        
+        # Если все провайдеры изображений не сработали
+        return jsonify({
+            'success': False,
+            'message': 'Не удалось сгенерировать изображение. Все провайдеры перегруженны.'
+        })

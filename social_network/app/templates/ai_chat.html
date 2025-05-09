@@ -34,7 +34,7 @@
   <!-- Chat Page -->
   <main class="chat-page container">
     <div class="chat-container">
-      <!-- Sidebar with Avatar and Controls -->
+      <!-- Sidebar: Avatar + Controls -->
       <aside class="chat-sidebar">
         <div class="avatar-card">
           <img id="avatar" src="{{ url_for('static', filename='images/Basic_Avatar.svg') }}" alt="Avatar">
@@ -45,25 +45,38 @@
             <option value="text" selected>Генерация текста</option>
             <option value="image">Генерация изображений</option>
           </select>
-          <!-- Выбор модели -->
+          <!-- Текстовые провайдеры -->
           <select id="modelType" class="model-btn text-only">
-            <option value="ChatGLM">ChatGLM</option>
-            <option value="Free2GPT">Free3GPT</option>
-            <option value="GizAI">GizAI</option>
+            <option value="Qwen_Qwen_2_5M" title="Эксперт с высочайшей точностью для научных и сложных вопросов.">Qwen_Qwen_2_5M</option>
+            <option value="PollinationsAI" title="Быстрый помощник с идеальным балансом скорости и качества.">PollinationsAI</option>
+            <option value="Websim" title="Мастер структурирования с хорошо организованными ответами.">Websim</option>
+            <option value="Free2GPT" title="Детализированный генератор объемных и подробных ответов.">Free2GPT</option>
+            <option value="Qwen_Qwen_2_5" title="Аналитик с безупречной структурой и полнотой изложения.">Qwen_Qwen_2_5</option>
+            <option value="ChatGLM" title="Перфекционист качества для случаев, когда точность важнее скорости.">ChatGLM</option>
+            <option value="GizAI" title="Многословный рассказчик с обширными, но менее точными ответами.">GizAI</option>
+            <option value="Qwen_Qwen_2_72B" title="Шустрый помощник для базовых вопросов и простых запросов.">Qwen_Qwen_2_72B</option>
+            <option value="AnyProvider" title="Надежный резервист с хорошей структурой, но медленной работой.">AnyProvider</option>
+            <option value="FreeGpt" title="Полиглот с уклоном в китайский, требующий инструкций по языку ответа.">FreeGpt</option>
+          </select>
+          <!-- Графические провайдеры -->
+          <select id="imageModelType" class="model-btn image-only" style="display:none">
+            <option value="PollinationsImage" title="Молниеносный художник для быстрого создания визуального контента.">PollinationsImage</option>
+            <option value="ImageLabs" title="Универсальный визуализатор с хорошей производительностью.">ImageLabs</option>
+            <option value="BlackForestLabs_Flux1Dev" title="Детализированный иллюстратор для запасных случаев.">BlackForestLabs_Flux1Dev</option>
           </select>
           <!-- Улучшенная генерация -->
           <button id="enhancedMode" class="enhanced-btn">Улучшенная генерация</button>
-          <!-- Что это -->
+          <!-- Что такое улучшенная генерация -->
           <button id="helpBtn" class="help-btn">Что такое улучшенная генерация?</button>
         </div>
       </aside>
 
-      <!-- Main chat -->
+      <!-- Main Chat Area -->
       <section class="chat-main">
         <h2 class="chat-title">Чат с AI-ассистентом</h2>
         <div id="chatMessages" class="chat-messages"></div>
         <div class="input-area">
-          <textarea id="messageInput" class="message-input" placeholder="Введите сообщение..."></textarea>
+          <textarea id="messageInput" class="message-input" placeholder="Введите сообщение…"></textarea>
           <button id="sendBtn" class="send-btn">Отправить</button>
         </div>
       </section>
@@ -82,7 +95,7 @@
         <ul>
           <li><strong>Анализируют</strong> ваш запрос (ChatGLM)</li>
           <li><strong>Генерируют</strong> первый вариант ответа (GizAI)</li>
-          <li><strong>Синтезируют</strong> и полируют ответ (Free3GPT)</li>
+          <li><strong>Синтезируют</strong> и полируют ответ (Free2GPT)</li>
         </ul>
         <p>Такой симбиоз повышает глубину, точность и согласованность ответа, пусть он займёт на пару секунд больше времени.</p>
       </div>
@@ -92,11 +105,13 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
-        <span class="logo-text">StudySphere</span>
+      <div class="footer-left">
+        <a href="{{ url_for('main.landing') }}" class="logo">
+          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
+          <span class="logo-text">StudySphere</span>
+        </a>
+        <p class="copy">© 2025 StudySphere. Все права защищены.</p>
       </div>
-      <div class="copy">© 2025 StudySphere. Все права защищены.</div>
       <div class="footer-right">
         <a href="https://github.com/dany-simonov/SS" target="_blank">GitHub</a>
       </div>
