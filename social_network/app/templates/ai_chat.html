@@ -34,40 +34,87 @@
   <!-- Chat Page -->
   <main class="chat-page container">
     <div class="chat-container">
-      <!-- Sidebar: Avatar + Controls -->
+
+      <!-- Sidebar: Avatar + Controls + Settings -->
       <aside class="chat-sidebar">
         <div class="avatar-card">
           <img id="avatar" src="{{ url_for('static', filename='images/Basic_Avatar.svg') }}" alt="Avatar">
         </div>
         <div class="controls-container">
           <!-- Тип генерации -->
-          <select id="generationType" class="mode-btn">
-            <option value="text" selected>Генерация текста</option>
-            <option value="image">Генерация изображений</option>
-          </select>
+          <label>
+            Генерация:
+            <select id="generationType" class="mode-btn">
+              <option value="text" selected>Текст</option>
+              <option value="image">Изображения</option>
+            </select>
+          </label>
           <!-- Текстовые провайдеры -->
-          <select id="modelType" class="model-btn text-only">
-            <option value="Qwen_Qwen_2_5M" title="Эксперт с высочайшей точностью для научных и сложных вопросов.">Qwen_Qwen_2_5M</option>
-            <option value="PollinationsAI" title="Быстрый помощник с идеальным балансом скорости и качества.">PollinationsAI</option>
-            <option value="Websim" title="Мастер структурирования с хорошо организованными ответами.">Websim</option>
-            <option value="Free2GPT" title="Детализированный генератор объемных и подробных ответов.">Free2GPT</option>
-            <option value="Qwen_Qwen_2_5" title="Аналитик с безупречной структурой и полнотой изложения.">Qwen_Qwen_2_5</option>
-            <option value="ChatGLM" title="Перфекционист качества для случаев, когда точность важнее скорости.">ChatGLM</option>
-            <option value="GizAI" title="Многословный рассказчик с обширными, но менее точными ответами.">GizAI</option>
-            <option value="Qwen_Qwen_2_72B" title="Шустрый помощник для базовых вопросов и простых запросов.">Qwen_Qwen_2_72B</option>
-            <option value="AnyProvider" title="Надежный резервист с хорошей структурой, но медленной работой.">AnyProvider</option>
-            <option value="FreeGpt" title="Полиглот с уклоном в китайский, требующий инструкций по языку ответа.">FreeGpt</option>
-          </select>
-          <!-- Графические провайдеры -->
-          <select id="imageModelType" class="model-btn image-only" style="display:none">
-            <option value="PollinationsImage" title="Молниеносный художник для быстрого создания визуального контента.">PollinationsImage</option>
-            <option value="ImageLabs" title="Универсальный визуализатор с хорошей производительностью.">ImageLabs</option>
-            <option value="BlackForestLabs_Flux1Dev" title="Детализированный иллюстратор для запасных случаев.">BlackForestLabs_Flux1Dev</option>
-          </select>
-          <!-- Улучшенная генерация -->
-          <button id="enhancedMode" class="enhanced-btn">Улучшенная генерация</button>
-          <!-- Что такое улучшенная генерация -->
-          <button id="helpBtn" class="help-btn">Что такое улучшенная генерация?</button>
+          <label class="text-only">
+            Провайдер:
+            <select id="modelType" class="model-btn">
+              <option value="PollinationsAI" title="Быстрый помощник с идеальным балансом скорости и качества.">PollinationsAI</option>
+              <option value="Qwen_Qwen_2_5M" title="Эксперт с высочайшей точностью для научных и сложных вопросов.">Qwen_Qwen_2_5M</option>
+              <option value="Websim" title="Мастер структурирования с хорошо организованными ответами.">Websim</option>
+              <option value="Free2GPT" title="Детализированный генератор объёмных и подробных ответов.">Free2GPT</option>
+              <option value="Qwen_Qwen_2_5" title="Аналитик с безупречной структурой и полнотой изложения.">Qwen_Qwen_2_5</option>
+              <option value="ChatGLM" title="Перфекционист качества для случаев, когда точность важнее скорости.">ChatGLM</option>
+              <option value="GizAI" title="Многословный рассказчик с обширными, но менее точными ответами.">GizAI</option>
+              <option value="Qwen_Qwen_2_72B" title="Шустрый помощник для базовых вопросов и простых запросов.">Qwen_Qwen_2_72B</option>
+              <option value="AnyProvider" title="Надёжный резервист с хорошей структурой, но медленной работой.">AnyProvider</option>
+              <option value="FreeGpt" title="Полиглот с уклоном в китайский, требующий инструкций по языку ответа.">FreeGpt</option>
+            </select>
+          </label>
+          <!-- Картинные провайдеры -->
+          <label class="image-only" style="display:none">
+            Картинки:
+            <select id="imageModelType" class="model-btn">
+              <option value="PollinationsImage" title="Молниеносный художник для быстрого создания визуального контента.">PollinationsImage</option>
+              <option value="ImageLabs" title="Универсальный визуализатор с хорошей производительностью.">ImageLabs</option>
+              <option value="BlackForestLabs_Flux1Dev" title="Детализированный иллюстратор для запасных случаев.">BlackForestLabs_Flux1Dev</option>
+            </select>
+          </label>
+          <!-- Настройки -->
+          <button id="settingsToggle" class="settings-btn">⚙️ Настройки</button>
+          <div id="settingsPanel" class="settings-panel" style="display:none">
+            <fieldset>
+              <legend>Тема интерфейса</legend>
+              <label><input type="radio" name="theme" value="light" checked> Светлая</label>
+              <label><input type="radio" name="theme" value="dark"> Тёмная</label>
+            </fieldset>
+            <fieldset>
+              <legend>Уровень формальности</legend>
+              <label><input type="radio" name="tone" value="friendly" checked> Дружелюбный</label>
+              <label><input type="radio" name="tone" value="neutral"> Нейтральный</label>
+              <label><input type="radio" name="tone" value="formal"> Официальный</label>
+            </fieldset>
+            <fieldset>
+              <legend>Макс. длина ответа</legend>
+              <select id="maxLength">
+                <option value="300">Короткий (≤300 слов)</option>
+                <option value="500" selected>Средний (≤500 слов)</option>
+                <option value="1000">Подробный (≤1000 слов)</option>
+                <option value="2000">Очень подробный (≤2000 слов)</option>
+              </select>
+            </fieldset>
+            <fieldset>
+              <legend>Креативность</legend>
+              <input type="range" id="temperature" min="0" max="1" step="0.01" value="0.5">
+            </fieldset>
+            <fieldset>
+              <label><input type="checkbox" id="autosave"> Автосохранение чата</label>
+            </fieldset>
+            <fieldset>
+              <label><input type="checkbox" id="showTimestamps"> Показывать время сообщений</label>
+            </fieldset>
+            <fieldset>
+              <legend>Язык общения</legend>
+              <select id="language">
+                <option value="ru" selected>Русский</option>
+                <option value="en">English</option>
+              </select>
+            </fieldset>
+          </div>
         </div>
       </aside>
 
@@ -82,25 +129,6 @@
       </section>
     </div>
   </main>
-
-  <!-- Help Modal -->
-  <div id="helpModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Что такое улучшенная генерация?</h3>
-        <button class="modal-close" id="closeModal">✖</button>
-      </div>
-      <div class="modal-body">
-        <p><strong>Улучшенная генерация</strong> — это каскад из трёх нейросетей, которые:</p>
-        <ul>
-          <li><strong>Анализируют</strong> ваш запрос (ChatGLM)</li>
-          <li><strong>Генерируют</strong> первый вариант ответа (GizAI)</li>
-          <li><strong>Синтезируют</strong> и полируют ответ (Free2GPT)</li>
-        </ul>
-        <p>Такой симбиоз повышает глубину, точность и согласованность ответа, пусть он займёт на пару секунд больше времени.</p>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="footer">
