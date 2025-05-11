@@ -178,9 +178,9 @@ text_providers = [
 
 # Провайдеры для генерации изображений
 image_providers = [
-    g4f.Provider.PollinationsImage,
     g4f.Provider.ImageLabs,
-    g4f.Provider.BlackForestLabs_Flux1Dev
+    g4f.Provider.BlackForestLabs_Flux1Dev,
+    g4f.Provider.PollinationsImage
 ]
 
 g4f.debug.logging = True
