@@ -149,7 +149,7 @@ def handle_ai_chat(request):
     tone         = data.get('tone', 'friendly')
     max_length   = data.get('maxLength', '500')
     temperature  = float(data.get('temperature', 0.5))
-    language     = data.get('language', 'en')
+    language     = data.get('language', 'ru')
 
     if not user_message:
         return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})

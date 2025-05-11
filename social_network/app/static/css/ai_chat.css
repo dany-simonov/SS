@@ -65,13 +65,25 @@ a{text-decoration:none!important;color:inherit}
 .settings-panel input[type=range]{width:100%;margin-top:.25rem}
 
 /* Dark theme */
-[data-theme="dark"]{--white:#1a1a1a;--black:#fafafa;--gl:#2a2a2a;--gd:#e0e0e0;background:var(--white);color:var(--black)}
-[data-theme="dark"] .header,[data-theme="dark"] .footer{background:rgba(0,0,0,.8)}
-[data-theme="dark"] .chat-messages,[data-theme="dark"] .controls-container,[data-theme="dark"] .settings-panel{background:var(--gl)}
-[data-theme="dark"] .message-input,[data-theme="dark"] .model-btn,[data-theme="dark"] .mode-btn,[data-theme="dark"] .settings-btn{background:var(--gd);color:var(--white);border-color:var(--gd)}
-[data-theme="dark"] .send-btn{background:var(--primary-green);color:var(--white)}
-[data-theme="dark"] .user-message{background:#455a64;color:var(--white)}
-[data-theme="dark"] .ai-message{background:#263238;color:var(--white)}
+[data-theme="dark"]{--bg:#2e2e2e;--fg:#ececec;--panel:#3a3a3a;--ctrl:#4a4a4a}
+[data-theme="dark"] body{background:var(--bg);color:var(--fg)}
+[data-theme="dark"] a, [data-theme="dark"] .logo-text, [data-theme="dark"] .nav a{color:var(--fg)}
+[data-theme="dark"] .nav a.active{color:var(--primary-green)}
+[data-theme="dark"] .header, [data-theme="dark"] .footer{background:var(--panel)}
+[data-theme="dark"] .chat-messages, [data-theme="dark"] .controls-container, [data-theme="dark"] .settings-panel{background:var(--panel)}
+[data-theme="dark"] select, [data-theme="dark"] .message-input, [data-theme="dark"] .settings-btn{background:var(--ctrl);color:var(--fg);border:1px solid var(--ctrl)}
+[data-theme="dark"] select option{background:var(--panel);color:var(--fg)}
+[data-theme="dark"] .send-btn{background:var(--primary-green);color:var(--fg)}
+[data-theme="dark"] .send-btn:hover{background:rgba(0,136,25,.8)}
+[data-theme="dark"] .user-message{background:#3f3f3f;color:var(--fg)}
+[data-theme="dark"] .ai-message{background:#4f4f4f;color:var(--fg)}
+[data-theme="dark"] .copy-btn{background:rgba(236,236,236,.1);color:var(--fg)}
+[data-theme="dark"] .copy-btn:hover{background:rgba(236,236,236,.2)}
+[data-theme="dark"] .modal-content{background:var(--panel);color:var(--fg)}
+[data-theme="dark"] .modal-close{color:var(--fg)}
+[data-theme="dark"] .footer .copy,
+[data-theme="dark"] .footer-right a { color: var(--fg) !important }
+[data-theme="dark"] .footer-left p { font-size:0.9rem; color:var(--fg); margin-top:0.5rem; }
 
 /* Footer */
 .footer { background:var(--gray-light); padding:2rem 0; }

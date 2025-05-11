@@ -10,24 +10,24 @@
   <!-- Header -->
   <header class="header">
     <div class="container header-inner">
-      <div class="logo">
-        <a href="{{ url_for('main.landing') }}">
-          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
-        </a>
+      <a href="/" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
         <span class="logo-text">StudySphere</span>
-      </div>
-      <nav class="nav">
-        <a href="{{ url_for('ai_chat_bp.ai_chat') }}" class="active">Чат с ИИ</a>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="{{ url_for('ai_chat_bp.ai_chat') }}">Чат с ИИ</a>
         <a href="{{ url_for('main.textbook') }}">Учебник</a>
         <a href="{{ url_for('main.show_tasks') }}">Задачи</a>
         <a href="{{ url_for('quizzes_bp.choose') }}">Квизы</a>
         <a href="{{ url_for('main.support') }}">Поддержка</a>
       </nav>
       <div class="auth-buttons">
-        <a href="{{ url_for('main.register') }}" class="btn-auth">Регистрация</a>
-        <a href="{{ url_for('main.login') }}" class="btn-auth">Вход</a>
+        <a href="{{ url_for('main.register') }}" class="btn btn-auth">Регистрация</a>
+        <a href="{{ url_for('main.login') }}" class="btn btn-auth">Вход</a>
       </div>
-      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
@@ -103,9 +103,6 @@
             </fieldset>
             <fieldset>
               <label><input type="checkbox" id="autosave"> Автосохранение чата</label>
-            </fieldset>
-            <fieldset>
-              <label><input type="checkbox" id="showTimestamps"> Показывать время сообщений</label>
             </fieldset>
             <fieldset>
               <legend>Язык общения</legend>
