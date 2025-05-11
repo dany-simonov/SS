@@ -169,15 +169,24 @@ document.addEventListener('DOMContentLoaded', () => {
             ? (imageModelSelect ? imageModelSelect.value : '') 
             : (modelSelect ? modelSelect.value : '');
 
+        const tone        = document.querySelector('input[name="tone"]:checked').value;
+        const maxLength   = document.getElementById('maxLength').value;
+        const temperature = document.getElementById('temperature').value;
+        const language    = document.getElementById('language').value;
+
         // Отправка запроса на сервер
         fetch('/ai-chat', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
-                message: text,
-                model: selectedModel,
-                type: genType ? genType.value : 'text',
-                enhanced: enhancedBtn ? enhancedBtn.classList.contains('active') : false
+            message: text,
+            model: selectedModel,
+            type: genType ? genType.value : 'text',
+            tone: tone,
+            maxLength: maxLength,
+            temperature: temperature,
+            language: language,
+            image_provider: genType.value==='image' ? imageModelSelect.value : undefined
             })
         })
         .then(r => r.ok ? r.json() : Promise.reject(`Status ${r.status}`))
