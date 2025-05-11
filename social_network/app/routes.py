@@ -54,10 +54,6 @@ def execute_code():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
-# ai_chat_bp = Blueprint('ai-chat', __name__)
-
-# @ai_chat_bp.route('/ai-chat', methods=['GET', 'POST'])
-# def ai_chat():
-#     if request.method == 'POST':
-#         return handle_ai_chat(request)
-#     return render_template('ai_chat.html')
+@main_bp.route('/user-agreement', methods=['GET'])
+def user_agreement():
+    return render_template('user_agreement.html')

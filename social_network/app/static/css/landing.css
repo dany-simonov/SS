@@ -19,11 +19,9 @@ a { text-decoration: none !important; }
 .logo-text { font-size:1.2rem; font-weight:600; color:var(--gray-dark); }
 .nav { display:flex; gap:2rem; }
 .nav a { color:var(--gray-dark); font-weight:500; }
-
 .auth-buttons { display:flex; gap:1rem; }
 .btn-auth { padding:0.4rem 1rem; border:1px solid var(--gray-dark); background:transparent; color:var(--gray-dark); border-radius:4px; font-weight:500; transition:background 0.3s; }
 .btn-auth:hover { background:var(--gray-light); }
-
 .burger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; }
 .burger span { width:25px; height:3px; background:var(--gray-dark); }
 

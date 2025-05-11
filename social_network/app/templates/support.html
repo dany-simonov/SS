@@ -59,14 +59,12 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-left">
-        <a href="{{ url_for('main.landing') }}" class="logo">
-          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
-          <span class="logo-text">StudySphere</span>
-        </a>
-        <p class="copy">© 2025 StudySphere. Все права защищены.</p>
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
+        <span class="logo-text" style="margin-left:0.5rem;">StudySphere</span>
+        <p style="margin-top:0.5rem;">© 2025 StudySphere. Все права защищены.</p>
       </div>
       <div class="footer-right">
-        <a href="https://github.com/dany-simonov/SS" target="_blank">GitHub</a>
+        <a href="{{ url_for('main.user_agreement') }}">Пользовательское соглашение</a>
       </div>
     </div>
   </footer>
