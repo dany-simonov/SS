@@ -64,7 +64,14 @@ a{text-decoration:none!important;color:inherit}
 .settings-panel select,
 .settings-panel input[type=range]{width:100%;margin-top:.25rem}
 
-
+/* Dark theme */
+[data-theme="dark"]{--white:#1a1a1a;--black:#fafafa;--gl:#2a2a2a;--gd:#e0e0e0;background:var(--white);color:var(--black)}
+[data-theme="dark"] .header,[data-theme="dark"] .footer{background:rgba(0,0,0,.8)}
+[data-theme="dark"] .chat-messages,[data-theme="dark"] .controls-container,[data-theme="dark"] .settings-panel{background:var(--gl)}
+[data-theme="dark"] .message-input,[data-theme="dark"] .model-btn,[data-theme="dark"] .mode-btn,[data-theme="dark"] .settings-btn{background:var(--gd);color:var(--white);border-color:var(--gd)}
+[data-theme="dark"] .send-btn{background:var(--primary-green);color:var(--white)}
+[data-theme="dark"] .user-message{background:#455a64;color:var(--white)}
+[data-theme="dark"] .ai-message{background:#263238;color:var(--white)}
 
 /* Footer */
 .footer { background:var(--gray-light); padding:2rem 0; }

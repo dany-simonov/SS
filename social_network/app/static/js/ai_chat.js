@@ -8,6 +8,7 @@ function toggleSettings() {
 document.addEventListener('DOMContentLoaded', () => {
     // Переключение списка провайдеров: текстовые ↔ картинные
     // Перемещено внутрь DOMContentLoaded для доступности
+    window.__addMessage = addMessage;
     function updateModelLists() {
       const genType = document.getElementById('generationType');
       const textSelect = document.getElementById('modelType');
@@ -154,6 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!text) return;
         
         addMessage(text, 'user');
+        if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
+            window.saveChatHistory();
+        }
         input.value = '';
         
         if (avatarImg) {
@@ -182,6 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 addMessage(data.message || 'Ошибка AI', 'ai');
             } else {
                 addMessage(data.response, 'ai');
+                if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
+                    window.saveChatHistory();
+                }
             }
             if (avatarImg) {
                 avatarImg.src = '/static/images/Loving_Avatar.svg';
