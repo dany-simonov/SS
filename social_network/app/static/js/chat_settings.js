@@ -86,15 +86,6 @@
       if (elems.autosave.checked) saveChatHistory();
     });
 
-    // таймстемпы
-    const ts = loadSetting('showTimestamps');
-    elems.showTimestamps.checked = ts;
-    elems.showTimestamps.addEventListener('change', () => {
-      saveSetting('showTimestamps', elems.showTimestamps.checked);
-      applyShowTimestamps(elems.showTimestamps.checked);
-    });
-    applyShowTimestamps(ts);
-
     // язык
     const lang = loadSetting('language');
     elems.language.value = lang;

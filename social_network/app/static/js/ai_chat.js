@@ -8,7 +8,6 @@ function toggleSettings() {
 document.addEventListener('DOMContentLoaded', () => {
     // Переключение списка провайдеров: текстовые ↔ картинные
     // Перемещено внутрь DOMContentLoaded для доступности
-    window.__addMessage = addMessage;
     function updateModelLists() {
       const genType = document.getElementById('generationType');
       const textSelect = document.getElementById('modelType');
@@ -143,7 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         chatMsgs.appendChild(wrapper);
         chatMsgs.scrollTop = chatMsgs.scrollHeight;
     }
-
+    
+    window.__addMessage = addMessage;
     // Функция отправки сообщения на сервер
     function sendMessage() {
         if (!input || !chatMsgs) {
@@ -191,17 +191,18 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(r => r.ok ? r.json() : Promise.reject(`Status ${r.status}`))
         .then(data => {
-            if (data.success === false) {
-                addMessage(data.message || 'Ошибка AI', 'ai');
-            } else {
-                addMessage(data.response, 'ai');
-                if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
-                    window.saveChatHistory();
-                }
-            }
-            if (avatarImg) {
-                avatarImg.src = '/static/images/Loving_Avatar.svg';
-            }
+        // Добавляем ответ AI
+        const aiText = data.success === false
+            ? (data.message || 'Ошибка AI')
+            : data.response;
+        addMessage(aiText, 'ai');
+        // <-- тут нужно всегда вызывать автосохранение
+        if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
+            window.saveChatHistory();
+        }
+        if (avatarImg) {
+            avatarImg.src = '/static/images/Loving_Avatar.svg';
+        }
         })
         .catch((error) => {
             console.error('Ошибка при отправке:', error);
