@@ -73,7 +73,7 @@ def add_user():
             app=current_app,
             to=new_user.email,
             subject="Добро пожаловать!",
-            template="Привет, {username}! Спасибо за регистрацию на нашем сайте.",
+            template="Привет, {username}! Спасибо за регистрацию на нашем сайте. Надеемся, что учеба с нами будет интересным и легким приключением.",
             username=new_user.username,
         )
         print('письмо отправлено')
