@@ -1,12 +1,11 @@
 from flask_login import UserMixin
-from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from social_network.app import db
 
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, nullable=False)
+    username = db.Column(db.String(64), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
     messages = db.relationship('Message', backref='author', lazy='dynamic')
@@ -21,6 +20,11 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(500), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
 class Courses(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     course_name = db.Column(db.String(200), default="_")
@@ -29,12 +33,3 @@ class Courses(db.Model):
     description = db.Column(db.Text, nullable=False)
     input_example = db.Column(db.Text, nullable=False)
     output_example = db.Column(db.Text, nullable=False)
-
-
-
-
-class Message(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(500))
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

@@ -1,21 +1,21 @@
-from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template, current_app
+import traceback
+from threading import Thread
+import sqlalchemy as sa
+from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template, current_app, Flask
 from flask_login import login_required, current_user, login_user, logout_user
 from flask_wtf import form
-import sqlalchemy as sa
-from social_network.app import db, login_manager
-from social_network.app.models import User, Courses
-from social_network.app.tasks_data import TASKS
+from social_network.app import db, login_manager, mail
 from social_network.app.ai_chat import handle_ai_chat
 from social_network.app.forms import LoginForm, RegistrationForm, EditProfileForm
-from flask_login import LoginManager
+from social_network.app.models import User
+from social_network.app.tasks_data import TASKS
+from flask_mail import Message, Mail
+from .sendemail import send_email
 
 
 @login_manager.user_loader
 def load_user(user_id):
-    # Загрузка пользователя из базы данных
     return User.query.get(int(user_id))
-
-
 
 
 main_bp = Blueprint('main', __name__)
@@ -43,7 +43,6 @@ def login():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        # Проверка, существует ли пользователь с таким email или username
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user:
             flash('Email already registered.', 'danger')
@@ -65,13 +64,25 @@ def add_user():
     new_user.email = data.get('email')
     new_user.set_password(data.get('password'))
 
+
     try:
         db.session.add(new_user)
         db.session.commit()
+
+        send_email(
+            app=current_app,
+            to=new_user.email,
+            subject="Добро пожаловать!",
+            template="Привет, {username}! Спасибо за регистрацию на нашем сайте.",
+            username=new_user.username,
+        )
+        print('письмо отправлено')
+
         return redirect(url_for('main.login'))
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
+
 
 @main_bp.route('/')
 def index():

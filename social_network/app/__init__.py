@@ -1,5 +1,6 @@
-from flask import Flask, Blueprint
+from flask import Flask
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
@@ -7,6 +8,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 login_manager = LoginManager()
 migrate = Migrate()
+mail = Mail()
 
 
 def create_app():
@@ -15,8 +17,8 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
+    mail.init_app(app)
 
-    # Ленивый импорт Blueprints
     from social_network.app.routes import main_bp
     app.register_blueprint(main_bp)
 
@@ -25,5 +27,6 @@ def create_app():
 
     from social_network.app.script import import_tasks
     app.register_blueprint(import_tasks)
+
 
     return app
