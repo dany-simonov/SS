@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, abort
 from social_network.app.tasks_data import TASKS
 from social_network.app.ai_chat import handle_ai_chat
 
@@ -20,10 +20,14 @@ def textbook():
 def show_tasks():
     return render_template('tasks.html', tasks=TASKS)
 
-@main_bp.route('/task_view')
-def task_view():
-    task_title = request.args.get('title')
-    return render_template('task_view.html', task_title=task_title)
+@main_bp.route('/tasks/<int:task_id>')
+def task_view(task_id):
+    # ищем задачу во всех уровнях сложности
+    for lvl in TASKS.values():
+        for t in lvl:
+            if t['id'] == task_id:
+                return render_template('task_view.html', task=t)
+    abort(404)
 
 @main_bp.route('/support', methods=['GET'])
 def support():
@@ -50,10 +54,6 @@ def execute_code():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
-ai_chat_bp = Blueprint('ai_chat', __name__)
-
-@ai_chat_bp.route('/ai_chat', methods=['GET', 'POST'])
-def ai_chat():
-    if request.method == 'POST':
-        return handle_ai_chat(request)
-    return render_template('ai_chat.html')
+@main_bp.route('/user-agreement', methods=['GET'])
+def user_agreement():
+    return render_template('user_agreement.html')

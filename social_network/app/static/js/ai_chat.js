@@ -1,239 +1,229 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const messageInput = document.getElementById('messageInput');
-    
-    messageInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
-});
+// Открытие/закрытие панели настроек
+function toggleSettings() {
+  const panel = document.getElementById('settingsPanel');
+  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+}
 
-// Обработка переключения режима генерации
-document.getElementById('generationType').addEventListener('change', function() {
-    const modelType = document.getElementById('modelType');
-    const enhancedMode = document.getElementById('enhancedMode');
-    const enhancedExplanation = document.querySelector('.enhanced-explanation');
-    const enhancedExplanationBtn = document.querySelector('.enhanced-explanation-btn');
-   
-    if (this.value === 'image') {
-        modelType.style.display = 'none';
-        enhancedMode.style.display = 'none';
-        enhancedExplanation.style.display = 'none';
-        enhancedExplanationBtn.style.display = 'none';
-    } else {
-        modelType.style.display = 'block';
-        enhancedMode.style.display = 'inline-block';
-        enhancedExplanation.style.display = 'block';
-        enhancedExplanationBtn.style.display = 'inline-block';
+// Основной блок, выполняемый после загрузки DOM
+document.addEventListener('DOMContentLoaded', () => {
+    // Переключение списка провайдеров: текстовые ↔ картинные
+    // Перемещено внутрь DOMContentLoaded для доступности
+    function updateModelLists() {
+      const genType = document.getElementById('generationType');
+      const textSelect = document.getElementById('modelType');
+      const imageSelect = document.getElementById('imageModelType');
+      if (genType.value === 'image') {
+        textSelect.parentElement.style.display = 'none';
+        imageSelect.parentElement.style.display = '';
+      } else {
+        textSelect.parentElement.style.display = '';
+        imageSelect.parentElement.style.display = 'none';
+      }
     }
-});
 
-copyButton.onclick = function() {
-    const textToCopy = messageContent.textContent;
-    navigator.clipboard.writeText(textToCopy);
+    // Инициализация переключения моделей
+    updateModelLists();
+    document.getElementById('generationType')
+            .addEventListener('change', updateModelLists);
+
+    // Привязка обработчика для кнопки настроек
+    document.getElementById('settingsToggle')
+            .addEventListener('click', toggleSettings);
     
-    // Меняем на активную зеленую иконку
-    copyButton.src = '/static/images/Copy_active.svg';
-    
-    // Возвращаем обычную иконку через 3 секунды
-    setTimeout(() => {
-        copyButton.src = '/static/images/Copy.svg';
-    }, 5000);
-};
+    // Получение всех необходимых элементов DOM
+    const genType = document.getElementById('generationType');
+    const modelSelect = document.getElementById('modelType');
+    const imageModelSelect = document.getElementById('imageModelType');
+    const enhancedBtn = document.getElementById('enhancedMode');
+    const helpBtn = document.querySelector('.help-btn');
+    const modal = document.getElementById('helpModal');
+    const modalClose = document.querySelector('.modal-close');
+    const chatMsgs = document.getElementById('chatMessages');
+    const input = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const avatarImg = document.getElementById('avatar');
 
-// Обработка улучшенной генерации
-const enhancedButton = document.getElementById('enhancedMode');
-enhancedButton.addEventListener('click', function() {
-    this.classList.toggle('active');
-});
+    // Проверка наличия всех элементов (для отладки)
+    console.log('Проверка элементов:', {
+        genType, modelSelect, imageModelSelect, enhancedBtn,
+        helpBtn, modal, modalClose, chatMsgs, input, sendBtn, avatarImg
+    });
 
-// Функции модального окна
-function showModal() {
-    document.getElementById('helpModal').style.display = 'block';
-}
-
-function closeModal() {
-    document.getElementById('helpModal').style.display = 'none';
-}
-
-function maximizeModal() {
-    const modal = document.querySelector('.modal-content');
-    modal.classList.toggle('maximized');
-}
-
-// Отправка сообщений
-function sendMessage() {
-    const messageInput = document.getElementById('messageInput');
-    const modelType = document.getElementById('modelType');
-    const generationType = document.getElementById('generationType');
-    const enhancedButton = document.getElementById('enhancedMode');
-    const message = messageInput.value.trim();
-    
-    if (!message) return;
-
-    // Добавляем сообщение пользователя в чат
-    addMessage(message, 'user');
-    // Очищаем поле ввода
-    messageInput.value = '';
-
-    console.log('Отправка сообщения:');
-    console.log('- Модель:', modelType.value);
-    console.log('- Тип генерации:', generationType.value);
-    console.log('- Улучшенная генерация:', enhancedButton.classList.contains('active'));
-
-    fetch('/ai-chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            message: message,
-            model: modelType.value,
-            type: generationType.value,
-            enhanced: enhancedButton.classList.contains('active')  // Добавляем параметр
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success && data.response) {
-            addMessage(data.response, 'ai');
+    // Переключение элементов управления в зависимости от типа генерации (текст/изображение)
+    function updateControls() {
+        if (!genType) {
+            console.error('Элемент generationType не найден');
+            return;
+        }
+        
+        const isImage = genType.value === 'image';
+        
+        // Проверяем наличие элементов перед обращением к их свойствам
+        if (modelSelect) {
+            modelSelect.style.display = isImage ? 'none' : '';
         } else {
-            addMessage(data.message || 'Произошла ошибка при получении ответа', 'ai');
-        }
-    })
-    .catch(error => {
-        addMessage('Ошибка соединения с сервером', 'ai');
-        console.error('Ошибка:', error);
-    });
-}
-
-
-// Добавление сообщений в чат
-function addMessage(content, type) {
-    const chatMessages = document.getElementById('chatMessages');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}-message`;
-   
-    if (type === 'ai') {
-        // Создаем контейнер для сообщения и кнопки копирования
-        const messageContainer = document.createElement('div');
-        messageContainer.style.position = 'relative';
-        
-        content = content
-            // Заголовки
-            .replace(/#{6}\s(.*?)(?:\n|$)/g, '<h6>$1</h6>')
-            .replace(/#{5}\s(.*?)(?:\n|$)/g, '<h5>$1</h5>')
-            .replace(/#{4}\s(.*?)(?:\n|$)/g, '<h4>$1</h4>')
-            .replace(/#{3}\s(.*?)(?:\n|$)/g, '<h3>$1</h3>')
-            .replace(/#{2}\s(.*?)(?:\n|$)/g, '<h2>$1</h2>')
-            .replace(/#{1}\s(.*?)(?:\n|$)/g, '<h1>$1</h1>')
-           
-            // Форматирование текста
-            .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/~~(.*?)~~/g, '<del>$1</del>')
-            .replace(/`(.*?)`/g, '<code>$1</code>')
-           
-            // Списки
-            .replace(/^\s*[-+*]\s+(.*?)(?:\n|$)/gm, '<li>$1</li>')
-            .replace(/^\s*(\d+)\.\s+(.*?)(?:\n|$)/gm, '<li>$2</li>')
-           
-            // Цитаты
-            .replace(/^\s*>\s+(.*?)(?:\n|$)/gm, '<blockquote>$1</blockquote>')
-           
-            // Горизонтальная линия
-            .replace(/^(?:[-*_]){3,}$/gm, '<hr>')
-           
-            // Ссылки
-            .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
-           
-            // Переносы строк
-            .replace(/\n/g, '<br>');
-
-        // Добавляем текст сообщения
-        const messageContent = document.createElement('div');
-        messageContent.innerHTML = content;
-        messageContainer.appendChild(messageContent);
-        
-        // Добавляем кнопку копирования для текстовых сообщений
-        if (!content.includes('image-container')) {
-            const copyButton = document.createElement('img');
-            copyButton.src = '/static/images/Copy.svg';
-            copyButton.style.cursor = 'pointer';
-            copyButton.style.position = 'absolute';
-            copyButton.style.right = '10px';
-            copyButton.style.bottom = '10px';
-            copyButton.style.width = '20px';
-            copyButton.style.height = '20px';
-            
-            copyButton.onclick = function() {
-                const textToCopy = messageContent.textContent;
-                navigator.clipboard.writeText(textToCopy);
-            };
-            
-            messageContainer.appendChild(copyButton);
+            console.error('Элемент modelType не найден');
         }
         
-        messageDiv.appendChild(messageContainer);
+        if (enhancedBtn) {
+            enhancedBtn.style.display = isImage ? 'none' : '';
+        } else {
+            console.error('Элемент enhancedMode не найден');
+        }
+        
+        if (helpBtn) {
+            helpBtn.style.display = isImage ? 'none' : '';
+        } else {
+            console.error('Элемент help-btn не найден');
+        }
+    }
+
+    // Привязка обработчика для переключения типа генерации
+    if (genType) {
+        genType.addEventListener('change', updateControls);
+        updateControls(); // Вызываем функцию при инициализации
     } else {
-        messageDiv.textContent = content;
+        console.error('Не удалось привязать обработчик к generationType - элемент не найден');
     }
-   
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
 
-
-// Перетаскивание модального окна
-let isDragging = false;
-let currentX;
-let currentY;
-let initialX;
-let initialY;
-let xOffset = 0;
-let yOffset = 0;
-
-const modalContent = document.querySelector('.modal-content');
-
-modalContent.addEventListener('mousedown', dragStart);
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', dragEnd);
-
-function dragStart(e) {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
-
-    if (e.target === modalContent || e.target.closest('.modal-header')) {
-        isDragging = true;
+    // Обработчик для кнопки расширенного режима
+    if (enhancedBtn) {
+        enhancedBtn.addEventListener('click', () => enhancedBtn.classList.toggle('active'));
     }
-}
 
-function drag(e) {
-    if (isDragging) {
-        e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
-        xOffset = currentX;
-        yOffset = currentY;
-
-        setTranslate(currentX, currentY, modalContent);
+    // Обработчики для модального окна помощи
+    if (helpBtn && modal) {
+        helpBtn.addEventListener('click', () => modal.style.display = 'flex');
     }
-}
+    
+    if (modalClose && modal) {
+        modalClose.addEventListener('click', () => modal.style.display = 'none');
+        modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+    }
 
-function dragEnd() {
-    isDragging = false;
-}
+    // Простой парсер Markdown для форматирования сообщений
+    function parseMarkdown(text) {
+        // code blocks ```
+        text = text.replace(/```([\s\S]+?)```/g, '<pre><code>$1</code></pre>');
+        // inline code `
+        text = text.replace(/`([^`]+?)`/g, '<code>$1</code>');
+        // bold **text**
+        text = text.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
+        // italic *text*
+        text = text.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
+        // line breaks
+        text = text.replace(/\n/g, '<br>');
+        return text;
+    }
 
-function setTranslate(xPos, yPos, el) {
-    el.style.transform = `translate(${xPos}px, ${yPos}px)`;
-}
+    // Добавление сообщения в чат
+    function addMessage(raw, who) {
+        const wrapper = document.createElement('div');
+        wrapper.className = who === 'ai' ? 'ai-message' : 'user-message';
 
-// Обработка нажатия Enter
-document.getElementById('messageInput').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
+        const content = document.createElement('div');
+        content.className = 'message-content';
+        content.innerHTML = parseMarkdown(raw);
+
+        wrapper.appendChild(content);
+
+        if (who === 'ai') {
+            const copyBtn = document.createElement('button');
+            copyBtn.textContent = 'Copy';
+            copyBtn.className = 'copy-btn';
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(content.textContent);
+                copyBtn.textContent = 'Copied';
+                setTimeout(() => copyBtn.textContent = 'Copy', 2000);
+            });
+            wrapper.appendChild(copyBtn);
+        }
+
+        chatMsgs.appendChild(wrapper);
+        chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    }
+    
+    window.__addMessage = addMessage;
+    // Функция отправки сообщения на сервер
+    function sendMessage() {
+        if (!input || !chatMsgs) {
+            console.error('Элементы для отправки сообщения не найдены');
+            return;
+        }
+        
+        const text = input.value.trim();
+        if (!text) return;
+        
+        addMessage(text, 'user');
+        if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
+            window.saveChatHistory();
+        }
+        input.value = '';
+        
+        if (avatarImg) {
+            avatarImg.src = '/static/images/Thinking_avatar.svg';
+        }
+
+        // Определяем модель в зависимости от типа генерации
+        const selectedModel = genType && genType.value === 'image' 
+            ? (imageModelSelect ? imageModelSelect.value : '') 
+            : (modelSelect ? modelSelect.value : '');
+
+        const tone        = document.querySelector('input[name="tone"]:checked').value;
+        const maxLength   = document.getElementById('maxLength').value;
+        const temperature = document.getElementById('temperature').value;
+        const language    = document.getElementById('language').value;
+
+        // Отправка запроса на сервер
+        fetch('/ai-chat', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+            message: text,
+            model: selectedModel,
+            type: genType ? genType.value : 'text',
+            tone: tone,
+            maxLength: maxLength,
+            temperature: temperature,
+            language: language,
+            image_provider: genType.value==='image' ? imageModelSelect.value : undefined
+            })
+        })
+        .then(r => r.ok ? r.json() : Promise.reject(`Status ${r.status}`))
+        .then(data => {
+        // Добавляем ответ AI
+        const aiText = data.success === false
+            ? (data.message || 'Ошибка AI')
+            : data.response;
+        addMessage(aiText, 'ai');
+        // <-- тут нужно всегда вызывать автосохранение
+        if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
+            window.saveChatHistory();
+        }
+        if (avatarImg) {
+            avatarImg.src = '/static/images/Loving_Avatar.svg';
+        }
+        })
+        .catch((error) => {
+            console.error('Ошибка при отправке:', error);
+            addMessage('Ошибка соединения', 'ai');
+            if (avatarImg) {
+                avatarImg.src = '/static/images/Basic_Avatar.svg';
+            }
+        });
+    }
+
+    // Привязка обработчиков для отправки сообщений
+    if (input) {
+        input.addEventListener('keypress', e => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    }
+    
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendMessage);
     }
 });

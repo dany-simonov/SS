@@ -1,105 +1,133 @@
 from flask import jsonify
-import asyncio
 import g4f
 from social_network.app.utils import extract_image_url
-# from enhanced_generation import EnhancedGeneration
-from .enhanced_generation import EnhancedGeneration
 
+# Текстовые провайдеры
 text_providers = [
-    g4f.Provider.ChatGLM,
+    g4f.Provider.PollinationsAI,
+    g4f.Provider.Qwen_Qwen_2_5M,
+    g4f.Provider.Websim,
     g4f.Provider.Free2GPT,
-    g4f.Provider.GizAI
+    g4f.Provider.Qwen_Qwen_2_5,
+    g4f.Provider.ChatGLM,
+    g4f.Provider.GizAI,
+    g4f.Provider.Qwen_Qwen_2_72B,
+    g4f.Provider.AnyProvider,
+    g4f.Provider.FreeGpt
 ]
 
+# Провайдеры для генерации изображений
 image_providers = [
-    g4f.Provider.ImageLabs
+    g4f.Provider.ImageLabs,
+    g4f.Provider.BlackForestLabs_Flux1Dev,
+    g4f.Provider.PollinationsImage
 ]
 
 g4f.debug.logging = True
 g4f.check_version = False
 
-async def get_enhanced_response(user_message):
-    enhanced_gen = EnhancedGeneration()
-    return await enhanced_gen.get_response(user_message)
-
 def handle_ai_chat(request):
     data = request.get_json()
-    user_message = data.get('message')
-    selected_model = data.get('model', 'ChatGLM')
+    user_message   = data.get('message')
     generation_type = data.get('type', 'text')
-    is_enhanced = data.get('enhanced', False)
+    selected_model  = data.get('model', text_providers[0].__name__)
+    tone         = data.get('tone', 'friendly')
+    max_length   = data.get('maxLength', '500')
+    temperature  = float(data.get('temperature', 0.5))
+    language     = data.get('language', 'ru')
 
     if not user_message:
         return jsonify({'success': False, 'message': 'Пожалуйста, введите сообщение.'})
 
-    system_prompt = """Ты - дружелюбный AI-ассистент StudySphere. Твои основные задачи:
-                    - Помогать с учебными вопросами по любым предметам
-                    - Объяснять сложные темы простым языком  
-                    - Давать практические советы по обучению
-                    - Поддерживать мотивацию к учёбе
-                    - Общаться в дружелюбном тоне
-                    - Можешь шутить и поддерживать неформальную беседу
-                    - При этом всегда оставаться полезным и информативным."""
+    system_prompt = (
+        f"Ты — AI-ассистент StudySphere. Тон в котором надо разговаривать: {tone}. "
+        f"Длина ответа ≤{max_length} слов. "
+        f"Язык: {'English' if language=='en' else 'Русский'}.\n"
+        f"Креативность ответа: {'temperature'}.\n"
+        "- Представляться как StudySphere\n"
+        "- Помогать с учебными вопросами\n"
+        "- Объяснять простым языком\n"
+        "- Давать практические советы\n"
+        "- Поддерживать мотивацию\n"
+        "- Общаться в дружелюбном тоне\n"
+        "- Быть полезным и информативным"
+    )
 
     if generation_type == 'text':
+        provider_map = {p.__name__: p for p in text_providers}
+        provider = provider_map.get(selected_model, text_providers[0])
+
+        if provider == g4f.Provider.FreeGpt:
+            user_message = "Пожалуйста, отвечай на русском: " + user_message
+
         try:
-            if is_enhanced:
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                result = loop.run_until_complete(get_enhanced_response(user_message))
-                return jsonify(result)
-            else:
-                provider_map = {
-                    'ChatGLM': g4f.Provider.ChatGLM,
-                    'Free3GPT': g4f.Provider.Free2GPT,
-                    'GizAI': g4f.Provider.GizAI
-                }
-
-                provider = provider_map.get(selected_model)
-                response = g4f.ChatCompletion.create(
-                    model="gpt-3.5-turbo",
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_message}
-                    ],
-                    provider=provider,
-                    timeout=120
-                )
-
-                return jsonify({'success': True, 'response': response})
-
-        except Exception as e:
-            return jsonify({'success': False, 'message': f'Ошибка при использовании {selected_model}'})
-
-    else:
-        try:
-            image_provider = image_providers[0]
-            raw_response = g4f.ChatCompletion.create(
-                model="image-model",
-                messages=[{"role": "user", "content": user_message}],
-                provider=image_provider,
+            response = g4f.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user",   "content": user_message}
+                ],
+                provider=provider,
+                temperature=temperature,
                 timeout=120
             )
-            image_url = extract_image_url(raw_response)
-            if image_url:
-                response = (
-                    f'<div class="image-container">'
-                    f'<img src="{image_url}" style="max-width: 100%; border-radius: 5px;">'
-                    f'</div>'
-                )
-                return jsonify({
-                    'success': True,
-                    'response': response,
-                    'type': 'image'
-                })
-            else:
-                return jsonify({
-                    'success': False,
-                    'message': 'Не удалось сгенерировать изображение'
-                })
-
-        except Exception as e:
             return jsonify({
-                'success': False,
-                'message': f'Ошибка при генерации изображения: {str(e)}'
+                'success': True,
+                'response': response,
+                'provider': provider.__name__
             })
+        except Exception:
+            # fallback
+            for p in text_providers:
+                if p == provider: continue
+                try:
+                    msg = user_message
+                    if p == g4f.Provider.FreeGpt:
+                        msg = "Пожалуйста, отвечай на русском: " + user_message
+                    resp = g4f.ChatCompletion.create(
+                        model="gpt-3.5-turbo",
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user",   "content": msg}
+                        ],
+                        provider=p,
+                        temperature=temperature,
+                        timeout=120
+                    )
+                    return jsonify({
+                        'success': True,
+                        'response': resp,
+                        'provider': p.__name__
+                    })
+                except:
+                    continue
+            return jsonify({'success': False, 'message': 'Все текстовые провайдеры недоступны.'})
+
+    else:
+        chosen = data.get('image_provider')
+        if chosen:
+            image_providers.insert(0, getattr(g4f.Provider, chosen, image_providers[0]))
+        for p in image_providers:
+            try:
+                raw = g4f.ChatCompletion.create(
+                    model="image-model",
+                    messages=[{"role": "user", "content": user_message}],
+                    provider=p,
+                    timeout=120
+                )
+                url = extract_image_url(raw)
+                if url:
+                    html = (
+                        '<div class="image-container">'
+                        f'<img src="{url}" style="max-width:100%;border-radius:5px">'
+                        '</div>'
+                    )
+                    return jsonify({
+                        'success': True,
+                        'response': html,
+                        'type': 'image',
+                        'provider': p.__name__
+                    })
+            except:
+                continue
+        return jsonify({'success': False, 'message': 'Не удалось сгенерировать изображение.'})
