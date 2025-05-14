@@ -1,102 +1,146 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Чат - StudySphere</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ai_chat.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Чат — StudySphere</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ai_chat.css') }}">
 </head>
 <body>
-    <a href="/landing">
-        <img src="/static/images/logo.svg" alt="Logo" class="logo">
-    </a>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
+        <span class="logo-text">StudySphere</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="{{ url_for('ai_chat_bp.ai_chat') }}">Чат с ИИ</a>
+        <a href="{{ url_for('main.textbook') }}">Учебник</a>
+        <a href="{{ url_for('main.show_tasks') }}">Задачи</a>
+        <a href="{{ url_for('quizzes_bp.choose') }}">Квизы</a>
+        <a href="{{ url_for('main.support') }}">Поддержка</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="{{ url_for('main.register') }}" class="btn btn-auth">Регистрация</a>
+        <a href="{{ url_for('main.login') }}" class="btn btn-auth">Вход</a>
+      </div>
+      <button class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
+  <!-- Chat Page -->
+  <main class="chat-page container">
     <div class="chat-container">
-        <h2>Чат с AI ассистентом StudySphere</h2>
-        
+
+      <!-- Sidebar: Avatar + Controls + Settings -->
+      <aside class="chat-sidebar">
+        <div class="avatar-card">
+          <img id="avatar" src="{{ url_for('static', filename='images/Basic_Avatar.svg') }}" alt="Avatar">
+        </div>
         <div class="controls-container">
-            <div class="select-container">
-                <select id="generationType">
-                    <option value="text">Генерация текста</option>
-                    <option value="image">Генерация изображений</option>
-                </select>
-                
-                <select id="modelType" class="text-only">
-                    <option value="ChatGLM">ChatGLM</option>
-                    <option value="Free3GPT">Free3GPT</option>
-                    <option value="GizAI">GizAI</option>
-                </select>                
-            </div>
-            
-            <button id="enhancedMode" class="enhanced-mode">
-                Улучшенная генерация
-            </button>
-            <button onclick="showModal()" class="help-button">
-                Что такое улучшенная генерация?
-            </button>
+          <!-- Тип генерации -->
+          <label>
+            Генерация:
+            <select id="generationType" class="mode-btn">
+              <option value="text" selected>Текст</option>
+              <option value="image">Изображения</option>
+            </select>
+          </label>
+          <!-- Текстовые провайдеры -->
+          <label class="text-only">
+            Провайдер:
+            <select id="modelType" class="model-btn">
+              <option value="PollinationsAI" title="Быстрый помощник с идеальным балансом скорости и качества.">PollinationsAI</option>
+              <option value="Qwen_Qwen_2_5M" title="Эксперт с высочайшей точностью для научных и сложных вопросов.">Qwen_Qwen_2_5M</option>
+              <option value="Websim" title="Мастер структурирования с хорошо организованными ответами.">Websim</option>
+              <option value="Free2GPT" title="Детализированный генератор объёмных и подробных ответов.">Free2GPT</option>
+              <option value="Qwen_Qwen_2_5" title="Аналитик с безупречной структурой и полнотой изложения.">Qwen_Qwen_2_5</option>
+              <option value="ChatGLM" title="Перфекционист качества для случаев, когда точность важнее скорости.">ChatGLM</option>
+              <option value="GizAI" title="Многословный рассказчик с обширными, но менее точными ответами.">GizAI</option>
+              <option value="Qwen_Qwen_2_72B" title="Шустрый помощник для базовых вопросов и простых запросов.">Qwen_Qwen_2_72B</option>
+              <option value="AnyProvider" title="Надёжный с хорошей структурой.">AnyProvider</option>
+              <option value="FreeGpt" title="Для повседневных задач.">FreeGpt</option>
+            </select>
+          </label>
+          <!-- Картинные провайдеры -->
+          <label class="image-only" style="display:none">
+            Картинки:
+            <select id="imageModelType" class="model-btn">
+              <option value="ImageLabs" title="Универсальный визуализатор с хорошей производительностью.">ImageLabs</option>
+              <option value="BlackForestLabs_Flux1Dev" title="Детализированный иллюстратор.">BlackForestLabs_Flux1Dev</option>
+              <option value="PollinationsImage" title="Молниеносный художник для быстрого создания визуального контента.">PollinationsImage</option>
+            </select>
+          </label>
+          <!-- Настройки -->
+          <button id="settingsToggle" class="settings-btn">⚙️ Настройки</button>
+          <div id="settingsPanel" class="settings-panel" style="display:none">
+            <fieldset>
+              <legend>Тема интерфейса</legend>
+              <label><input type="radio" name="theme" value="light" checked> Светлая</label>
+              <label><input type="radio" name="theme" value="dark"> Тёмная</label>
+            </fieldset>
+            <fieldset>
+              <legend>Уровень формальности</legend>
+              <label><input type="radio" name="tone" value="friendly" checked> Дружелюбный</label>
+              <label><input type="radio" name="tone" value="neutral"> Нейтральный</label>
+              <label><input type="radio" name="tone" value="formal"> Официальный</label>
+            </fieldset>
+            <fieldset>
+              <legend>Макс. длина ответа</legend>
+              <select id="maxLength">
+                <option value="300">Короткий (≤300 слов)</option>
+                <option value="500" selected>Средний (≤500 слов)</option>
+                <option value="1000">Подробный (≤1000 слов)</option>
+                <option value="2000">Очень подробный (≤2000 слов)</option>
+              </select>
+            </fieldset>
+            <fieldset>
+              <legend>Креативность</legend>
+              <input type="range" id="temperature" min="0" max="1" step="0.01" value="0.5">
+            </fieldset>
+            <fieldset>
+              <label><input type="checkbox" id="autosave"> Автосохранение чата</label>
+            </fieldset>
+            <fieldset>
+              <legend>Язык общения</legend>
+              <select id="language">
+                <option value="ru" selected>Русский</option>
+                <option value="en">English</option>
+              </select>
+            </fieldset>
+          </div>
         </div>
+      </aside>
 
-        <div class="chat-messages" id="chatMessages"></div>
-        
-        <textarea class="message-input" id="messageInput" placeholder="Введите ваше сообщение..."></textarea>
-        <button class="send-button" onclick="sendMessage()">Отправить</button>
-    </div>
-
-    <!-- Добавляем модальное окно -->
-<div id="helpModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button class="modal-button" onclick="closeModal()">✖</button>
+      <!-- Main Chat Area -->
+      <section class="chat-main">
+        <h2 class="chat-title">Чат с AI-ассистентом</h2>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="input-area">
+          <textarea id="messageInput" class="message-input" placeholder="Введите сообщение…"></textarea>
+          <button id="sendBtn" class="send-btn">Отправить</button>
         </div>
-        <div class="modal-body">
-            <h2 class="modal-title">Что такое улучшенная генерация?</h2>
-            
-            <div class="welcome-text">
-                <p><strong>Привет!</strong> Мы рады представить вам новую версию нашего чата, которая использует <span class="highlight">уникальную систему симбиоза трех нейросетей</span> для генерации ответов.</p>
-            </div>
-        
-            <h3 class="section-title">В чем секрет улучшенной генерации?</h3>
-            
-            <div class="features">
-                <div class="feature-item">
-                    <h4>🔍 Глубина и всесторонность</h4>
-                    <p>Вместо опоры на единственную нейросеть, мы используем три, каждая из которых обладает уникальными сильными сторонами. Это позволяет создавать ответы, которые глубже раскрывают тему, учитывают различные перспективы и предоставляют богатый информационный контекст.</p>
-                </div>
-        
-                <div class="feature-item">
-                    <h4>✓ Бескомпромиссная точность</h4>
-                    <p>Три независимые нейросети, работая в тандеме, создают общий и максимально выверенный ответ. Это гарантирует высокую степень надежности и достоверности предоставляемой информации.</p>
-                </div>
-        
-                <div class="feature-item">
-                    <h4>🔄 Гармоничный синтез</h4>
-                    <p>Наши нейросети анализируют ответы друг друга, вычленяя наиболее ценные элементы и объединяя их в единый, максимально полезный и качественный результат.</p>
-                </div>
-            </div>
-        
-            <h3 class="section-title">Почему увеличилось время ожидания?</h3>
-            <div class="info-box">
-                <p>Обработка вашего запроса требует немного больше времени, чем прежде. Это связано с необходимостью отправки запроса трем нейросетям, получения и тщательного анализа их ответов. Однако, мы уверены, что превосходное качество генерируемых ответов полностью оправдывает небольшую задержку.</p>
-            </div>
-        
-            <h3 class="section-title">Подробное разъяснение</h3>
-            <div class="explanation">
-                <p>Представьте, что вы обращаетесь за советом к команде экспертов:</p>
-                <ul>
-                    <li><strong>Ученый</strong> предоставляет точную информацию и факты</li>
-                    <li><strong>Писатель</strong> добавляет креативности и живости</li>
-                    <li><strong>Аналитик</strong> собирает все воедино и формулирует взвешенный вывод</li>
-                </ul>
-                <p>Наша система работает по аналогичному принципу, заменяя людей нейросетями. Каждая нейросеть предлагает свой уникальный взгляд, которые мы объединяем, чтобы предложить вам максимально полный, точный и интересный ответ.</p>
-            </div>
-        
-            <div class="conclusion">
-                <p>Мы убеждены, что новая система значительно повысит ценность и привлекательность нашего чата для вас. Пожалуйста, поделитесь своими впечатлениями о новой версии!</p>
-            </div>
-        </div>        
+      </section>
     </div>
-</div>
+  </main>
 
-<script src="{{ url_for('static', filename='js/ai_chat.js') }}"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
+        <span class="logo-text" style="margin-left:0.5rem;">StudySphere</span>
+        <p style="margin-top:0.5rem;">© 2025 StudySphere. Все права защищены.</p>
+      </div>
+      <div class="footer-right">
+        <a href="{{ url_for('main.user_agreement') }}">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </footer>
+  <script src="{{ url_for('static',filename='js/ai_chat.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/chat_settings.js') }}"></script>
 </body>
 </html>

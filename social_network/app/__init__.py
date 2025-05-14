@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from .quizzes.quizzes_bp import quizzes_bp
 
 
 
@@ -24,5 +25,6 @@ def create_app():
     # Регистрация Blueprints
     app.register_blueprint(main_bp)
     app.register_blueprint(ai_chat_bp, url_prefix='/ai-chat')
-
+    app.register_blueprint(quizzes_bp)
+    
     return app

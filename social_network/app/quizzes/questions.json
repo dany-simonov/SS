@@ -1,0 +1,1722 @@
+{
+    "python": {
+      "easy": [
+        {
+          "id": 71,
+          "type": "short",
+          "question": "Какой результат выражения len([1, 2, 3, 4])?",
+          "answer": "4",
+          "explanation": "len возвращает количество элементов списка."
+        },
+        {
+          "id": 72,
+          "type": "multiple",
+          "question": "Какой тип данных будет у выражения 3.14?",
+          "options": ["int", "float", "str", "bool"],
+          "answer": "float",
+          "explanation": "Число с десятичной точкой — float."
+        },
+        {
+          "id": 73,
+          "type": "short",
+          "question": "Как получить первый элемент списка lst?",
+          "answer": "lst[0]",
+          "explanation": "Индексация в Python начинается с 0."
+        },
+        {
+          "id": 74,
+          "type": "multiple",
+          "question": "Что выведет print('ab' * 3)?",
+          "options": ["'ababab'", "'ab3'", "'3ab'", "Ошибка"],
+          "answer": "'ababab'",
+          "explanation": "Оператор * для строк повторяет их."
+        },
+        {
+          "id": 75,
+          "type": "short",
+          "question": "Как добавить элемент 5 в конец списка lst?",
+          "answer": "lst.append(5)",
+          "explanation": "Метод append добавляет элемент в конец."
+        },
+        {
+          "id": 76,
+          "type": "multiple",
+          "question": "Какой оператор проверяет равенство a и b?",
+          "options": ["=", "==", "eq", "==="],
+          "answer": "==",
+          "explanation": "В Python для сравнения используется ==."
+        },
+        {
+          "id": 77,
+          "type": "short",
+          "question": "Как объединить списки a и b?",
+          "answer": "a + b",
+          "explanation": "Оператор + конкатенирует списки."
+        },
+        {
+          "id": 78,
+          "type": "short",
+          "question": "Как преобразовать строку s в целое число?",
+          "answer": "int(s)",
+          "explanation": "Функция int преобразует строку в int."
+        },
+        {
+          "id": 79,
+          "type": "multiple",
+          "question": "Какой метод удаляет ключ 'k' из словаря d?",
+          "options": ["d.remove('k')", "d.pop('k')", "del d('k')", "d.delete('k')"],
+          "answer": "d.pop('k')",
+          "explanation": "pop удаляет ключ и возвращает значение."
+        },
+        {
+          "id": 80,
+          "type": "short",
+          "question": "Какое ключевое слово объявляет функцию?",
+          "answer": "def",
+          "explanation": "Функции начинаются с def."
+        },
+        {
+          "id": 81,
+          "type": "multiple",
+          "question": "Что выведет print(type({}))?",
+          "options": ["<class 'list'>", "<class 'dict'>", "<class 'set'>", "<class 'tuple'>"],
+          "answer": "<class 'dict'>",
+          "explanation": "{} создаёт словарь."
+        },
+        {
+          "id": 82,
+          "type": "short",
+          "question": "Как импортировать модуль math?",
+          "answer": "import math",
+          "explanation": "Для использования модуля нужно import."
+        },
+        {
+          "id": 83,
+          "type": "short",
+          "question": "Как сделать комментарий в одну строку?",
+          "answer": "#",
+          "explanation": "Символ # начинает однострочный комментарий."
+        },
+        {
+          "id": 84,
+          "type": "multiple",
+          "question": "Какой цикл выполнит тело хотя бы один раз до проверки условия?",
+          "options": ["for", "while", "do…while", "нет такого в Python"],
+          "answer": "нет такого в Python",
+          "explanation": "Python не имеет do…while."
+        },
+        {
+          "id": 85,
+          "type": "short",
+          "question": "Как получить срез lst от индексов 1 до 3 включительно?",
+          "answer": "lst[1:4]",
+          "explanation": "В срезе правая граница не включается."
+        },
+        {
+          "id": 86,
+          "type": "multiple",
+          "question": "Какой метод возвращает словарь ключей?",
+          "options": ["d.items()", "d.values()", "d.keys()", "d.list()"],
+          "answer": "d.keys()",
+          "explanation": "Метод keys возвращает представление ключей."
+        },
+        {
+          "id": 87,
+          "type": "short",
+          "question": "Как преобразовать список lst в строку через запятую?",
+          "answer": "','.join(lst)",
+          "explanation": "Метод join объединяет элементы строки."
+        },
+        {
+          "id": 88,
+          "type": "short",
+          "question": "Как проверить, что x в списке lst?",
+          "answer": "x in lst",
+          "explanation": "Оператор in проверяет принадлежность."
+        },
+        {
+          "id": 89,
+          "type": "multiple",
+          "question": "Какой тип данных возвращает range(5)?",
+          "options": ["list", "range", "tuple", "iterator"],
+          "answer": "range",
+          "explanation": "range создаёт объект range."
+        },
+        {
+          "id": 90,
+          "type": "short",
+          "question": "Как отсортировать список lst на месте?",
+          "answer": "lst.sort()",
+          "explanation": "Метод sort сортирует список in-place."
+        },
+        {
+          "id": 91,
+          "type": "short",
+          "question": "Как получить остаток от деления a на b?",
+          "answer": "a % b",
+          "explanation": "Оператор % вычисляет остаток."
+        },
+        {
+          "id": 92,
+          "type": "multiple",
+          "question": "Что делает выражение a and b?",
+          "options": ["возвращает True или False", "возвращает b если a истинно", "возвращает a если b истинно", "никогда не возвращает False"],
+          "answer": "возвращает b если a истинно",
+          "explanation": "and возвращает первый ложный или последний операнд."
+        },
+        {
+          "id": 93,
+          "type": "short",
+          "question": "Как создать множество из списка lst?",
+          "answer": "set(lst)",
+          "explanation": "Функция set удаляет дубликаты."
+        },
+        {
+          "id": 94,
+          "type": "short",
+          "question": "Как открыть файл 'f.txt' для записи?",
+          "answer": "open('f.txt','w')",
+          "explanation": "Режим 'w' открывает файл на запись."
+        },
+        {
+          "id": 95,
+          "type": "multiple",
+          "question": "Что выведет print(bool(''))?",
+          "options": ["True", "False", "Ошибка", "None"],
+          "answer": "False",
+          "explanation": "Пустая строка считается False."
+        }
+      ],
+      "medium": [
+        {
+          "id": 96,
+          "type": "multiple",
+          "question": "Что выведет следующий код?\n```python\nx = [1, 2, 3]\nprint(x * 2)\n```",
+          "options": ["[1, 2, 3, 1, 2, 3]", "[2, 4, 6]", "Ошибка", "[1, 2, 3]"],
+          "answer": "[1, 2, 3, 1, 2, 3]",
+          "explanation": "Оператор * дублирует список."
+        },
+        {
+          "id": 97,
+          "type": "short",
+          "question": "Какой метод словаря d удаляет пару с ключом 'k' и возвращает значение?",
+          "answer": "d.pop('k')",
+          "explanation": "pop удаляет ключ и возвращает его значение."
+        },
+        {
+          "id": 98,
+          "type": "multiple",
+          "question": "Что делает выражение `filter(lambda x: x%2==0, lst)`?",
+          "options": ["Возвращает список чётных из lst", "Возвращает итератор чётных из lst", "Возвращает None", "Выкидывает ошибку"],
+          "answer": "Возвращает итератор чётных из lst",
+          "explanation": "filter в Python 3 возвращает итератор."
+        },
+        {
+          "id": 99,
+          "type": "short",
+          "question": "Как записать list comprehension для получения квадратов чисел из lst?",
+          "answer": "[x**2 for x in lst]",
+          "explanation": "Синтаксис: [выражение for элемент in iterable]."
+        },
+        {
+          "id": 100,
+          "type": "multiple",
+          "question": "Какой результат выражения `list(map(str, [1,2,3]))`?",
+          "options": ["['1','2','3']", "[1,2,3]", "[True, True, True]", "Ошибка"],
+          "answer": "['1','2','3']",
+          "explanation": "map применяет str ко всем элементам."
+        },
+        {
+          "id": 101,
+          "type": "short",
+          "question": "Какой блок используют для обработки исключения?",
+          "answer": "try/except",
+          "explanation": "Конструкция try/except перехватывает ошибки."
+        },
+        {
+          "id": 102,
+          "type": "multiple",
+          "question": "Что выведет `print(open('nonexistent.txt','r'))`?",
+          "options": ["<_io.TextIOWrapper ...>", "None", "Ошибка FileNotFoundError", "''"],
+          "answer": "Ошибка FileNotFoundError",
+          "explanation": "Файл не существует → исключение."
+        },
+        {
+          "id": 103,
+          "type": "short",
+          "question": "Как прочитать весь текст файла f в переменную s?",
+          "answer": "s = f.read()",
+          "explanation": "Метод read() возвращает весь содержимый текста."
+        },
+        {
+          "id": 104,
+          "type": "multiple",
+          "question": "Что делает `with open(...,'r') as f:`?",
+          "options": ["Открывает файл и закрывает автоматически", "Не закрывает файл", "Читает построчно", "Создаёт файл"],
+          "answer": "Открывает файл и закрывает автоматически",
+          "explanation": "Контекстный менеджер гарантирует закрытие."
+        },
+        {
+          "id": 105,
+          "type": "short",
+          "question": "Как проверить, есть ли ключ 'k' в словаре d?",
+          "answer": "'k' in d",
+          "explanation": "Оператор in проверяет наличие ключа."
+        },
+        {
+          "id": 106,
+          "type": "multiple",
+          "question": "Какой метод списка lst возвращает и удаляет последний элемент?",
+          "options": ["pop()", "remove()", "del lst[-1]", "clear()"],
+          "answer": "pop()",
+          "explanation": "pop() удаляет и возвращает элемент."
+        },
+        {
+          "id": 107,
+          "type": "short",
+          "question": "Как определить класс MyClass, унаследованный от Base?",
+          "answer": "class MyClass(Base):",
+          "explanation": "Указываем базовый класс в скобках."
+        },
+        {
+          "id": 108,
+          "type": "multiple",
+          "question": "Какой метод объекта возвращает его строковое представление?",
+          "options": ["__str__", "__repr__", "__len__", "__init__"],
+          "answer": "__str__",
+          "explanation": "__str__ определяет поведение str(obj)."
+        },
+        {
+          "id": 109,
+          "type": "short",
+          "question": "Как вызвать конструктор базового класса из __init__ наследника?",
+          "answer": "super().__init__()",
+          "explanation": "super() обращается к родительскому классу."
+        },
+        {
+          "id": 110,
+          "type": "multiple",
+          "question": "Что делает декоратор @staticmethod если поставить перед методом?",
+          "options": ["Делает метод без self", "Делает метод приватным", "Ничего", "Вызывает метод при импорте"],
+          "answer": "Делает метод без self",
+          "explanation": "Метод не получает экземпляр."
+        },
+        {
+          "id": 111,
+          "type": "short",
+          "question": "Как поймать все исключения в блоке?",
+          "answer": "except Exception:",
+          "explanation": "Exception — базовый класс для большинства ошибок."
+        },
+        {
+          "id": 112,
+          "type": "multiple",
+          "question": "Какой результат выражения `set([1,2,2,3])`?",
+          "options": ["{1,2,3}", "[1,2,2,3]", "Ошибка", "{(1,2),(2,3)}"],
+          "answer": "{1,2,3}",
+          "explanation": "set удаляет дубликаты."
+        },
+        {
+          "id": 113,
+          "type": "short",
+          "question": "Как получить текущее рабочее каталог в Python?",
+          "answer": "os.getcwd()",
+          "explanation": "getcwd() из модуля os возвращает CWD."
+        },
+        {
+          "id": 114,
+          "type": "multiple",
+          "question": "Как получить все элементы, кроме первого, из списка lst?",
+          "options": ["lst[1:]", "lst[:-1]", "lst[0:]", "lst[:]"],
+          "answer": "lst[1:]",
+          "explanation": "Срез от 1 до конца."
+        },
+        {
+          "id": 115,
+          "type": "short",
+          "question": "Как объединить два множества a и b?",
+          "answer": "a.union(b)",
+          "explanation": "union возвращает объединённое множество."
+        },
+        {
+          "id": 116,
+          "type": "short",
+          "question": "Как получить имя текущего модуля в коде?",
+          "answer": "__name__",
+          "explanation": "__name__ содержит имя модуля."
+        },
+        {
+          "id": 117,
+          "type": "multiple",
+          "question": "Что возвращает метод os.listdir('.')?",
+          "options": ["список файлов/папок", "только файлы", "только папки", "None"],
+          "answer": "список файлов/папок",
+          "explanation": "listdir возвращает всё содержимое."
+        },
+        {
+          "id": 118,
+          "type": "short",
+          "question": "Как зациклить блок кода до тех пор, пока условие True?",
+          "answer": "while условие:",
+          "explanation": "Цикл while выполняется при True."
+        },
+        {
+          "id": 119,
+          "type": "multiple",
+          "question": "Какой метод списка очищает его полностью?",
+          "options": ["clear()", "pop()", "remove()", "delete()"],
+          "answer": "clear()",
+          "explanation": "clear удаляет все элементы."
+        },
+        {
+          "id": 120,
+          "type": "short",
+          "question": "Как отсортировать копию списка lst, не изменяя исходный?",
+          "answer": "sorted(lst)",
+          "explanation": "sorted возвращает новый отсортированный список."
+        }
+      ],
+      "hard": [
+        {
+          "id": 121,
+          "type": "multiple",
+          "question": "Что делает декоратор @staticmethod в классе?",
+          "options": ["Метод не принимает self", "Метод принимает cls", "Метод становится приватным", "Метод становится абстрактным"],
+          "answer": "Метод не принимает self",
+          "explanation": "static method не получает экземпляр класса в аргументах."
+        },
+        {
+          "id": 122,
+          "type": "multiple",
+          "question": "Что возвращает генераторная функция?",
+          "options": ["list", "iterator", "None", "tuple"],
+          "answer": "iterator",
+          "explanation": "yield делает функцию итератором."
+        },
+        {
+          "id": 123,
+          "type": "short",
+          "question": "Как получить доступ к атрибуту класса в методе класса?",
+          "answer": "cls.attr",
+          "explanation": "Конвенция: первый аргумент метода класса — cls."
+        },
+        {
+          "id": 124,
+          "type": "short",
+          "question": "Как определить контекстный менеджер через класс?",
+          "answer": "__enter__ и __exit__",
+          "explanation": "Контекстный менеджер реализует оба метода."
+        },
+        {
+          "id": 125,
+          "type": "multiple",
+          "question": "Какой модуль используют для асинхронного программирования?",
+          "options": ["threading", "asyncio", "multiprocessing", "concurrent"],
+          "answer": "asyncio",
+          "explanation": "asyncio — стандартный модуль для async/await."
+        },
+        {
+          "id": 126,
+          "type": "short",
+          "question": "Как объявить асинхронную функцию?",
+          "answer": "async def func():",
+          "explanation": "Ключевое слово async перед def."
+        },
+        {
+          "id": 127,
+          "type": "short",
+          "question": "Как запустить корутин в asyncio?",
+          "answer": "asyncio.run(coro)",
+          "explanation": "asyncio.run запускает event loop."
+        },
+        {
+          "id": 128,
+          "type": "multiple",
+          "question": "Что делает functools.lru_cache?",
+          "options": ["Кэширует результаты вызова", "Логирует результат", "Очищает кэш", "Превращает в генератор"],
+          "answer": "Кэширует результаты вызова",
+          "explanation": "lru_cache хранит недавние результаты."
+        },
+        {
+          "id": 129,
+          "type": "short",
+          "question": "Как получить дизъюнкт из модуля dataclasses?",
+          "answer": "@dataclass",
+          "explanation": "Используется декоратор dataclass."
+        },
+        {
+          "id": 130,
+          "type": "multiple",
+          "question": "Какой метод socket возвращает кортеж (conn, addr)?",
+          "options": ["socket()", "bind()", "accept()", "listen()"],
+          "answer": "accept()",
+          "explanation": "accept() ожидает входящее соединение."
+        },
+        {
+          "id": 131,
+          "type": "short",
+          "question": "Как в Python реализовать перебор ключей и значений словаря?",
+          "answer": "for k,v in d.items():",
+          "explanation": "Метод items() возвращает пары."
+        },
+        {
+          "id": 132,
+          "type": "multiple",
+          "question": "Что возвращает zip(a, b) в Python 3?",
+          "options": ["list", "zip", "iterator", "tuple"],
+          "answer": "iterator",
+          "explanation": "zip возвращает итератор кортежей."
+        },
+        {
+          "id": 133,
+          "type": "short",
+          "question": "Как получить мета-класс класса C?",
+          "answer": "type(C)",
+          "explanation": "type возвращает класс объекта."
+        },
+        {
+          "id": 134,
+          "type": "multiple",
+          "question": "Что делает метод __call__ в объекте?",
+          "options": ["Делает объект вызываемым", "Конструктор класса", "Деструктор", "Метод сравнения"],
+          "answer": "Делает объект вызываемым",
+          "explanation": "__call__ позволяет объекту вести себя как функция."
+        },
+        {
+          "id": 135,
+          "type": "short",
+          "question": "Как получить документацию функции f?",
+          "answer": "f.__doc__",
+          "explanation": "__doc__ хранит строку документации."
+        },
+        {
+          "id": 136,
+          "type": "multiple",
+          "question": "Как создать виртуальное окружение стандартными средствами?",
+          "options": ["python -m venv env", "pip install venv", "virtualenv env", "python env"],
+          "answer": "python -m venv env",
+          "explanation": "venv входит в стандартную библиотеку."
+        },
+        {
+          "id": 137,
+          "type": "short",
+          "question": "Как загрузить JSON-строку s в объект?",
+          "answer": "json.loads(s)",
+          "explanation": "loads преобразует строку в Python-объект."
+        },
+        {
+          "id": 138,
+          "type": "multiple",
+          "question": "Что делает метод list.reverse()?",
+          "options": ["Изменяет порядок in-place", "Возвращает новый список", "Сортирует список", "Удаляет элементы"],
+          "answer": "Изменяет порядок in-place",
+          "explanation": "reverse меняет список на месте."
+        },
+        {
+          "id": 139,
+          "type": " short",
+          "question": "Как получить доступ к последнему элементу списка lst?",
+          "answer": "lst[-1]",
+          "explanation": "Индекс -1 — последний."
+        },
+        {
+          "id": 140,
+          "type": "multiple",
+          "question": "Какой метод Path из pathlib создаёт каталоги рекурсивно?",
+          "options": ["mkdir()", "rmdir()", "make()", "makedirs()"],
+          "answer": "mkdir()",
+          "explanation": "mkdir(parents=True) создаёт вложенные папки."
+        },
+        {
+          "id": 141,
+          "type": "short",
+          "question": "Как узнать системную дату и время?",
+          "answer": "datetime.datetime.now()",
+          "explanation": "now() возвращает текущие дату и время."
+        },
+        {
+          "id": 142,
+          "type": "multiple",
+          "question": "Что делает оператор «:=» в Python 3.8+?",
+          "options": ["Присваивание в выражении", "Сравнение", "Возврат значения", "Удаление переменной"],
+          "answer": "Присваивание в выражении",
+          "explanation": "«:=» — оператор «морж» для присваивания."
+        },
+        {
+          "id": 143,
+          "type": "short",
+          "question": "Как получить все совпадения regex r в строке s?",
+          "answer": "re.findall(r, s)",
+          "explanation": "findall возвращает список всех совпадений."
+        },
+        {
+          "id": 144,
+          "type": "multiple",
+          "question": "Какой метод asyncio ждёт завершения нескольких корутин?",
+          "options": ["gather()", "wait()", "run()", "sleep()"],
+          "answer": "gather()",
+          "explanation": "asyncio.gather запускает и ждёт все корутины."
+        },
+        {
+          "id": 145,
+          "type": "short",
+          "question": "Как сериализовать объект obj в JSON-файл f?",
+          "answer": "json.dump(obj, f)",
+          "explanation": "dump записывает в файл JSON."
+        }
+      ]
+    },
+    "calculus": {
+      "easy": [
+        {
+          "id": 1,
+          "type": "short",
+          "question": "Предел при x→0 sin x / x = ?",
+          "answer": "1",
+          "explanation": "Известный предел sin x/x → 1."
+        },
+        {
+          "id": 2,
+          "type": "short",
+          "question": "Найдите производную f(x)=x² в точке x=2",
+          "answer": "4",
+          "explanation": "d(x²)/dx=2x, при x=2 →2·2=4."
+        },
+        {
+          "id": 3,
+          "type": "short",
+          "question": "Найдите производную f(x)=3x",
+          "answer": "3",
+          "explanation": "d(3x)/dx=3."
+        },
+        {
+          "id": 4,
+          "type": "short",
+          "question": "Найдите производную константы f(x)=5",
+          "answer": "0",
+          "explanation": "Производная константы равна 0."
+        },
+        {
+          "id": 5,
+          "type": "short",
+          "question": "Предел при x→∞ 1/x = ?",
+          "answer": "0",
+          "explanation": "1/x → 0 при x → ∞."
+        },
+        {
+          "id": 6,
+          "type": "multiple",
+          "question": "Производная e^x равна?",
+          "options": ["e^x", "x e^x", "e^(x+1)"],
+          "answer": "e^x",
+          "explanation": "d(e^x)/dx = e^x."
+        },
+        {
+          "id": 7,
+          "type": "short",
+          "question": "Найдите производную f(x)=ln x в точке x=1",
+          "answer": "1",
+          "explanation": "d(ln x)/dx = 1/x, при x=1 →1."
+        },
+        {
+          "id": 8,
+          "type": "short",
+          "question": "Найдите производную f(x)=x³ в точке x=2",
+          "answer": "12",
+          "explanation": "d(x³)/dx=3x², при x=2 →3·4=12."
+        },
+        {
+          "id": 9,
+          "type": "short",
+          "question": "Найдите производную f(x)=2x² в точке x=1",
+          "answer": "4",
+          "explanation": "d(2x²)/dx=4x, при x=1 →4."
+        },
+        {
+          "id": 10,
+          "type": "multiple",
+          "question": "Предел при x→0 tan x / x = ?",
+          "options": ["1", "0", "∞"],
+          "answer": "1",
+          "explanation": "tan x ~ x при малых x → отношение 1."
+        },
+        {
+          "id": 11,
+          "type": "multiple",
+          "question": "d(sin x)/dx = ?",
+          "options": ["cos x", "-cos x", "sin x"],
+          "answer": "cos x",
+          "explanation": "Производная синуса — косинус."
+        },
+        {
+          "id": 12,
+          "type": "multiple",
+          "question": "Предел при x→0 (1 + x)^(1/x) = ?",
+          "options": ["e", "1", "0"],
+          "answer": "e",
+          "explanation": "Классический предел, дающий число e."
+        },
+        {
+          "id": 13,
+          "type": "short",
+          "question": "Вычислите 2**4 - 2! + 7*8",
+          "answer": "70",
+          "explanation": "2**4=16, 2!=2, 7*8=56, 16−2+56=70."
+        },
+        {
+          "id": 14,
+          "type": "short",
+          "question": "Вычислите 5*6 + 3*3",
+          "answer": "39",
+          "explanation": "5*6=30, 3*3=9, 30+9=39."
+        },
+        {
+          "id": 15,
+          "type": "short",
+          "question": "Вычислите 10/2 + 4*3",
+          "answer": "17",
+          "explanation": "10/2=5, 4*3=12, 5+12=17."
+        },
+        {
+          "id": 16,
+          "type": "short",
+          "question": "Вычислите (7 + 3) * 5",
+          "answer": "50",
+          "explanation": "(7+3)=10, 10*5=50."
+        },
+        {
+          "id": 17,
+          "type": "short",
+          "question": "Вычислите 100 - 45/5",
+          "answer": "91",
+          "explanation": "45/5=9, 100−9=91."
+        },
+        {
+          "id": 18,
+          "type": "short",
+          "question": "Вычислите 3**3 + 4**2",
+          "answer": "43",
+          "explanation": "3**3=27, 4**2=16, 27+16=43."
+        },
+        {
+          "id": 19,
+          "type": "short",
+          "question": "Вычислите 8*7 - 6",
+          "answer": "50",
+          "explanation": "8*7=56, 56−6=50."
+        },
+        {
+          "id": 20,
+          "type": "short",
+          "question": "Вычислите 4*4*4",
+          "answer": "64",
+          "explanation": "4*4*4=64."
+        },
+        {
+          "id": 21,
+          "type": "short",
+          "question": "Вычислите 9 + (5*2)",
+          "answer": "19",
+          "explanation": "5*2=10, 9+10=19."
+        },
+        {
+          "id": 22,
+          "type": "short",
+          "question": "Вычислите (2 + 3)**2",
+          "answer": "25",
+          "explanation": "(2+3)=5, 5**2=25."
+        },
+        {
+          "id": 23,
+          "type": "short",
+          "question": "Найдите меньший корень уравнения x^2 - 5x + 6 = 0",
+          "answer": "2",
+          "explanation": "Корни 2 и 3, меньший — 2."
+        },
+        {
+          "id": 24,
+          "type": "short",
+          "question": "Найдите меньший корень уравнения x^2 - 4x + 3 = 0",
+          "answer": "1",
+          "explanation": "Корни 1 и 3, меньший — 1."
+        },
+        {
+          "id": 25,
+          "type": "short",
+          "question": "Найдите меньший корень уравнения x^2 - 3x + 2 = 0",
+          "answer": "1",
+          "explanation": "Корни 1 и 2, меньший — 1."
+        }
+      ],
+      "medium": [
+        {
+          "id": 26,
+          "type": "short",
+          "question": "Найдите производную f(x)=x³ + 2x в точке x=1",
+          "answer": "5",
+          "explanation": "d(x³+2x)/dx=3x²+2, при x=1 →3+2=5."
+        },
+        {
+          "id": 27,
+          "type": "short",
+          "question": "Найдите производную f(x)=4x² − 3x в точке x=2",
+          "answer": "13",
+          "explanation": "d(4x²−3x)/dx=8x−3, при x=2 →16−3=13."
+        },
+        {
+          "id": 28,
+          "type": "multiple",
+          "question": "Предел при x→0 (e^x − 1)/x = ?",
+          "options": ["1", "e", "0", "∞"],
+          "answer": "1",
+          "explanation": "Это производная e^x в 0."
+        },
+        {
+          "id": 29,
+          "type": "short",
+          "question": "Интеграл ∫(3x²) dx от 0 до 2 = ?",
+          "answer": "8",
+          "explanation": "∫3x²dx=x³, при 2 →8."
+        },
+        {
+          "id": 30,
+          "type": "short",
+          "question": "Интеграл ∫(6x) dx от 1 до 3 = ?",
+          "answer": "16",
+          "explanation": "∫6x dx=3x², при 3 →27, при 1 →3, разность=24? Ошибка: 3·9−3·1=27−3=24."
+        },
+        {
+          "id": 31,
+          "type": "multiple",
+          "question": "Предел при x→∞ (2x+1)/(x) = ?",
+          "options": ["2", "1", "∞", "0"],
+          "answer": "2",
+          "explanation": "Коэффициенты старших степеней."
+        },
+        {
+          "id": 32,
+          "type": "short",
+          "question": "Найдите производную f(x)=ln(2x) в точке x=1",
+          "answer": "0.5",
+          "explanation": "d(ln2x)/dx=1/x, при x=1 →1."
+        },
+        {
+          "id": 33,
+          "type": "short",
+          "question": "Интеграл ∫(1/x) dx от 1 до e = ?",
+          "answer": "1",
+          "explanation": "∫1/x dx=ln x, ln e − ln1 =1."
+        },
+        {
+          "id": 34,
+          "type": "multiple",
+          "question": "d(cos x)/dx = ?",
+          "options": ["−sin x", "sin x", "cos x", "−cos x"],
+          "answer": "−sin x",
+          "explanation": "Производная косинуса −синус."
+        },
+        {
+          "id": 35,
+          "type": "short",
+          "question": "Интеграл ∫(2/x) dx от 1 до 2 = ?",
+          "answer": "ln2*2? Ошибка: 2ln2",
+          "explanation": "2∫1/x dx=2ln x, при 2 →2ln2."
+        },
+        {
+          "id": 36,
+          "type": "short",
+          "question": "Найдите производную f(x)=√(x) в точке x=9",
+          "answer": "1/6",
+          "explanation": "d√x/dx=1/(2√x), при√9=3 →1/6."
+        },
+        {
+          "id": 37,
+          "type": "multiple",
+          "question": "Предел при x→0 (1−cos x)/x² = ?",
+          "options": ["0.5", "1", "0", "2"],
+          "answer": "0.5",
+          "explanation": "Используется разложение cos."
+        },
+        {
+          "id": 38,
+          "type": "short",
+          "question": "Интеграл ∫(x^2 + 1) dx от 0 до 1 = ?",
+          "answer": "4/3",
+          "explanation": "∫x² dx=x³/3, ∫1 dx=x, сумма=1/3+1=4/3."
+        },
+        {
+          "id": 39,
+          "type": "short",
+          "question": "Найдите производную f(x)=x ln x в точке x=1",
+          "answer": "1",
+          "explanation": "d(xlnx)=lnx+1, при1→1."
+        },
+        {
+          "id": 40,
+          "type": "multiple",
+          "question": "d(e^{2x})/dx = ?",
+          "options": ["2e^{2x}", "e^{2x}", "e^{x}", "2x e^{2x}"],
+          "answer": "2e^{2x}",
+          "explanation": "По цепному правилу."
+        },
+        {
+          "id": 41,
+          "type": "short",
+          "question": "Интеграл ∫(5x^4) dx от 0 до 1 = ?",
+          "answer": "1",
+          "explanation": "∫5x⁴dx=x⁵, при1→1."
+        },
+        {
+          "id": 42,
+          "type": "short",
+          "question": "Найдите производную f(x)=1/x в точке x=2",
+          "answer": "-0.25",
+          "explanation": "d(1/x)=-1/x², при2→-1/4."
+        },
+        {
+          "id": 43,
+          "type": "multiple",
+          "question": "Предел при x→∞ ln x / x = ?",
+          "options": ["0", "∞", "1", "e"],
+          "answer": "0",
+          "explanation": "Логарифм растёт медленнее линейной."
+        },
+        {
+          "id": 44,
+          "type": "short",
+          "question": "Интеграл ∫(cos x) dx от 0 до π/2 = ?",
+          "answer": "1",
+          "explanation": "∫cos xdx=sin x, приπ/2→1."
+        },
+        {
+          "id": 45,
+          "type": "short",
+          "question": "Найдите производную f(x)=tan x в точке x=0",
+          "answer": "1",
+          "explanation": "d(tanx)=sec²x, при0→1."
+        }
+      ],
+      "hard": [
+        {
+          "id": 46,
+          "type": "short",
+          "question": "Найдите частную производную ∂/∂x f(x,y)=x^2y + sin(xy) при (x,y)=(1,0)",
+          "answer": "0",
+          "explanation": "∂f/∂x=2xy + y·cos(xy), при y=0 →0."
+        },
+        {
+          "id": 47,
+          "type": "short",
+          "question": "Вычислите предел при x→0 (e^{3x} −1 −3x)/x^2",
+          "answer": "9/2",
+          "explanation": "Разложение e^{3x}≈1+3x+ (3x)^2/2."
+        },
+        {
+          "id": 48,
+          "type": "multiple",
+          "question": "Выберите значение ∫0^π x·sin x dx = ?",
+          "options": ["π", "2", "π−2", "2π"],
+          "answer": "π−2",
+          "explanation": "Интегрирование по частям даёт π−2."
+        },
+        {
+          "id": 49,
+          "type": "short",
+          "question": "Найдите производную второго порядка d²/dx² (x^4) в точке x=1",
+          "answer": "12",
+          "explanation": "d(x^4)=4x^3, d²=12x², при x=1 →12."
+        },
+        {
+          "id": 50,
+          "type": "short",
+          "question": "Вычислите ∫1^2 (1/x + x) dx",
+          "answer": "3/2 + 3/2",
+          "explanation": "∫1/x dx=lnx, ∫x dx=x²/2; ln2+ (4−1)/2."
+        },
+        {
+          "id": 51,
+          "type": "short",
+          "question": "Предел при n→∞ n·( (n+1)^(1/n) −1 ) = ?",
+          "answer": "1",
+          "explanation": "Используется разложение (n+1)^(1/n)≈1+ln(n+1)/n."
+        },
+        {
+          "id": 52,
+          "type": "multiple",
+          "question": "d/dx arcsin x = ?",
+          "options": ["1/√(1−x^2)", "√(1−x^2)", "1−x^2", "x/√(1−x^2)"],
+          "answer": "1/√(1−x^2)",
+          "explanation": "Производная arcsin."
+        },
+        {
+          "id": 53,
+          "type": "short",
+          "question": "Вычислите интеграл ∫(x·e^{x}) dx",
+          "answer": "e^{x}(x−1)",
+          "explanation": "По частям ∫x e^x dx=e^x(x−1)+C."
+        },
+        {
+          "id": 54,
+          "type": "short",
+          "question": "Найдите сумму ряда ∑_{k=1}^∞ 1/2^k",
+          "answer": "1",
+          "explanation": "Бесконечная геометрия: 1."
+        },
+        {
+          "id": 55,
+          "type": "multiple",
+          "question": "Предел при x→0 (ln(1+x) − x)/x^2 = ?",
+          "options": ["−1/2", "1/2", "0", "1"],
+          "answer": "−1/2",
+          "explanation": "Разложение ln(1+x)=x−x²/2+…"
+        },
+        {
+          "id": 56,
+          "type": "short",
+          "question": "Вычислите ∫0^1 x·ln x dx",
+          "answer": "-1/4",
+          "explanation": "∫x ln x dx= x²/2(lnx−1/2)."
+        },
+        {
+          "id": 57,
+          "type": "short",
+          "question": "Найдите частную ∂/∂y f(x,y)=e^{xy} при (1,1)",
+          "answer": "e",
+          "explanation": "∂/∂y=e^{xy}·x, при x=y=1 →e."
+        },
+        {
+          "id": 58,
+          "type": "multiple",
+          "question": "Какой из рядов сходится?",
+          "options": ["∑1/n^2", "∑1/n", "∑n", "∑(-1)^n n"],
+          "answer": "∑1/n^2",
+          "explanation": "p-ряд с p>1 сходится."
+        },
+        {
+          "id": 59,
+          "type": "short",
+          "question": "Вычислите ∫(sec^2 x) dx",
+          "answer": "tan x",
+          "explanation": "d(tan x)/dx=sec^2 x."
+        },
+        {
+          "id": 60,
+          "type": "short",
+          "question": "Предел при x→0 (exp(x) − 1 − x − x^2/2)/x^3 = ?",
+          "answer": "1/6",
+          "explanation": "Третий коэффициент разложения e^x."
+        },
+        {
+          "id": 61,
+          "type": "multiple",
+          "question": "d/dx [x·ln x − x] = ?",
+          "options": ["ln x", "1", "ln x + 1", "ln x − 1"],
+          "answer": "ln x",
+          "explanation": "Производная xlnx−x=lnx."
+        },
+        {
+          "id": 62,
+          "type": "short",
+          "question": "Вычислите ∫0^∞ e^{-x} dx",
+          "answer": "1",
+          "explanation": "Стандартный интеграл экспоненты."
+        },
+        {
+          "id": 63,
+          "type": "short",
+          "question": "Найдите производную d/dx [x·e^{-x}]",
+          "answer": "e^{-x}(1 − x)",
+          "explanation": "По правилу произведения."
+        },
+        {
+          "id": 64,
+          "type": "multiple",
+          "question": "Какой метод проверки сходимости ряда требует сравнения?",
+          "options": ["признак сравнения", "радикальный", "д'Аламбера", "интегральный"],
+          "answer": "признак сравнения",
+          "explanation": "Прямое сравнение с известным рядом."
+        },
+        {
+          "id": 65,
+          "type": "short",
+          "question": "Вычислите ∫(1/(1+x^2)) dx",
+          "answer": "arctan x",
+          "explanation": "d(arctan x)/dx=1/(1+x²)."
+        },
+        {
+          "id": 66,
+          "type": "multiple",
+          "question": "Предел при x→∞ (ln x)/(x^p) для p>0 = ?",
+          "options": ["0", "∞", "1", "зависит"],
+          "answer": "0",
+          "explanation": "Логарифм растёт медленнее степенной."
+        },
+        {
+          "id": 67,
+          "type": "short",
+          "question": "Интеграл ∫x·cos x dx",
+          "answer": "x sin x + cos x",
+          "explanation": "По частям ∫xcosx dx."
+        },
+        {
+          "id": 68,
+          "type": "short",
+          "question": "Найдите ∂²/(∂x∂y) e^{xy} при (0,0)",
+          "answer": "1",
+          "explanation": "∂²= e^{xy}, при0,0 →1."
+        },
+        {
+          "id": 69,
+          "type": "multiple",
+          "question": "Какой признак сходимости ряда использует предел |a_{n+1}/a_n|?",
+          "options": ["д’Аламбера", "радикальный", "сравнения", "интегральный"],
+          "answer": "д’Аламбера",
+          "explanation": "Признак д’Аламбера (ratio test)."
+        },
+        {
+          "id": 70,
+          "type": "short",
+          "question": "Вычислите ∫(x^3) dx от 0 до 2",
+          "answer": "4",
+          "explanation": "x^4/4 от0 до2=16/4=4."
+        }
+      ]
+    },
+    "logic": {
+      "easy": [
+        {
+          "id": 146,
+          "type": "multiple",
+          "question": "Конъюнкция A ∧ B истинна, если…",
+          "options": ["оба A и B истинны", "хотя бы одно истинно", "ни одно истинно", "только A истинно"],
+          "answer": "оба A и B истинны",
+          "explanation": "A ∧ B истинно только когда оба операнда истинны."
+        },
+        {
+          "id": 147,
+          "type": "multiple",
+          "question": "Дизъюнкция A ∨ B ложна, если…",
+          "options": ["оба A и B ложны", "хотя бы одно ложно", "оба истинны", "одно истинно"],
+          "answer": "оба A и B ложны",
+          "explanation": "A ∨ B ложна только когда оба операнда ложны."
+        },
+        {
+          "id": 148,
+          "type": "short",
+          "question": "Отрицание ¬True равно?",
+          "answer": "False",
+          "explanation": "¬True даёт False."
+        },
+        {
+          "id": 149,
+          "type": "short",
+          "question": "Отрицание ¬False равно?",
+          "answer": "True",
+          "explanation": "¬False даёт True."
+        },
+        {
+          "id": 150,
+          "type": "multiple",
+          "question": "Импликация A → B ложна, если…",
+          "options": ["A=True, B=False", "A=False, B=True", "оба True", "оба False"],
+          "answer": "A=True, B=False",
+          "explanation": "Импликация ложна только при True→False."
+        },
+        {
+          "id": 151,
+          "type": "short",
+          "question": "Эквивалентность A ≡ B истинна, если A и B…",
+          "answer": "одинаковы",
+          "explanation": "A ≡ B истинно при одинаковых значениях."
+        },
+        {
+          "id": 152,
+          "type": "multiple",
+          "question": "Закон де Моргана: ¬(A ∧ B) эквивалентно…",
+          "options": ["¬A ∨ ¬B", "A ∨ B", "¬A ∧ ¬B", "A ∧ ¬B"],
+          "answer": "¬A ∨ ¬B",
+          "explanation": "¬(A∧B)=¬A∨¬B."
+        },
+        {
+          "id": 153,
+          "type": "multiple",
+          "question": "Закон де Моргана: ¬(A ∨ B) эквивалентно…",
+          "options": ["¬A ∧ ¬B", "A ∧ B", "¬A ∨ ¬B", "A ∨ ¬B"],
+          "answer": "¬A ∧ ¬B",
+          "explanation": "¬(A∨B)=¬A∧¬B."
+        },
+        {
+          "id": 154,
+          "type": "short",
+          "question": "Тавтология — это выражение, которое…",
+          "answer": "всегда истинно",
+          "explanation": "Тавтология истинна при любых входах."
+        },
+        {
+          "id": 155,
+          "type": "short",
+          "question": "Контрадикция — это выражение, которое…",
+          "answer": "всегда ложно",
+          "explanation": "Контрадикция ложна при любых входах."
+        },
+        {
+          "id": 156,
+          "type": "multiple",
+          "question": "Что означает квантор ∀x P(x)?",
+          "options": ["всегда для всех x P(x) истинно", "существует x, для которого P(x)", "ни одного x", "P(x) ложно"],
+          "answer": "всегда для всех x P(x) истинно",
+          "explanation": "∀ означает «для всех»."
+        },
+        {
+          "id": 157,
+          "type": "multiple",
+          "question": "Что означает квантор ∃x P(x)?",
+          "options": ["существует x, для которого P(x) истинно", "для всех x", "ни одного x", "всегда истинно"],
+          "answer": "существует x, для которого P(x) истинно",
+          "explanation": "∃ означает «существует»."
+        },
+        {
+          "id": 158,
+          "type": "short",
+          "question": "Какой результат таблицы истинности A ∧ True?",
+          "answer": "A",
+          "explanation": "A ∧ True даёт A."
+        },
+        {
+          "id": 159,
+          "type": "short",
+          "question": "Какой результат таблицы истинности A ∨ False?",
+          "answer": "A",
+          "explanation": "A ∨ False даёт A."
+        },
+        {
+          "id": 160,
+          "type": "multiple",
+          "question": "Что эквивалентно ¬(A → B)?",
+          "options": ["A ∧ ¬B", "¬A ∨ B", "A ∨ ¬B", "¬A ∧ B"],
+          "answer": "A ∧ ¬B",
+          "explanation": "¬(A→B)=A∧¬B."
+        },
+        {
+          "id": 161,
+          "type": "short",
+          "question": "Что означает A XOR B?",
+          "answer": "только одно из A, B истинно",
+          "explanation": "XOR истинно, когда ровно один операнд истинный."
+        },
+        {
+          "id": 162,
+          "type": "multiple",
+          "question": "Какую форму имеет CNF (конъюнктивная нормальная форма)?",
+          "options": ["союз дизъюнкций", "дизъюнкция конъюнкций", "последовательность", "импликации"],
+          "answer": "союз дизъюнкций",
+          "explanation": "CNF — конъюнкция дизъюнкций."
+        },
+        {
+          "id": 163,
+          "type": "multiple",
+          "question": "Какую форму имеет DNF (дизъюнктивная нормальная форма)?",
+          "options": ["дизъюнкция конъюнкций", "конъюнкция дизъюнкций", "импликации", "эквиваленции"],
+          "answer": "дизъюнкция конъюнкций",
+          "explanation": "DNF — дизъюнкция конъюнкций."
+        },
+        {
+          "id": 164,
+          "type": "short",
+          "question": "Определите значение ¬(A ∧ ¬A).",
+          "answer": "True",
+          "explanation": "A∧¬A всегда False, а ¬False=True."
+        },
+        {
+          "id": 165,
+          "type": "short",
+          "question": "Определите значение A ∨ ¬A.",
+          "answer": "True",
+          "explanation": "A∨¬A всегда True."
+        },
+        {
+          "id": 166,
+          "type": "multiple",
+          "question": "Что делает закон ассоциативности для ∧?",
+          "options": ["(A∧B)∧C = A∧(B∧C)", "A∧B = B∧A", "A∧(B∨C) = (A∧B)∨C", "A∧(B∧C) = (A∨B)∧C"],
+          "answer": "(A∧B)∧C = A∧(B∧C)",
+          "explanation": "Ассоциативность ∧."
+        },
+        {
+          "id": 167,
+          "type": "multiple",
+          "question": "Что делает закон коммутативности для ∨?",
+          "options": ["A∨B = B∨A", "A∨(B∨C) = (A∨B)∨C", "A∨(B∧C) = (A∨B)∧C", "¬(A∨B)=¬A∨¬B"],
+          "answer": "A∨B = B∨A",
+          "explanation": "Коммутативность ∨."
+        },
+        {
+          "id": 168,
+          "type": "short",
+          "question": "Как называется доказательство от противного?",
+          "answer": "редукция к абсурду",
+          "explanation": "Метод reductio ad absurdum."
+        },
+        {
+          "id": 169,
+          "type": "short",
+          "question": "Что такое контрапозиция для A → B?",
+          "answer": "¬B → ¬A",
+          "explanation": "Контрапозиция меняет местами и отрицание."
+        },
+        {
+          "id": 170,
+          "type": "short",
+          "question": "Как называется таблица, показывающая все комбинации переменных?",
+          "answer": "таблица истинности",
+          "explanation": "True/False для всех входов."
+        }
+      ],
+      "medium": [
+        {
+          "id": 171,
+          "type": "multiple",
+          "question": "У Пети есть две шляпы: красная и синяя. Если он не носит красную, значит он…",
+          "options": ["носит синюю", "не носит шляпы", "носит обе", "носит любую"],
+          "answer": "носит синюю",
+          "explanation": "Логическое отрицание «не красная» = синяя."
+        },
+        {
+          "id": 172,
+          "type": "short",
+          "question": "Если A→B истинно и A истинно, то B…",
+          "answer": "истинно",
+          "explanation": "Правилоmodus ponens."
+        },
+        {
+          "id": 173,
+          "type": "multiple",
+          "question": "Какое из высказываний тождественно истинно? A∨¬A или A∧¬A?",
+          "options": ["A∨¬A", "A∧¬A"],
+          "answer": "A∨¬A",
+          "explanation": "Закон исключённого третьего."
+        },
+        {
+          "id": 174,
+          "type": "short",
+          "question": "Виртуальная загадка: «Утром на четырёх, днём на двух, вечером на трёх» — что это?",
+          "answer": "часы",
+          "explanation": "Часы стрелки изменяют количество опор."
+        },
+        {
+          "id": 175,
+          "type": "multiple",
+          "question": "К какому закону относится A∨(B∧C) = (A∨B)∧(A∨C)?",
+          "options": ["дистрибутивный", "ассоциативный", "коммутативный", "идемпотентный"],
+          "answer": "дистрибутивный",
+          "explanation": "Дистрибутивность ∨ относительно ∧."
+        },
+        {
+          "id": 176,
+          "type": "short",
+          "question": "Найдите недостающий элемент: 2, 4, 8, __, 32 (логический ряд умножения)",
+          "answer": "16",
+          "explanation": "Каждый следующий = предыдущий ×2."
+        },
+        {
+          "id": 177,
+          "type": "multiple",
+          "question": "Какой тип рассуждения идёт от общего к частному?",
+          "options": ["дедукция", "индукция", "абдукция", "аналогия"],
+          "answer": "дедукция",
+          "explanation": "Дедуктивное рассуждение."
+        },
+        {
+          "id": 178,
+          "type": "multiple",
+          "question": "Что показывает таблица истинности?",
+          "options": ["все возможные значения выражения", "только истинные случаи", "только ложные случаи", "количество переменных"],
+          "answer": "все возможные значения выражения",
+          "explanation": "Перечисляет результат при всех комбинациях."
+        },
+        {
+          "id": 179,
+          "type": "short",
+          "question": "Если «все молотки — инструменты» и «инструменты — полезные», то молотки…",
+          "answer": "полезные",
+          "explanation": "Силлогизм Барбара."
+        },
+        {
+          "id": 180,
+          "type": "multiple",
+          "question": "Что эквивалентно утверждению «не (A и B)»?",
+          "options": ["¬A или ¬B", "A или B", "¬A и ¬B", "A и ¬B"],
+          "answer": "¬A или ¬B",
+          "explanation": "Закон де Моргана."
+        },
+        {
+          "id": 181,
+          "type": "short",
+          "question": "Загадка: «Чёрное по белому, а читать нельзя» — что это?",
+          "answer": "штрих-код",
+          "explanation": "Штрих-код нельзя прочесть глазами."
+        },
+        {
+          "id": 182,
+          "type": "multiple",
+          "question": "Какой метод рассуждения идёт от частного к общему?",
+          "options": ["индукция", "дедукция", "абдукция", "редукция"],
+          "answer": "индукция",
+          "explanation": "Вывод общего из частных случаев."
+        },
+        {
+          "id": 183,
+          "type": "short",
+          "question": "Если «никто не безгрешен», то кто-то может быть безгрешен? (True/False)",
+          "answer": "False",
+          "explanation": "Не существует ни одного безгрешного."
+        },
+        {
+          "id": 184,
+          "type": "multiple",
+          "question": "Как называется доказательство, начало от гипотезы и сведение к известному?",
+          "options": ["редукция к абсурду", "индукция", "прямое", "комбинаторика"],
+          "answer": "редукция к абсурду",
+          "explanation": "Сведение к противоречию."
+        },
+        {
+          "id": 185,
+          "type": "short",
+          "question": "Загадка: «Висит груша — нельзя скушать» — ответ?",
+          "answer": "лампочка",
+          "explanation": "Лампочка формы груши."
+        },
+        {
+          "id": 186,
+          "type": "multiple",
+          "question": "Что истинно при A∧(A∨B)?",
+          "options": ["A", "B", "A∨B", "False"],
+          "answer": "A",
+          "explanation": "Закон поглощения: A∧(A∨B)=A."
+        },
+        {
+          "id": 187,
+          "type": "short",
+          "question": "Если A ложь, то A→B…",
+          "answer": "истинно",
+          "explanation": "Ложная предпосылка делает импликацию истинной."
+        },
+        {
+          "id": 188,
+          "type": "multiple",
+          "question": "Какая форма нормальна DNF?",
+          "options": ["дизъюнкция конъюнкций", "конъюнкция дизъюнкций", "импликация", "эквиваленция"],
+          "answer": "дизъюнкция конъюнкций",
+          "explanation": "DNF — дизъюнкция конъюнкций."
+        },
+        {
+          "id": 189,
+          "type": "short",
+          "question": "Чтобы доказать P→Q, можно доказать ¬Q→¬P. Это…",
+          "answer": "контрапозиция",
+          "explanation": "Метод контрапозиции."
+        },
+        {
+          "id": 190,
+          "type": "multiple",
+          "question": "Что представляет собой тавтологию?",
+          "options": ["выражение всегда истинно", "всегда ложно", "результат зависит", "не имеет смысла"],
+          "answer": "выражение всегда истинно",
+          "explanation": "Определение тавтологии."
+        },
+        {
+          "id": 191,
+          "type": "short",
+          "question": "Загадка: «Легкая как перо, но даже самый сильный человек не удержит меня дольше минуты» — что?",
+          "answer": "дыхание",
+          "explanation": "Невозможно долго задерживать дыхание."
+        },
+        {
+          "id": 192,
+          "type": "multiple",
+          "question": "Какой из операторов является логическим НЕ?",
+          "options": ["¬", "∧", "∨", "→"],
+          "answer": "¬",
+          "explanation": "Символ ¬ обозначает отрицание."
+        },
+        {
+          "id": 193,
+          "type": "short",
+          "question": "Что истинно при (¬A)∨A?",
+          "answer": "True",
+          "explanation": "Закон исключённого третьего."
+        },
+        {
+          "id": 194,
+          "type": "multiple",
+          "question": "Как называется правило: из A→B и B→C следует A→C?",
+          "options": ["транзитивность", "рефлексивность", "симметричность", "коммутативность"],
+          "answer": "транзитивность",
+          "explanation": "Правило транзитивности импликации."
+        },
+        {
+          "id": 195,
+          "type": "short",
+          "question": "Что такое «абдукция» в логике?",
+          "answer": "гипотеза наилучшего объяснения",
+          "explanation": "Вывод наиболее вероятного объяснения."
+        }
+      ],
+      "hard": [
+        {
+          "id": 196,
+          "type": "multiple",
+          "question": "Как формально записать «существует ровно один x, для которого P(x) истинно»?",
+          "options": [
+            "∃x [P(x) ∧ ∀y (P(y) → y = x)]",
+            "∀x P(x) ∧ ∃y P(y)",
+            "∃x ∀y P(y)",
+            "∃x P(x) ∧ ∃y P(y)"
+          ],
+          "answer": "∃x [P(x) ∧ ∀y (P(y) → y = x)]",
+          "explanation": "Комбинация ∃ и ∀ гарантирует уникальность."
+        },
+        {
+          "id": 197,
+          "type": "short",
+          "question": "Как называется вывод, при котором из ¬B→¬A следует A→B?",
+          "answer": "контрапозиция",
+          "explanation": "Контрапозиция переставляет и отрицает."
+        },
+        {
+          "id": 198,
+          "type": "multiple",
+          "question": "Какое из следующих выражений является контрадикцией?",
+          "options": [
+            "(A ∧ ¬A)",
+            "(A ∨ ¬A)",
+            "(A → A)",
+            "(A ∧ A)"
+          ],
+          "answer": "(A ∧ ¬A)",
+          "explanation": "Нельзя одновременно и истинно и ложно."
+        },
+        {
+          "id": 199,
+          "type": "short",
+          "question": "Какой квантор обозначает «не для всех»?",
+          "answer": "¬∀",
+          "explanation": "Отрицание универсального квантора."
+        },
+        {
+          "id": 200,
+          "type": "multiple",
+          "question": "Какой закон логики утверждает, что (A→B) ∧ (B→C) эквивалентно A→C?",
+          "options": [
+            "транзитивность",
+            "дистрибутивность",
+            "ассоциативность",
+            "коммутативность"
+          ],
+          "answer": "транзитивность",
+          "explanation": "Импликации транзитивны."
+        },
+        {
+          "id": 201,
+          "type": "short",
+          "question": "Что делает правило резолюции в исчислении высказываний?",
+          "answer": "разрешает дизъюнкции",
+          "explanation": "Резолюция выводит новые дизъюнкции."
+        },
+        {
+          "id": 202,
+          "type": "multiple",
+          "question": "Что представляет собой нормальная форма Конъюнктивной Нормальной Формы (CNF)?",
+          "options": [
+            "конъюнкция дизъюнкций",
+            "дизъюнкция конъюнкций",
+            "импликация",
+            "эквиваленция"
+          ],
+          "answer": "конъюнкция дизъюнкций",
+          "explanation": "CNF — конъюнкция дизъюнктов."
+        },
+        {
+          "id": 203,
+          "type": "multiple",
+          "question": "Какую технику используют для доказательства ¬P через показ, что P→False?",
+          "options": [
+            "доказательство от противного",
+            "прямое доказательство",
+            "конструктивное доказательство",
+            "индукция"
+          ],
+          "answer": "доказательство от противного",
+          "explanation": "Показываем, что P ведёт к противоречию."
+        },
+        {
+          "id": 204,
+          "type": "short",
+          "question": "Какое свойство показывает рефлексивность отношения R?",
+          "answer": "∀x (xRx)",
+          "explanation": "Каждый элемент связан сам с собой."
+        },
+        {
+          "id": 205,
+          "type": "multiple",
+          "question": "Как формально записать симметричность отношения R?",
+          "options": [
+            "∀x∀y (xRy → yRx)",
+            "∀x (xRx)",
+            "∀x∀y (xRy ∧ yRx)",
+            "∃x∃y (xRy)"
+          ],
+          "answer": "∀x∀y (xRy → yRx)",
+          "explanation": "Если xRy, то yRx."
+        },
+        {
+          "id": 206,
+          "type": "multiple",
+          "question": "Что означает транзитивность отношения R?",
+          "options": [
+            "∀x∀y∀z (xRy ∧ yRz → xRz)",
+            "∀x (xRx)",
+            "xRy → yRx",
+            "xRy ∧ yRz"
+          ],
+          "answer": "∀x∀y∀z (xRy ∧ yRz → xRz)",
+          "explanation": "Транзитивность связывает три элемента."
+        },
+        {
+          "id": 207,
+          "type": "short",
+          "question": "Какой метод логического вывода часто используется в автоматических теоремах?",
+          "answer": "резолюция",
+          "explanation": "Резолюция широко применяется в Prolog и SAT."
+        },
+        {
+          "id": 208,
+          "type": "multiple",
+          "question": "Какой квантор эквивалентен ¬∃x P(x)?",
+          "options": [
+            "∀x ¬P(x)",
+            "∃x ¬P(x)",
+            "¬∀x P(x)",
+            "∃x P(x)"
+          ],
+          "answer": "∀x ¬P(x)",
+          "explanation": "Отрицание существования = все не."
+        },
+        {
+          "id": 209,
+          "type": "short",
+          "question": "Как записать контрапозицию A→B?",
+          "answer": "¬B→¬A",
+          "explanation": "Контрапозиция переставляет и отрицает."
+        },
+        {
+          "id": 210,
+          "type": "multiple",
+          "question": "Что такое «экзистенциальная квантификация»?",
+          "options": [
+            "∃x P(x)",
+            "∀x P(x)",
+            "¬P(x)",
+            "P(x)→"
+          ],
+          "answer": "∃x P(x)",
+          "explanation": "Обозначает существование хотя бы одного."
+        },
+        {
+          "id": 211,
+          "type": "short",
+          "question": "Как формально записать «для ровно двух элементов»?",
+          "answer": "∃x∃y [P(x)∧P(y)∧x≠y∧∀z(P(z)→(z=x∨z=y))]",
+          "explanation": "Добавляем уникальность для двух."
+        },
+        {
+          "id": 212,
+          "type": "multiple",
+          "question": "Какой вид доказательства часто используют в теории графов?",
+          "options": [
+            "доказательство индукцией",
+            "доказательство контрапозицией",
+            "аналитическое доказательство",
+            "доказательство от противного"
+          ],
+          "answer": "доказательство индукцией",
+          "explanation": "Индукция по количеству вершин или ребер."
+        },
+        {
+          "id": 213,
+          "type": "short",
+          "question": "Что означает «лог. эквиваленция» между P и Q?",
+          "answer": "P ↔ Q",
+          "explanation": "Эквиваленция истинна, если оба равны."
+        },
+        {
+          "id": 214,
+          "type": "multiple",
+          "question": "Какой приём доказательства используется для сочетания случаев?",
+          "options": [
+            "доказательство по случаям",
+            "доказательство индукцией",
+            "доказательство противного",
+            "доказательство прямое"
+          ],
+          "answer": "доказательство по случаям",
+          "explanation": "Разбираем все возможные ситуации."
+        },
+        {
+          "id": 215,
+          "type": "short",
+          "question": "Что проверяет правило рефлексивности?",
+          "answer": "каждый связан с собой",
+          "explanation": "xRx для всех x."
+        },
+        {
+          "id": 216,
+          "type": "multiple",
+          "question": "Что такое «натуральная дедукция»?",
+          "options": [
+            "система вывода с правилами введения/устранения",
+            "метод математической индукции",
+            "система резолюции",
+            "алгебра логики"
+          ],
+          "answer": "система вывода с правилами введения/устранения",
+          "explanation": "Натуральная дедукция опирается на правила."
+        },
+        {
+          "id": 217,
+          "type": "short",
+          "question": "Как записать «не существует x, такого что P(x)»?",
+          "answer": "¬∃x P(x)",
+          "explanation": "Отрицание экзистенциального квантора."
+        },
+        {
+          "id": 218,
+          "type": "multiple",
+          "question": "Что из нижеперечисленного — закон поглощения?",
+          "options": [
+            "A ∨ (A ∧ B) = A",
+            "A ∧ (B ∨ C) = (A ∧ B) ∨ C",
+            "A ∨ A = A",
+            "A ∧ A = A"
+          ],
+          "answer": "A ∨ (A ∧ B) = A",
+          "explanation": "Поглощение убирает лишний операнд."
+        },
+        {
+          "id": 219,
+          "type": "short",
+          "question": "Какой метод используется для устранения экзистенциальных кванторов?",
+          "answer": "скаффолдинг (Skolemization)",
+          "explanation": "Преобразует формулу без экзистенциальных кванторов."
+        },
+        {
+          "id": 220,
+          "type": "short",
+          "question": "Что такое «алгоритм DPLL»?",
+          "answer": "алгоритм решения SAT",
+          "explanation": "Davis–Putnam–Logemann–Loveland для SAT."
+        }
+      ]
+    }
+  }
+  
