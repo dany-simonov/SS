@@ -43,7 +43,7 @@ def handle_ai_chat(request):
         f"Ты — AI-ассистент StudySphere. Тон в котором надо разговаривать: {tone}. "
         f"Длина ответа ≤{max_length} слов. "
         f"Язык: {'English' if language=='en' else 'Русский'}.\n"
-        f"Креативность ответа: {'temperature'}.\n"
+        f"Креативность ответа: {'temperature'} из 1.\n"
         "- Представляться как StudySphere\n"
         "- Помогать с учебными вопросами\n"
         "- Объяснять простым языком\n"

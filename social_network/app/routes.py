@@ -11,7 +11,7 @@ from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
 from flask_mail import Message, Mail
 from .sendemail import send_email
-
+from flask import Blueprint, render_template
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -106,11 +106,15 @@ def task_view(task_id):
         for t in lvl:
             if t['id'] == task_id:
                 return render_template('task_view.html', task=t)
-    abort(404)
 
 @main_bp.route('/support', methods=['GET'])
 def support():
     return render_template('support.html')
+
+quizzes_bp = Blueprint('quizzes_bp', __name__)
+@quizzes_bp.route('/choose')
+def choose():
+    return render_template('choose_quiz.html')
 
 @main_bp.route('/execute-code', methods=['POST'])
 def execute_code():
