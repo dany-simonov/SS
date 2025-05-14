@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пользовательское соглашение — StudySphere</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tasks.css') }}">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="{{ url_for('main.landing') }}">
+          <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
+        </a>
+        <span class="logo-text">StudySphere</span>
+      </div>
+      <nav class="nav">
+        <a href="{{ url_for('ai_chat_bp.ai_chat') }}" class="active">Чат с ИИ</a>
+        <a href="{{ url_for('main.textbook') }}">Учебник</a>
+        <a href="{{ url_for('main.show_tasks') }}">Задачи</a>
+        <a href="{{ url_for('quizzes_bp.choose') }}">Квизы</a>
+        <a href="{{ url_for('main.support') }}">Поддержка</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="{{ url_for('main.register') }}" class="btn-auth">Регистрация</a>
+        <a href="{{ url_for('main.login') }}" class="btn-auth">Вход</a>
+      </div>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container" style="padding: 2rem 0; flex: 1;">
+    <h1 style="margin-bottom: 1rem; font-size: 2rem; font-weight: 600;">Пользовательское соглашение</h1>
+
+    <section style="margin-bottom:1.5rem; line-height:1.6; color:#333;">
+      <h2 style="font-size:1.25rem; margin-bottom:.5rem;">1. Общие положения</h2>
+      <p>Данный документ регламентирует порядок использования сервиса <strong>StudySphere</strong>. Используя Сервис, вы соглашаетесь с условиями данного соглашения.</p>
+    </section>
+
+    <section style="margin-bottom:1.5rem; line-height:1.6; color:#333;">
+      <h2 style="font-size:1.25rem; margin-bottom:.5rem;">2. Интеллектуальная собственность</h2>
+      <p>Весь контент, размещённый на Сервисе (тексты, изображения, программный код и пр.), является интеллектуальной собственностью StudySphere или его партнёров. Вы не вправе копировать, распространять или изменять материалы без письменного разрешения правообладателя.</p>
+    </section>
+
+    <section style="margin-bottom:1.5rem; line-height:1.6; color:#333;">
+      <h2 style="font-size:1.25rem; margin-bottom:.5rem;">3. Ответственность</h2>
+      <ul style="padding-left:1.2rem; margin-top:.5rem;">
+        <li>StudySphere не несёт ответственности за контент, созданный AI-моделями.</li>
+        <li>Сервис предоставляется контент без гарантий точности и полноты.</li>
+        <li>Используя советы и материалы сервиса, вы действуете на свой собственный риск.</li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom:1.5rem; line-height:1.6; color:#333;">
+      <h2 style="font-size:1.25rem; margin-bottom:.5rem;">4. Конфиденциальность и хранение данных</h2>
+      <p>Мы не передаём ваши персональные данные третьим лицам. Все диалоги и история запросов хранятся на наших серверах в зашифрованном виде и используются для улучшения качества сервиса.</p>
+    </section>
+
+    <section style="margin-bottom:1.5rem; line-height:1.6; color:#333;">
+      <h2 style="font-size:1.25rem; margin-bottom:.5rem;">5. Обратная связь</h2>
+      <p>По всем вопросам пишите на <a href="mailto:studysphereru@gmail.com">studysphereru@gmail.com</a> или через форму «Поддержка» на сайте.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
+        <span class="logo-text" style="margin-left:0.5rem;">StudySphere</span>
+        <p style="margin-top:0.5rem;">© 2025 StudySphere. Все права защищены.</p>
+      </div>
+      <div class="footer-right">
+        <a href="{{ url_for('main.user_agreement') }}">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,811 @@
+{
+  "text_providers": {
+    "AI365VIP": {
+      "status": "error",
+      "response_time": 0.48,
+      "error": "AI365VIP is not working"
+    },
+    "AIChatFree": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AIChatFree is not working"
+    },
+    "AIUncensored": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AIUncensored is not working"
+    },
+    "ARTA": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: ARTA Valid models: ['Flux', 'flux', 'medieval', 'vincent_van_gogh', 'f_dev', 'low_poly', 'dreamshaper_xl', 'anima_pencil_xl', 'biomech', 'trash_polka', 'no_style', 'cheyenne_xl', 'chicano', 'embroidery_tattoo', 'red_and_black', 'fantasy_art', 'watercolor', 'dotwork', 'old_school_colored', 'realistic_tattoo', 'japanese_2', 'realistic_stock_xl', 'f_pro', 'revanimated', 'katayama_mix_xl', 'sdxl_l', 'cor_epica_xl', 'anime_tattoo', 'new_school', 'death_metal', 'old_school', 'juggernaut_xl', 'photographic', 'sdxl_1_0', 'graffiti', 'mini_tattoo', 'surrealism', 'neo_traditional', 'on_limbs_black', 'yamers_realistic_xl', 'pony_xl', 'playground_xl', 'anything_xl', 'flame_design', 'kawaii', 'cinematic_art', 'professional', 'black_ink']"
+    },
+    "Acytoo": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Acytoo is not working"
+    },
+    "AiAsk": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AiAsk is not working"
+    },
+    "AiChatOnline": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AiChatOnline is not working"
+    },
+    "AiChats": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AiChats is not working"
+    },
+    "AiService": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AiService is not working"
+    },
+    "Aibn": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Aibn is not working"
+    },
+    "Aichat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Aichat is not working"
+    },
+    "Ails": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Ails is not working"
+    },
+    "Airforce": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Airforce is not working"
+    },
+    "Aivvm": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Aivvm is not working"
+    },
+    "AllenAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: AllenAI Valid models: ['tulu3-405b', 'OLMo-2-1124-13B-Instruct', 'tulu-3-1-8b', 'Llama-3-1-Tulu-3-70B', 'olmoe-0125', 'olmo-2-0325-32b-instruct', 'mm-olmo-uber-model-v4-synthetic']"
+    },
+    "AmigoChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AmigoChat is not working"
+    },
+    "Anthropic": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "AnyProvider": {
+      "status": "working",
+      "response_time": 83.22,
+      "sample": "Hello! Yes, I can respond to your message. How can I assist you today?"
+    },
+    "AsyncGeneratorProvider": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AsyncGeneratorProvider is not working"
+    },
+    "AsyncProvider": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AsyncProvider is not working"
+    },
+    "Aura": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Aura is not working"
+    },
+    "AutonomousAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "AutonomousAI is not working"
+    },
+    "BackendApi": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "BackendApi is not working"
+    },
+    "Berlin": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Berlin is not working"
+    },
+    "BingCreateImages": {
+      "status": "error",
+      "response_time": 4.39,
+      "error": "Missing \"_U\" cookie"
+    },
+    "BlackForestLabs_Flux1Dev": {
+      "status": "working",
+      "response_time": 20.24,
+      "sample": "Falling back to IP-based quotas (InvalidRepoToken)\nFinished\n\n<!-- generated images start -->\n[![Hell..."
+    },
+    "BlackForestLabs_Flux1Schnell": {
+      "status": "error",
+      "response_time": 2.32,
+      "error": "MediaResponse.__init__() missing 1 required positional argument: 'urls'"
+    },
+    "Blackbox": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Blackbox Valid models: ['blackboxai', 'gpt-4o-mini', 'DeepSeek-V3', 'DeepSeek-R1', 'Meta-Llama-3.3-70B-Instruct-Turbo', 'Mistral-Small-24B-Instruct-2501', 'DeepSeek-LLM-Chat-(67B)', 'Qwen-QwQ-32B-Preview', 'flux', 'Python Agent', 'HTML Agent', 'Builder Agent', 'Java Agent', 'JavaScript Agent', 'React Agent', 'Android Agent', 'Flutter Agent', 'Next.js Agent', 'AngularJS Agent', 'Swift Agent', 'MongoDB Agent', 'PyTorch Agent', 'Xcode Agent', 'Azure Agent', 'Bitbucket Agent', 'DigitalOcean Agent', 'Docker Agent', 'Electron Agent', 'Erlang Agent', 'FastAPI Agent', 'Firebase Agent', 'Flask Agent', 'Git Agent', 'Gitlab Agent', 'Go Agent', 'Godot Agent', 'Google Cloud Agent', 'Heroku Agent']"
+    },
+    "CablyAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "Cerebras": {
+      "status": "error",
+      "response_time": 4.58,
+      "error": "Response 403: Cloudflare detected"
+    },
+    "ChatAnywhere": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "ChatAnywhere is not working"
+    },
+    "ChatGLM": {
+      "status": "working",
+      "response_time": 1.67,
+      "sample": "Hello! Yes, I can respond to your message. How can I assist you today?"
+    },
+    "ChatGpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "ChatGpt is not working"
+    },
+    "ChatGptEs": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: ChatGptEs Valid models: ['gpt-4', 'gpt-4o', 'gpt-4o-mini']"
+    },
+    "ChatGptt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "ChatGptt is not working"
+    },
+    "Chatai": {
+      "status": "error",
+      "response_time": 0.21,
+      "error": "403, message='Forbidden', url='https://chatai.aritek.app/stream'"
+    },
+    "Chatgpt4Online": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Chatgpt4Online is not working"
+    },
+    "Chatgpt4o": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Chatgpt4o is not working"
+    },
+    "ChatgptDuo": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "ChatgptDuo is not working"
+    },
+    "ChatgptFree": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "ChatgptFree is not working"
+    },
+    "Cloudflare": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Cloudflare Valid models: ['llama-2-7b', 'llama-3-8b', 'llama-3.1-8b', 'llama-3.2-1b', 'llama-4-scout', 'deepseek-math-7b', 'deepseek-r1-qwen-32b', 'falcon-7b', 'qwen-1.5-7b', 'qwen-2.5-coder']"
+    },
+    "CodeLinkAva": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "CodeLinkAva is not working"
+    },
+    "CohereForAI_C4AI_Command": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: CohereForAI_C4AI_Command Valid models: ['command-a', 'command-r-plus', 'command-r', 'command-r7b']"
+    },
+    "Copilot": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Copilot Valid models: ['Copilot', 'Think Deeper']"
+    },
+    "CopilotAccount": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "No .har file found"
+    },
+    "CreateImagesProvider": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "CreateImagesProvider is not working"
+    },
+    "Cromicle": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Cromicle is not working"
+    },
+    "Custom": {
+      "status": "error",
+      "response_time": 2.26,
+      "error": "Response 404: HTML content"
+    },
+    "DDG": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model gpt-3.5-turbo not supported. Available models: ['gpt-4', 'gpt-4o-mini', 'llama-3.3-70b', 'claude-3-haiku', 'o3-mini', 'mixtral-small-24b']"
+    },
+    "DarkAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "DarkAI is not working"
+    },
+    "DeepInfra": {
+      "status": "error",
+      "response_time": 1.19,
+      "error": "Add a \"api_key\""
+    },
+    "DeepInfraChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: DeepInfraChat Valid models: ['meta-llama/Meta-Llama-3.1-8B-Instruct', 'meta-llama/Llama-3.3-70B-Instruct-Turbo', 'meta-llama/Llama-3.3-70B-Instruct', 'deepseek-ai/DeepSeek-V3', 'mistralai/Mistral-Small-24B-Instruct-2501', 'deepseek-ai/DeepSeek-R1', 'deepseek-ai/DeepSeek-R1-Turbo', 'deepseek-ai/DeepSeek-R1-Distill-Llama-70B', 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B', 'microsoft/phi-4', 'microsoft/WizardLM-2-8x22B', 'Qwen/Qwen2.5-72B-Instruct', '01-ai/Yi-34B-Chat', 'Qwen/Qwen2-72B-Instruct', 'cognitivecomputations/dolphin-2.6-mixtral-8x7b', 'cognitivecomputations/dolphin-2.9.1-llama-3-70b', 'databricks/dbrx-instruct', 'deepinfra/airoboros-70b', 'lizpreciatior/lzlv_70b_fp16_hf', 'microsoft/WizardLM-2-7B', 'mistralai/Mixtral-8x22B-Instruct-v0.1', 'openbmb/MiniCPM-Llama3-V-2_5', 'meta-llama/Llama-3.2-90B-Vision-Instruct']"
+    },
+    "DeepSeek": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "DeepSeekAPI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "DeepSeekAPI is not working"
+    },
+    "DeepseekAI_JanusPro7b": {
+      "status": "error",
+      "response_time": 0.34,
+      "error": "pop from empty list"
+    },
+    "DfeHub": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "DfeHub is not working"
+    },
+    "DuckDuckGo": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "DuckDuckGo is not working"
+    },
+    "Dynaspark": {
+      "status": "error",
+      "response_time": 0.46,
+      "error": "Response 404: HTML content"
+    },
+    "EasyChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "EasyChat is not working"
+    },
+    "EdgeTTS": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "EdgeTTS is not working"
+    },
+    "Equing": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Equing is not working"
+    },
+    "FakeGpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "FakeGpt is not working"
+    },
+    "FastGpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "FastGpt is not working"
+    },
+    "Feature": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Feature is not working"
+    },
+    "FlowGpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "FlowGpt is not working"
+    },
+    "Forefront": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Forefront is not working"
+    },
+    "Free2GPT": {
+      "status": "working",
+      "response_time": 3.38,
+      "sample": "Hello there! I'm responding to your simple test message. How can I help you today?\n"
+    },
+    "FreeGpt": {
+      "status": "working",
+      "response_time": 1.99,
+      "sample": "你好，我收到了你的测试信息。\n"
+    },
+    "FreeNetfly": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "FreeNetfly is not working"
+    },
+    "FreeRouter": {
+      "status": "error",
+      "response_time": 0.02,
+      "error": "Model is not supported: gpt-3.5-turbo in: FreeRouter Valid models: ['01-ai/yi-large', 'aetherwiing/mn-starcannon-12b', 'agentica-org/deepcoder-14b-preview:free', 'ai21/jamba-1.6-large', 'ai21/jamba-1.6-mini', 'ai21/jamba-instruct', 'aion-labs/aion-1.0', 'aion-labs/aion-1.0-mini', 'aion-labs/aion-rp-llama-3.1-8b', 'alfredpros/codellama-7b-instruct-solidity', 'all-hands/openhands-lm-32b-v0.1', 'allenai/molmo-7b-d:free', 'allenai/olmo-7b-instruct', 'alpindale/goliath-120b', 'alpindale/magnum-72b', 'amazon/nova-lite-v1', 'amazon/nova-micro-v1', 'amazon/nova-pro-v1', 'anthracite-org/magnum-v2-72b', 'anthracite-org/magnum-v4-72b', 'anthropic/claude-2', 'anthropic/claude-2.0', 'anthropic/claude-2.0:beta', 'anthropic/claude-2.1', 'anthropic/claude-2.1:beta', 'anthropic/claude-2:beta', 'anthropic/claude-3-haiku', 'anthropic/claude-3-haiku:beta', 'anthropic/claude-3-opus', 'anthropic/claude-3-opus:beta', 'anthropic/claude-3-sonnet', 'anthropic/claude-3-sonnet:beta', 'anthropic/claude-3.5-haiku', 'anthropic/claude-3.5-haiku-20241022', 'anthropic/claude-3.5-haiku-20241022:beta', 'anthropic/claude-3.5-haiku:beta', 'anthropic/claude-3.5-sonnet', 'anthropic/claude-3.5-sonnet-20240620', 'anthropic/claude-3.5-sonnet-20240620:beta', 'anthropic/claude-3.5-sonnet:beta', 'anthropic/claude-3.7-sonnet', 'anthropic/claude-3.7-sonnet:beta', 'anthropic/claude-3.7-sonnet:thinking', 'arcee-ai/arcee-blitz', 'arcee-ai/caller-large', 'arcee-ai/coder-large', 'arcee-ai/maestro-reasoning', 'arcee-ai/spotlight', 'arcee-ai/virtuoso-large', 'arcee-ai/virtuoso-medium-v2', 'arliai/qwq-32b-arliai-rpr-v1:free', 'bytedance-research/ui-tars-72b:free', 'cognitivecomputations/dolphin-mixtral-8x22b', 'cognitivecomputations/dolphin3.0-mistral-24b:free', 'cognitivecomputations/dolphin3.0-r1-mistral-24b:free', 'cohere/command', 'cohere/command-a', 'cohere/command-r', 'cohere/command-r-03-2024', 'cohere/command-r-08-2024', 'cohere/command-r-plus', 'cohere/command-r-plus-04-2024', 'cohere/command-r-plus-08-2024', 'cohere/command-r7b-12-2024', 'deepseek/deepseek-chat', 'deepseek/deepseek-chat-v3-0324', 'deepseek/deepseek-chat-v3-0324:free', 'deepseek/deepseek-chat:free', 'deepseek/deepseek-coder', 'deepseek/deepseek-prover-v2', 'deepseek/deepseek-prover-v2:free', 'deepseek/deepseek-r1', 'deepseek/deepseek-r1-distill-llama-70b', 'deepseek/deepseek-r1-distill-llama-70b:free', 'deepseek/deepseek-r1-distill-llama-8b', 'deepseek/deepseek-r1-distill-qwen-1.5b', 'deepseek/deepseek-r1-distill-qwen-14b', 'deepseek/deepseek-r1-distill-qwen-14b:free', 'deepseek/deepseek-r1-distill-qwen-32b', 'deepseek/deepseek-r1-distill-qwen-32b:free', 'deepseek/deepseek-r1-zero:free', 'deepseek/deepseek-r1:free', 'deepseek/deepseek-v3-base:free', 'eleutherai/llemma_7b', 'eva-unit-01/eva-llama-3.33-70b', 'eva-unit-01/eva-qwen-2.5-32b', 'eva-unit-01/eva-qwen-2.5-72b', 'featherless/qwerky-72b:free', 'google/gemini-2.0-flash-001', 'google/gemini-2.0-flash-exp:free', 'google/gemini-2.0-flash-lite-001', 'google/gemini-2.5-flash-preview', 'google/gemini-2.5-flash-preview:thinking', 'google/gemini-2.5-pro-exp-03-25', 'google/gemini-2.5-pro-preview', 'google/gemini-flash-1.5', 'google/gemini-flash-1.5-8b', 'google/gemini-flash-1.5-8b-exp', 'google/gemini-pro-1.5', 'google/gemini-pro-vision', 'google/gemma-2-27b-it', 'google/gemma-2-9b-it', 'google/gemma-2-9b-it:free', 'google/gemma-3-12b-it', 'google/gemma-3-12b-it:free', 'google/gemma-3-1b-it:free', 'google/gemma-3-27b-it', 'google/gemma-3-27b-it:free', 'google/gemma-3-4b-it', 'google/gemma-3-4b-it:free', 'google/learnlm-1.5-pro-experimental:free', 'gryphe/mythomax-l2-13b', 'inception/mercury-coder-small-beta', 'infermatic/mn-inferor-12b', 'inflection/inflection-3-pi', 'inflection/inflection-3-productivity', 'jondurbin/airoboros-l2-70b', 'liquid/lfm-3b', 'liquid/lfm-40b', 'liquid/lfm-7b', 'mancer/weaver', 'meta-llama/llama-2-70b-chat', 'meta-llama/llama-3-70b-instruct', 'meta-llama/llama-3-8b-instruct', 'meta-llama/llama-3.1-405b', 'meta-llama/llama-3.1-405b-instruct', 'meta-llama/llama-3.1-405b:free', 'meta-llama/llama-3.1-70b-instruct', 'meta-llama/llama-3.1-8b-instruct', 'meta-llama/llama-3.1-8b-instruct:free', 'meta-llama/llama-3.2-11b-vision-instruct', 'meta-llama/llama-3.2-11b-vision-instruct:free', 'meta-llama/llama-3.2-1b-instruct', 'meta-llama/llama-3.2-1b-instruct:free', 'meta-llama/llama-3.2-3b-instruct', 'meta-llama/llama-3.2-3b-instruct:free', 'meta-llama/llama-3.2-90b-vision-instruct', 'meta-llama/llama-3.3-70b-instruct', 'meta-llama/llama-3.3-70b-instruct:free', 'meta-llama/llama-4-maverick', 'meta-llama/llama-4-maverick:free', 'meta-llama/llama-4-scout', 'meta-llama/llama-4-scout:free', 'meta-llama/llama-guard-2-8b', 'meta-llama/llama-guard-3-8b', 'meta-llama/llama-guard-4-12b', 'microsoft/mai-ds-r1:free', 'microsoft/phi-3-medium-128k-instruct', 'microsoft/phi-3-mini-128k-instruct', 'microsoft/phi-3.5-mini-128k-instruct', 'microsoft/phi-4', 'microsoft/phi-4-multimodal-instruct', 'microsoft/phi-4-reasoning-plus', 'microsoft/phi-4-reasoning-plus:free', 'microsoft/phi-4-reasoning:free', 'microsoft/wizardlm-2-8x22b', 'minimax/minimax-01', 'mistral/ministral-8b', 'mistralai/codestral-2501', 'mistralai/codestral-mamba', 'mistralai/ministral-3b', 'mistralai/ministral-8b', 'mistralai/mistral-7b-instruct', 'mistralai/mistral-7b-instruct-v0.1', 'mistralai/mistral-7b-instruct-v0.2', 'mistralai/mistral-7b-instruct-v0.3', 'mistralai/mistral-7b-instruct:free', 'mistralai/mistral-large', 'mistralai/mistral-large-2407', 'mistralai/mistral-large-2411', 'mistralai/mistral-medium', 'mistralai/mistral-medium-3', 'mistralai/mistral-nemo', 'mistralai/mistral-nemo:free', 'mistralai/mistral-saba', 'mistralai/mistral-small', 'mistralai/mistral-small-24b-instruct-2501', 'mistralai/mistral-small-24b-instruct-2501:free', 'mistralai/mistral-small-3.1-24b-instruct', 'mistralai/mistral-small-3.1-24b-instruct:free', 'mistralai/mistral-tiny', 'mistralai/mixtral-8x22b-instruct', 'mistralai/mixtral-8x7b-instruct', 'mistralai/pixtral-12b', 'mistralai/pixtral-large-2411', 'moonshotai/kimi-vl-a3b-thinking:free', 'moonshotai/moonlight-16b-a3b-instruct:free', 'neversleep/llama-3-lumimaid-70b', 'neversleep/llama-3-lumimaid-8b', 'neversleep/llama-3-lumimaid-8b:extended', 'neversleep/llama-3.1-lumimaid-70b', 'neversleep/llama-3.1-lumimaid-8b', 'neversleep/noromaid-20b', 'nothingiisreal/mn-celeste-12b', 'nousresearch/deephermes-3-llama-3-8b-preview:free', 'nousresearch/hermes-2-pro-llama-3-8b', 'nousresearch/hermes-3-llama-3.1-405b', 'nousresearch/hermes-3-llama-3.1-70b', 'nousresearch/nous-hermes-2-mixtral-8x7b-dpo', 'nvidia/llama-3.1-nemotron-70b-instruct', 'nvidia/llama-3.1-nemotron-ultra-253b-v1:free', 'nvidia/llama-3.3-nemotron-super-49b-v1', 'nvidia/llama-3.3-nemotron-super-49b-v1:free', 'open-r1/olympiccoder-32b:free', 'openai/chatgpt-4o-latest', 'openai/gpt-3.5-turbo', 'openai/gpt-3.5-turbo-0125', 'openai/gpt-3.5-turbo-0613', 'openai/gpt-3.5-turbo-1106', 'openai/gpt-3.5-turbo-16k', 'openai/gpt-3.5-turbo-instruct', 'openai/gpt-4', 'openai/gpt-4-0314', 'openai/gpt-4-1106-preview', 'openai/gpt-4-32k', 'openai/gpt-4-32k-0314', 'openai/gpt-4-turbo', 'openai/gpt-4-turbo-preview', 'openai/gpt-4.1', 'openai/gpt-4.1-mini', 'openai/gpt-4.1-nano', 'openai/gpt-4.5-preview', 'openai/gpt-4o', 'openai/gpt-4o-2024-05-13', 'openai/gpt-4o-2024-08-06', 'openai/gpt-4o-2024-11-20', 'openai/gpt-4o-mini', 'openai/gpt-4o-mini-2024-07-18', 'openai/gpt-4o-mini-search-preview', 'openai/gpt-4o-search-preview', 'openai/gpt-4o:extended', 'openai/o1', 'openai/o1-mini', 'openai/o1-mini-2024-09-12', 'openai/o1-preview', 'openai/o1-preview-2024-09-12', 'openai/o1-pro', 'openai/o3', 'openai/o3-mini', 'openai/o3-mini-high', 'openai/o4-mini', 'openai/o4-mini-high', 'opengvlab/internvl3-14b:free', 'opengvlab/internvl3-2b:free', 'openrouter/auto', 'perplexity/llama-3.1-sonar-large-128k-online', 'perplexity/llama-3.1-sonar-small-128k-online', 'perplexity/r1-1776', 'perplexity/sonar', 'perplexity/sonar-deep-research', 'perplexity/sonar-pro', 'perplexity/sonar-reasoning', 'perplexity/sonar-reasoning-pro', 'pygmalionai/mythalion-13b', 'qwen/qwen-2-72b-instruct', 'qwen/qwen-2.5-72b-instruct', 'qwen/qwen-2.5-72b-instruct:free', 'qwen/qwen-2.5-7b-instruct', 'qwen/qwen-2.5-7b-instruct:free', 'qwen/qwen-2.5-coder-32b-instruct', 'qwen/qwen-2.5-coder-32b-instruct:free', 'qwen/qwen-2.5-vl-72b-instruct', 'qwen/qwen-2.5-vl-7b-instruct', 'qwen/qwen-2.5-vl-7b-instruct:free', 'qwen/qwen-max', 'qwen/qwen-plus', 'qwen/qwen-turbo', 'qwen/qwen-vl-max', 'qwen/qwen-vl-plus', 'qwen/qwen2.5-coder-7b-instruct', 'qwen/qwen2.5-vl-32b-instruct', 'qwen/qwen2.5-vl-32b-instruct:free', 'qwen/qwen2.5-vl-3b-instruct:free', 'qwen/qwen2.5-vl-72b-instruct', 'qwen/qwen2.5-vl-72b-instruct:free', 'qwen/qwen3-0.6b-04-28:free', 'qwen/qwen3-1.7b:free', 'qwen/qwen3-14b', 'qwen/qwen3-14b:free', 'qwen/qwen3-235b-a22b', 'qwen/qwen3-235b-a22b:free', 'qwen/qwen3-30b-a3b', 'qwen/qwen3-30b-a3b:free', 'qwen/qwen3-32b', 'qwen/qwen3-32b:free', 'qwen/qwen3-4b:free', 'qwen/qwen3-8b', 'qwen/qwen3-8b:free', 'qwen/qwq-32b', 'qwen/qwq-32b-preview', 'qwen/qwq-32b-preview:free', 'qwen/qwq-32b:free', 'raifle/sorcererlm-8x22b', 'rekaai/reka-flash-3:free', 'sao10k/fimbulvetr-11b-v2', 'sao10k/l3-euryale-70b', 'sao10k/l3-lunaris-8b', 'sao10k/l3.1-euryale-70b', 'sao10k/l3.3-euryale-70b', 'scb10x/llama3.1-typhoon2-70b-instruct', 'scb10x/llama3.1-typhoon2-8b-instruct', 'shisa-ai/shisa-v2-llama3.3-70b:free', 'sophosympatheia/midnight-rose-70b', 'thedrummer/anubis-pro-105b-v1', 'thedrummer/rocinante-12b', 'thedrummer/skyfall-36b-v2', 'thedrummer/unslopnemo-12b', 'thudm/glm-4-32b', 'thudm/glm-4-32b:free', 'thudm/glm-4-9b:free', 'thudm/glm-z1-32b', 'thudm/glm-z1-32b:free', 'thudm/glm-z1-9b:free', 'thudm/glm-z1-rumination-32b', 'tngtech/deepseek-r1t-chimera:free', 'undi95/remm-slerp-l2-13b', 'undi95/toppy-m-7b', 'x-ai/grok-2-1212', 'x-ai/grok-2-vision-1212', 'x-ai/grok-3-beta', 'x-ai/grok-3-mini-beta', 'x-ai/grok-beta', 'x-ai/grok-vision-beta']"
+    },
+    "GPROChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "GPROChat is not working"
+    },
+    "GPTalk": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "GPTalk is not working"
+    },
+    "GeekGpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "GeekGpt is not working"
+    },
+    "Gemini": {
+      "status": "error",
+      "response_time": 4.4,
+      "error": "Missing \"__Secure-1PSID\" cookie"
+    },
+    "GeminiPro": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "GetGpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "GetGpt is not working"
+    },
+    "GigaChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: GigaChat Valid models: ['GigaChat:latest', 'GigaChat-Plus', 'GigaChat-Pro']"
+    },
+    "GithubCopilot": {
+      "status": "error",
+      "response_time": 4.66,
+      "error": "Response 404: Get token"
+    },
+    "GizAI": {
+      "status": "working",
+      "response_time": 0.91,
+      "sample": "Yes, I can respond. Hello!"
+    },
+    "GlhfChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "Glider": {
+      "status": "error",
+      "response_time": 0.02,
+      "error": "Model is not supported: gpt-3.5-turbo in: Glider Valid models: ['chat-llama-3-1-70b', 'chat-llama-3-1-8b', 'chat-llama-3-2-3b', 'deepseek-ai/DeepSeek-R1']"
+    },
+    "Goabror": {
+      "status": "error",
+      "response_time": 0.16,
+      "error": "Response 404: HTML content"
+    },
+    "Grok": {
+      "status": "error",
+      "response_time": 4.39,
+      "error": "Install \"nodriver\" and \"platformdirs\" package | pip install -U nodriver platformdirs"
+    },
+    "Groq": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "H2o": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "H2o is not working"
+    },
+    "HailuoAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Install \"nodriver\" and \"platformdirs\" package | pip install -U nodriver platformdirs"
+    },
+    "HarProvider": {
+      "status": "working",
+      "response_time": 3.16,
+      "sample": "Hello! Yes, I can respond to your message. How can I assist you today?"
+    },
+    "Hashnode": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Hashnode is not working"
+    },
+    "HuggingChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Install \"nodriver\" and \"platformdirs\" package | pip install -U nodriver platformdirs"
+    },
+    "HuggingFace": {
+      "status": "error",
+      "response_time": 1.84,
+      "error": "Response 401: Invalid username or password."
+    },
+    "HuggingFaceAPI": {
+      "status": "error",
+      "response_time": 0.83,
+      "error": "Response 401: Invalid username or password."
+    },
+    "HuggingFaceInference": {
+      "status": "error",
+      "response_time": 0.21,
+      "error": "Response 401: Invalid username or password."
+    },
+    "HuggingFaceMedia": {
+      "status": "error",
+      "response_time": 0.21,
+      "error": "Response 401: Invalid username or password."
+    },
+    "HuggingSpace": {
+      "status": "invalid_response",
+      "response_time": 0.0,
+      "error": "Empty or invalid response"
+    },
+    "ImageLabs": {
+      "status": "working",
+      "response_time": 7.2,
+      "sample": "\n<!-- generated images start -->\n[![Hello, can you respond to this simple test message?](https://por..."
+    },
+    "IterListProvider": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "IterListProvider is not working"
+    },
+    "Jmuz": {
+      "status": "error",
+      "response_time": 0.58,
+      "error": "Failed to perform, curl: (35) BoringSSL: error:10000410:SSL routines:OPENSSL_internal:SSLV3_ALERT_HANDSHAKE_FAILURE. See https://curl.se/libcurl/c/libcurl-errors.html first for more details."
+    },
+    "Koala": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Koala is not working"
+    },
+    "LMArenaProvider": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "LMArenaProvider is not working"
+    },
+    "LambdaChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: LambdaChat Valid models: ['Qwen/Qwen2.5-72B-Instruct', 'meta-llama/Llama-3.3-70B-Instruct', 'CohereForAI/c4ai-command-r-plus-08-2024', 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B', 'Qwen/QwQ-32B', 'nvidia/Llama-3.1-Nemotron-70B-Instruct-HF', 'Qwen/Qwen2.5-Coder-32B-Instruct', 'meta-llama/Llama-3.2-11B-Vision-Instruct', 'mistralai/Mistral-Nemo-Instruct-2407', 'microsoft/Phi-3.5-mini-instruct', 'black-forest-labs/FLUX.1-dev', 'black-forest-labs/FLUX.1-schnell']"
+    },
+    "Liaobots": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Liaobots Valid models: ['claude-3-5-sonnet-20241022', 'claude-3-5-sonnet-20241022-t', 'claude-3-7-sonnet-20250219', 'claude-3-7-sonnet-20250219-t', 'claude-3-7-sonnet-20250219-thinking', 'claude-3-opus-20240229', 'claude-3-sonnet-20240229', 'deepseek-r1', 'deepseek-r1-distill-llama-70b', 'deepseek-v3', 'gemini-2.0-flash', 'gemini-2.0-flash-thinking-exp', 'gemini-2.0-pro-exp', 'gpt-4o-2024-08-06', 'gpt-4o-mini-2024-07-18', 'gpt-4o-mini-free', 'grok-3', 'grok-3-r1', 'o3-mini']"
+    },
+    "Local": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Install \"gpt4all\" package | pip install -U g4f[local]"
+    },
+    "Lockchat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Lockchat is not working"
+    },
+    "MagickPen": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "MagickPen is not working"
+    },
+    "MarkItDown": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "MarkItDown is not working"
+    },
+    "MetaAI": {
+      "status": "error",
+      "response_time": 1.29,
+      "error": "Expecting value: line 1 column 1 (char 0)"
+    },
+    "MetaAIAccount": {
+      "status": "invalid_response",
+      "response_time": 5.38,
+      "error": "Empty or invalid response"
+    },
+    "MicrosoftDesigner": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "No .har file found"
+    },
+    "Microsoft_Phi_4": {
+      "status": "error",
+      "response_time": 0.75,
+      "error": "Response 500: {\"error\":null}"
+    },
+    "MiniMax": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "MyShell": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "MyShell is not working"
+    },
+    "Myshell": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Myshell is not working"
+    },
+    "OIVSCode": {
+      "status": "error",
+      "response_time": 0.02,
+      "error": "Model is not supported: gpt-3.5-turbo in: OIVSCode Valid models: ['gpt-4o-mini-2024-07-18', 'gpt-4o-mini', 'deepseek-ai/DeepSeek-V3']"
+    },
+    "Ollama": {
+      "status": "error",
+      "response_time": 4.08,
+      "error": "HTTPConnectionPool(host='localhost', port=11434): Max retries exceeded with url: /api/tags (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001ADC37035F0>: Failed to establish a new connection: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение'))"
+    },
+    "Opchatgpts": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Opchatgpts is not working"
+    },
+    "OpenAssistant": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "OpenAssistant is not working"
+    },
+    "OpenRouter": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "OpenaiAPI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "OpenaiAccount": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "No .har file found"
+    },
+    "OpenaiChat": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "No .har file found"
+    },
+    "OpenaiTemplate": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "OpenaiTemplate is not working"
+    },
+    "PerplexityApi": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "PerplexityLabs": {
+      "status": "error",
+      "response_time": 25.26,
+      "error": "Unknown error"
+    },
+    "Phind": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Phind is not working"
+    },
+    "Pi": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Install \"nodriver\" and \"platformdirs\" package | pip install -U nodriver platformdirs"
+    },
+    "Pizzagpt": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Pizzagpt is not working"
+    },
+    "Poe": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Poe is not working"
+    },
+    "PollinationsAI": {
+      "status": "working",
+      "response_time": 0.73,
+      "sample": "Hello! Yes, I can respond to your message. How can I assist you today?"
+    },
+    "PollinationsImage": {
+      "status": "working",
+      "response_time": 2.95,
+      "sample": "\n<!-- generated images start -->\n[![Hello%2C+can+you+respond+to+this+simple+test+message%3F](https:/..."
+    },
+    "Prodia": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Prodia is not working"
+    },
+    "Qwen_QVQ_72B": {
+      "status": "error",
+      "response_time": 0.31,
+      "error": "Response 503: HTML content"
+    },
+    "Qwen_Qwen_2_5": {
+      "status": "working",
+      "response_time": 1.95,
+      "sample": "Hello! Yes, I can respond to your message. How can I assist you today?"
+    },
+    "Qwen_Qwen_2_5M": {
+      "status": "working",
+      "response_time": 2.21,
+      "sample": "Hello! Yes, I can respond to your test message. How can I assist you today?"
+    },
+    "Qwen_Qwen_2_5_Max": {
+      "status": "invalid_response",
+      "response_time": 1.27,
+      "error": "Empty or invalid response"
+    },
+    "Qwen_Qwen_2_72B": {
+      "status": "working",
+      "response_time": 3.79,
+      "sample": "Yes, I can respond to your test message. How can I assist you today?"
+    },
+    "Qwen_Qwen_3": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Qwen_Qwen_3 Valid models: {'qwen3-8b', 'qwen3-0.6b', 'qwen3-235b-a22b', 'qwen3-1.7b', 'qwen3-30b-a3b', 'qwen3-14b', 'qwen3-32b', 'qwen3-4b'}"
+    },
+    "Raycast": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Raycast is not working"
+    },
+    "Reka": {
+      "status": "error",
+      "response_time": 4.36,
+      "error": "No cookies found for space.reka.ai"
+    },
+    "Replicate": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Replicate Valid models: ['meta/meta-llama-3-70b-instruct']"
+    },
+    "ReplicateHome": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "ReplicateHome is not working"
+    },
+    "RetryProvider": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "RetryProvider is not working"
+    },
+    "RobocodersAPI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "RobocodersAPI is not working"
+    },
+    "RubiksAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: RubiksAI Valid models: ['gpt-4o-mini', 'gpt-4o', 'o1-mini', 'claude-3.5-sonnet', 'grok-beta', 'gemini-1.5-pro', 'nova-pro', 'llama-3.1-70b-versatile']"
+    },
+    "StabilityAI_SD35Large": {
+      "status": "error",
+      "response_time": 4.29,
+      "error": "GPU token limit exceeded: data: null\n"
+    },
+    "TeachAnything": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: TeachAnything Valid models: ['gemini-1.5-pro', 'gemini-1.5-flash']"
+    },
+    "Theb": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Theb is not working"
+    },
+    "ThebApi": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    },
+    "TypeGPT": {
+      "status": "error",
+      "response_time": 0.7,
+      "error": "Model is not supported: gpt-3.5-turbo in: TypeGPT Valid models: ['DeepResearch', 'gpt-4o-mini', 'deepseek-r1', 'deepseek-v3', 'uncensored-r1', 'chatgpt-4o-latest']"
+    },
+    "Upstage": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Upstage is not working"
+    },
+    "V50": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "V50 is not working"
+    },
+    "Vitalentum": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Vitalentum is not working"
+    },
+    "Voodoohop_Flux1Schnell": {
+      "status": "error",
+      "response_time": 0.28,
+      "error": "Response 503: HTML content"
+    },
+    "Websim": {
+      "status": "working",
+      "response_time": 0.39,
+      "sample": "Hello! I am responding to your simple test message."
+    },
+    "Wewordle": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Wewordle is not working"
+    },
+    "WhiteRabbitNeo": {
+      "status": "error",
+      "response_time": 4.61,
+      "error": "Response 404: The page could not be found\n\nNOT_FOUND\n\narn1::dd2n7-1746735320729-d4e1cae74f5d"
+    },
+    "Wuguokai": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Wuguokai is not working"
+    },
+    "Ylokh": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Ylokh is not working"
+    },
+    "You": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: You Valid models: ['gpt-4o-mini', 'gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo', 'grok-2', 'claude-3.5-sonnet', 'claude-3.5-haiku', 'claude-3-opus', 'claude-3-sonnet', 'claude-3-haiku', 'llama-3.3-70b', 'llama-3.1-70b', 'llama-3', 'gemini-1-5-flash', 'gemini-1-5-pro', 'databricks-dbrx-instruct', 'command-r', 'command-r-plus', 'dolphin-2.5', 'agent', 'dall-e']"
+    },
+    "Yqcloud": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Model is not supported: gpt-3.5-turbo in: Yqcloud Valid models: ['gpt-4']"
+    },
+    "gTTS": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "gTTS is not working"
+    },
+    "xAI": {
+      "status": "error",
+      "response_time": 0.0,
+      "error": "Add a \"api_key\""
+    }
+  },
+  "image_providers": {},
+  "timestamp": "2025-05-08 23:11:40"
+}

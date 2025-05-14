@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Assistant</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="chat-window">
+    <div id="chat-log"></div>
+    <button id="activate-btn">🎤 Говорить</button>
+  </div>
+
+  <script>
+    document.getElementById("activate-btn").onclick = async () => {
+      const btn = document.getElementById("activate-btn");
+      btn.disabled = true;
+      btn.textContent = "🎤 Обработка...";
+
+      const res = await fetch("/listen", { method: "POST" });
+      const data = await res.json();
+
+      const log = document.getElementById("chat-log");
+      data.history.forEach(entry => {
+        const div = document.createElement("div");
+        div.className = entry.role;
+        div.textContent = `${entry.role === 'user' ? 'Вы' : 'Study'}: ${entry.message}`;
+        log.appendChild(div);
+      });
+
+      if (data.audio) {
+        const audio = new Audio(data.audio);
+        audio.play();
+      }
+
+      btn.textContent = "🎤 Говорить";
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>

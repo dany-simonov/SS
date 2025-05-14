@@ -83,18 +83,12 @@ def add_user():
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
 
-
 @main_bp.route('/')
 def index():
     return redirect(url_for('main.landing'))
 
 @main_bp.route('/landing')
 def landing():
-    print("========================================================")
-    print("========================================================")
-    print(current_app.config["BASE_DIR"])
-    print("========================================================")
-    print("========================================================")
     return render_template('landing.html')
 
 @main_bp.route('/textbook')
@@ -105,10 +99,14 @@ def textbook():
 def show_tasks():
     return render_template('tasks.html', tasks=TASKS)
 
-@main_bp.route('/task_view')
-def task_view():
-    task_title = request.args.get('title')
-    return render_template('task_view.html', task_title=task_title)
+@main_bp.route('/tasks/<int:task_id>')
+def task_view(task_id):
+    # ищем задачу во всех уровнях сложности
+    for lvl in TASKS.values():
+        for t in lvl:
+            if t['id'] == task_id:
+                return render_template('task_view.html', task=t)
+    abort(404)
 
 @main_bp.route('/support', methods=['GET'])
 def support():
@@ -125,6 +123,9 @@ def execute_code():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
+@main_bp.route('/user-agreement', methods=['GET'])
+def user_agreement():
+    return render_template('user_agreement.html')
 
 ai_chat_bp = Blueprint('ai_chat', __name__)
 
