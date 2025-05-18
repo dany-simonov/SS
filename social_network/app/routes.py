@@ -1,15 +1,13 @@
-import traceback
-from threading import Thread
+from os import abort
 import sqlalchemy as sa
 from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template, current_app, Flask
 from flask_login import login_required, current_user, login_user, logout_user
 from flask_wtf import form
-from social_network.app import db, login_manager, mail
+from social_network.app import db, login_manager
 from social_network.app.ai_chat import handle_ai_chat
 from social_network.app.forms import LoginForm, RegistrationForm, EditProfileForm
 from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
-from flask_mail import Message, Mail
 from .sendemail import send_email
 
 
