@@ -111,11 +111,6 @@ def task_view(task_id):
 def support():
     return render_template('support.html')
 
-quizzes_bp = Blueprint('quizzes_bp', __name__)
-@quizzes_bp.route('/choose')
-def choose():
-    return render_template('quiz.html')
-
 @main_bp.route('/execute-code', methods=['POST'])
 def execute_code():
     code = request.json.get('code')
