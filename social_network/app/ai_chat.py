@@ -28,7 +28,8 @@ g4f.check_version = False
 
 def handle_ai_chat(request):
     data = request.get_json()
-    user_message   = data.get('message')
+    history        = data.get('history', [])
+    user_message   = history[-1]['content'] if history else ''
     generation_type = data.get('type', 'text')
     selected_model  = data.get('model', text_providers[0].__name__)
     tone         = data.get('tone', 'friendly')
@@ -44,7 +45,7 @@ def handle_ai_chat(request):
         f"Длина ответа ≤{max_length} слов. "
         f"Язык: {'English' if language=='en' else 'Русский'}.\n"
         f"Креативность ответа: {'temperature'} из 1.\n"
-        "- Представляться как StudySphere\n"
+        "- Представляться как StudySphere но только в 1 сообщение\n"
         "- Помогать с учебными вопросами\n"
         "- Объяснять простым языком\n"
         "- Давать практические советы\n"
@@ -61,12 +62,12 @@ def handle_ai_chat(request):
             user_message = "Пожалуйста, отвечай на русском: " + user_message
 
         try:
+            msgs = [{"role":"system","content":system_prompt}]
+            for item in history:
+                msgs.append({"role": item['role'], "content": item['content']})
             response = g4f.ChatCompletion.create(
                 model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user",   "content": user_message}
-                ],
+                messages=msgs,
                 provider=provider,
                 temperature=temperature,
                 timeout=120

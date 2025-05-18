@@ -4,6 +4,9 @@ function toggleSettings() {
   panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
 }
 
+const chatHistory = [];
+const MAX_HISTORY = 20;
+
 // Основной блок, выполняемый после загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
     // Переключение списка провайдеров: текстовые ↔ картинные
@@ -141,6 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         chatMsgs.appendChild(wrapper);
         chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        chatHistory.push({
+            role: who === 'ai' ? 'assistant' : 'user',
+            content: raw
+        });
+        if (chatHistory.length > MAX_HISTORY) chatHistory.shift();
     }
     
     window.__addMessage = addMessage;
@@ -179,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
-            message: text,
+            history: chatHistory,
             model: selectedModel,
             type: genType ? genType.value : 'text',
             tone: tone,
@@ -196,7 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ? (data.message || 'Ошибка AI')
             : data.response;
         addMessage(aiText, 'ai');
-        // <-- тут нужно всегда вызывать автосохранение
         if (localStorage.getItem('ss_ai_chat_autosave') === 'true') {
             window.saveChatHistory();
         }

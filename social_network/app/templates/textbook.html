@@ -4,172 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Учебник Python</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            color: #2c3e50;
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            background: #ffffff;
-            padding: 1.5rem;
-            border-bottom: 2px solid #eaecef;
-            margin-bottom: 2rem;
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: #34679d;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        nav a:hover {
-            background: #f0f8ff;
-            text-decoration: underline;
-        }
-
-        .chapter {
-            margin: 3rem 0;
-            padding: 2rem;
-            border-left: 5px solid;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .chapter:hover {
-            transform: translateX(10px);
-        }
-        .chapter-links {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-
-        .chapter-links a {
-            white-space: nowrap;
-        }
-        .chapter0 { border-color: #89CFF0; background: #e3f2fd; }
-        .chapter1 { border-color: #90EE90; background: #d4edda; }
-        .chapter2 { border-color: #F08080; background: #ffebee; }
-        .chapter3 { border-color: #FFD700; background: #fff3cd; }
-        .chapter4 { border-color: #FFB6C1; background: #fff5f5; }
-        .chapter5 { border-color: #D3D3D3; background: #f8f9fa; }
-        .chapter6 { border-color: #DDA0DD; background: #f3e0f7; }
-        .chapter7 { border-color: #FFA07A; background: #ffeccf; }
-
-        pre {
-            background: #2d2d2d;
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-
-        code {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9em;
-        }
-
-        .accent {
-            color: #FF4500;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #34679d;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: 0.3s;
-            font-weight: bold;
-        }
-
-        .back-to-top:hover {
-            background: #1a3c6b;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                justify-content: center;
-                padding: 1rem;
-            }
-            
-            .chapter {
-                padding: 1.5rem;
-            }
-        }
-
-        .note {
-            background: #fff3cd;
-            padding: 1rem;
-            border-radius: 6px;
-            margin: 1rem 0;
-        }
-
-        .warning {
-            background: #ffebee;
-            color: #c62828;
-            padding: 1rem;
-            border-left: 4px solid #ff5252;
-            margin: 1rem 0;
-        }
-
-        .data-types {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-
-        .data-types th, .data-types td {
-            border: 1px solid #dee2e6;
-            padding: 0.75rem;
-            text-align: left;
-        }
-
-        .task {
-            background: #e8f4ff;
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        .errors {
-            list-style: none;
-            padding-left: 1rem;
-        }
-
-        .errors li {
-            background: #ffeeba;
-            margin: 0.5rem 0;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/textbook.css') }}">
 </head>
 <body>
+      <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="{{ url_for('main.landing') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere">
+        <span class="logo-text">StudySphere</span>
+      </a>
+      <nav class="nav">
+        <a href="{{ url_for('ai_chat_bp.ai_chat') }}">Чат с ИИ</a>
+        <a href="{{ url_for('main.textbook') }}">Учебник</a>
+        <a href="{{ url_for('main.show_tasks') }}" class="active">Задачи</a>
+        <a href="{{ url_for('quizzes_bp.choose') }}">Квизы</a>
+        <a href="{{ url_for('main.support') }}">Поддержка</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="{{ url_for('main.register') }}" class="btn-auth">Регистрация</a>
+        <a href="{{ url_for('main.login') }}" class="btn-auth">Вход</a>
+      </div>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
     <nav>
         <div class="chapter-links">
             <a href="#chapter0">0. Ввод и вывод</a>
@@ -1565,8 +1423,19 @@ print(f"Средний возраст друзей: {average_age:.1f} лет")
     <p>А теперь пойдем решать задачи, с которыми вам поможет разобраться наш ИИ-ассистент.</p>
 </div>
     </main>
-
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="back-to-top">↑ Наверх</button>
+      <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="StudySphere" class="footer-logo">
+        <span class="logo-text" style="margin-left:0.5rem;">StudySphere</span>
+        <p style="margin-top:0.5rem;">© 2025 StudySphere. Все права защищены.</p>
+      </div>
+      <div class="footer-right">
+        <a href="{{ url_for('main.user_agreement') }}">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
