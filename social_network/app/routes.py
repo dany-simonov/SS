@@ -114,7 +114,7 @@ def support():
 quizzes_bp = Blueprint('quizzes_bp', __name__)
 @quizzes_bp.route('/choose')
 def choose():
-    return render_template('choose_quiz.html')
+    return render_template('quiz.html')
 
 @main_bp.route('/execute-code', methods=['POST'])
 def execute_code():
