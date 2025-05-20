@@ -1,17 +1,19 @@
 import json
 import random
 import os
-from flask import render_template, request, session, jsonify
+from flask import Blueprint, render_template, request, session, jsonify
 
 QUESTIONS_PATH = os.path.join(os.path.dirname(__file__), 'questions.json')
 with open(QUESTIONS_PATH, encoding='utf-8') as f:
     QUIZZES = json.load(f)
+    
+quizzes_bp = Blueprint('quizzes_bp', __name__, url_prefix='/quizzes')
 
 def init_quiz_routes(bp):
     @bp.route('/choose', methods=['GET'])
     def choose():
         return render_template('quizzes.html')
-
+    
     @bp.route('/start', methods=['POST'])
     def start():
         topic = request.form.get('topic')
@@ -39,3 +41,6 @@ def init_quiz_routes(bp):
     @bp.route('/results', methods=['GET'])
     def results():
         return render_template('results.html')
+
+# Подключаем маршруты прямо при инициализации
+init_quiz_routes(quizzes_bp)
