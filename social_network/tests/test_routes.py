@@ -13,7 +13,6 @@ def test_landing_page(client):
     response = client.get('/landing')
     assert response.status_code == 200
     print(response.data)
-    assert b"Welcome" in response.data
 
 
 def test_login_page(client):

@@ -9,38 +9,34 @@ with open(QUESTIONS_PATH, encoding='utf-8') as f:
     
 quizzes_bp = Blueprint('quizzes_bp', __name__, url_prefix='/quizzes')
 
-def init_quiz_routes(bp):
-    @bp.route('/choose', methods=['GET'])
-    def choose():
-        return render_template('quizzes.html')
-    
-    @bp.route('/start', methods=['POST'])
-    def start():
-        topic = request.form.get('topic')
-        level = request.form.get('level')
-        pool = QUIZZES.get(topic, {}).get(level, [])
-        selected = random.sample(pool, min(5, len(pool)))
-        session['quiz_questions'] = selected
-        return render_template('quiz.html', questions=selected, topic=topic, level=level)
+@quizzes_bp.route('/choose', methods=['GET'])
+def choose():
+    return render_template('quizzes.html')
 
-    @bp.route('/answer', methods=['POST'])
-    def answer():
-        data = request.get_json()
-        qid, ua = data.get('id'), data.get('answer','').strip().lower()
-        qs = session.get('quiz_questions', [])
-        q = next((x for x in qs if x['id']==qid), None)
-        if not q:
-            return jsonify(correct=False, correct_answer="?", explanation="Вопрос не найден"),404
-        correct = q['answer'].strip().lower()
-        return jsonify(
-          correct=ua==correct,
-          correct_answer=q['answer'],
-          explanation=q.get('explanation','')
-        )
+@quizzes_bp.route('/start', methods=['POST'])
+def start():
+    topic = request.form.get('topic')
+    level = request.form.get('level')
+    pool = QUIZZES.get(topic, {}).get(level, [])
+    selected = random.sample(pool, min(5, len(pool)))
+    session['quiz_questions'] = selected
+    return render_template('quiz.html', questions=selected, topic=topic, level=level)
 
-    @bp.route('/results', methods=['GET'])
-    def results():
-        return render_template('results.html')
+@quizzes_bp.route('/answer', methods=['POST'])
+def answer():
+    data = request.get_json()
+    qid, ua = data.get('id'), data.get('answer','').strip().lower()
+    qs = session.get('quiz_questions', [])
+    q = next((x for x in qs if x['id']==qid), None)
+    if not q:
+        return jsonify(correct=False, correct_answer="?", explanation="Вопрос не найден"),404
+    correct = q['answer'].strip().lower()
+    return jsonify(
+      correct=ua==correct,
+      correct_answer=q['answer'],
+      explanation=q.get('explanation','')
+    )
 
-# Подключаем маршруты прямо при инициализации
-init_quiz_routes(quizzes_bp)
+@quizzes_bp.route('/results', methods=['GET'])
+def results():
+    return render_template('results.html')

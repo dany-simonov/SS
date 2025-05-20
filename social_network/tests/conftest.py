@@ -42,11 +42,6 @@ def client(app):
 def runner(app):
     return app.test_cli_runner()
 
-@pytest.fixture
-def form():
-    """Создает экземпляр формы для тестирования."""
-    return EditProfileForm()
-
 
 @pytest.fixture
 def new_user(app):

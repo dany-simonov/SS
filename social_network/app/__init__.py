@@ -11,9 +11,9 @@ migrate = Migrate()
 mail = Mail()
 
 
-def create_app():
+def create_app(conf='social_network.app.instance.config'):
     app = Flask(__name__)
-    app.config.from_object('social_network.app.instance.config')
+    app.config.from_object(conf)
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
@@ -28,5 +28,7 @@ def create_app():
     from social_network.app.script import import_tasks
     app.register_blueprint(import_tasks)
 
+    from social_network.app.quizzes_bp import quizzes_bp
+    app.register_blueprint(quizzes_bp)
 
     return app
