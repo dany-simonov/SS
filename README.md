@@ -88,21 +88,21 @@ The **StudySphere** platform integrates many neural networks through the **g4f**
 
 ### 📝 Providers for text generation:
 
-* 'PollinationsAI' — creative generation, including with visual context
-* 'Qwen_Qwen_2_5M' - is a lightweight Chinese model optimized for speed
-* Websim - is a fast and versatile provider
-* 'Free2GPT' - is an open access alternative to GPT—3.5
-* 'Qwen_Qwen_2_5' - is the second version of Qwen with improved logic
+* `PollinationsAI` — creative generation, including with visual context
+* `Qwen_Qwen_2_5M` - is a lightweight Chinese model optimized for speed
+* `Websim` - is a fast and versatile provider
+* `Free2GPT` - is an open access alternative to GPT—3.5
+* `Qwen_Qwen_2_5` - is the second version of Qwen with improved logic
 * `ChatGLM` - is a GLM—based model suitable for learning and responding
 * `GizAI` - is a new alternative with a natural communication style
-* `Qwen_Qwen_2_72B' — advanced version of Qwen (72B parameters)
+* `Qwen_Qwen_2_72B` — advanced version of Qwen (72B parameters)
 * `AnyProvider` — router between available models
-* 'FreeGpt' - is a free analog of GPT, with a fast response
+* `FreeGpt` - is a free analog of GPT, with a fast response
 
 ### 🎨 Image generation providers:
 
-* 'ImageLabs' - is an advanced image generator with a variety of styles
-* 'BlackForestLabs_Flux1Dev' — high-quality generation from Flux1Dev
+* `ImageLabs` - is an advanced image generator with a variety of styles
+* `BlackForestLabs_Flux1Dev` — high-quality generation from Flux1Dev
 * `PollinationsImage` — generation of visual content based on the description
 
 The neural network is selected in the user interface when working with chats and the visualizer. You can choose a model for each task, including creative generation, educational answers, images.        
