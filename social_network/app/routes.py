@@ -1,4 +1,3 @@
-from os import abort
 import sqlalchemy as sa
 from flask import Blueprint, request, redirect, url_for, jsonify, flash, render_template, current_app, Flask
 from flask_login import login_required, current_user, login_user, logout_user
@@ -9,7 +8,6 @@ from social_network.app.forms import LoginForm, RegistrationForm, EditProfileFor
 from social_network.app.models import User
 from social_network.app.tasks_data import TASKS
 from .sendemail import send_email
-from flask import Blueprint, render_template
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -109,16 +107,16 @@ def task_view(task_id):
 def support():
     return render_template('support.html')
 
-@main_bp.route('/execute-code', methods=['POST'])
-def execute_code():
-    code = request.json.get('code')
-    try:
-        local_dict = {}
-        exec(code, {"__builtins__": __builtins__}, local_dict)
-        output = local_dict.get('result', 'Код выполнен успешно')
-        return jsonify({'success': True, 'output': output})
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)})
+# @main_bp.route('/execute-code', methods=['POST'])
+# def execute_code():
+#     code = request.json.get('code')
+#     try:
+#         local_dict = {}
+#         exec(code, {"__builtins__": __builtins__}, local_dict)
+#         output = local_dict.get('result', 'Код выполнен успешно')
+#         return jsonify({'success': True, 'output': output})
+#     except Exception as e:
+#         return jsonify({'success': False, 'error': str(e)})
 
 @main_bp.route('/user-agreement', methods=['GET'])
 def user_agreement():
