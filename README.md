@@ -73,7 +73,7 @@ Seamless header/footer across all modules. Desktop and mobile friendly.
 - **AI Integration**: g4f
 - **Text-to-Speech**: Offline/Online TTS
 - **Database**: SQLite
-- **Security**: Flask-Login, CSRF protection
+- **Security**: Flask-Login
 
 ---
 
