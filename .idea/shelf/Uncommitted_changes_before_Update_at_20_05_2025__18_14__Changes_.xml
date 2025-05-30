@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_05_2025,_18_14_[Changes]" date="1747754073154" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_05_2025,_18_14_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20.05.2025, 18:14 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="social_network/app/instance/app.db" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

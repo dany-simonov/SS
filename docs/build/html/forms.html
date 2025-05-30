@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>forms &#8212; документация StudySphere 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=e35015f7"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="init" href="init.html" />
+    <link rel="prev" title="ai_chat_bp" href="ai_chat_bp.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-social_network.app.forms">
+<span id="forms"></span><h1>forms<a class="headerlink" href="#module-social_network.app.forms" title="Ссылка на этот заголовок">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">social_network.app.forms.</span></span><span class="sig-name descname"><span class="pre">EditProfileForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/forms.html#EditProfileForm"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.forms.EditProfileForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для редактирования профиля пользователя.</p>
+<dl class="simple">
+<dt>Поля:</dt><dd><p>username (StringField): Имя пользователя. Обязательное поле.
+email (StringField): Электронная почта. Обязательное поле, должно быть валидным email-адресом.
+first_name (StringField): Имя. Необязательное поле.
+last_name (StringField): Фамилия. Необязательное поле.
+age (StringField): Возраст. Необязательное поле.
+submit (SubmitField): Кнопка отправки формы.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm.age">
+<span class="sig-name descname"><span class="pre">age</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Age',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.Optional</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.EditProfileForm.age" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm.email">
+<span class="sig-name descname"><span class="pre">email</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Email',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;wtforms.validators.Email</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.EditProfileForm.email" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('First</span> <span class="pre">Name',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.Optional</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.EditProfileForm.first_name" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Last</span> <span class="pre">Name',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.Optional</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.EditProfileForm.last_name" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(SubmitField,</span> <span class="pre">('Save</span> <span class="pre">Changes',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.EditProfileForm.submit" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.EditProfileForm.username">
+<span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Username',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.EditProfileForm.username" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="social_network.app.forms.LoginForm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">social_network.app.forms.</span></span><span class="sig-name descname"><span class="pre">LoginForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/forms.html#LoginForm"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.forms.LoginForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для авторизации пользователя.</p>
+<dl class="simple">
+<dt>Поля:</dt><dd><p>username (StringField): Имя пользователя. Обязательное поле.
+password (PasswordField): Пароль. Обязательное поле.
+remember_me (BooleanField): Флажок «Запомнить меня».
+submit (SubmitField): Кнопка отправки формы.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.LoginForm.password">
+<span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(PasswordField,</span> <span class="pre">('Password',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.LoginForm.password" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.LoginForm.remember_me">
+<span class="sig-name descname"><span class="pre">remember_me</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(BooleanField,</span> <span class="pre">('Remember</span> <span class="pre">Me',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.LoginForm.remember_me" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.LoginForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(SubmitField,</span> <span class="pre">('Sign</span> <span class="pre">In',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.LoginForm.submit" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.LoginForm.username">
+<span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Username',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.LoginForm.username" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="social_network.app.forms.RegistrationForm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">social_network.app.forms.</span></span><span class="sig-name descname"><span class="pre">RegistrationForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/forms.html#RegistrationForm"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.forms.RegistrationForm" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Форма для регистрации нового пользователя.</p>
+<dl class="simple">
+<dt>Поля:</dt><dd><p>username (StringField): Имя пользователя. Обязательное поле, длина от 4 до 80 символов.
+email (StringField): Электронная почта. Обязательное поле, должно быть валидным email-адресом.
+password (PasswordField): Пароль. Обязательное поле, минимальная длина — 6 символов.
+submit (SubmitField): Кнопка отправки формы.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.RegistrationForm.email">
+<span class="sig-name descname"><span class="pre">email</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Email',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;wtforms.validators.Email</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.RegistrationForm.email" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.RegistrationForm.password">
+<span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(PasswordField,</span> <span class="pre">('Password',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;wtforms.validators.Length</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.RegistrationForm.password" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.RegistrationForm.submit">
+<span class="sig-name descname"><span class="pre">submit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(SubmitField,</span> <span class="pre">('Register',),</span> <span class="pre">{})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.RegistrationForm.submit" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.forms.RegistrationForm.username">
+<span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnboundField(StringField,</span> <span class="pre">('Username',),</span> <span class="pre">{'validators':</span> <span class="pre">[&lt;wtforms.validators.DataRequired</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;wtforms.validators.Length</span> <span class="pre">object&gt;]})&gt;</span></em><a class="headerlink" href="#social_network.app.forms.RegistrationForm.username" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">StudySphere</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ai_chat.html">ai_cjat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_chat_bp.html">ai_chat_bp</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.forms.EditProfileForm"><code class="docutils literal notranslate"><span class="pre">EditProfileForm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.forms.LoginForm"><code class="docutils literal notranslate"><span class="pre">LoginForm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.forms.RegistrationForm"><code class="docutils literal notranslate"><span class="pre">RegistrationForm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="init.html">init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quizzes_bp.html">quizzes_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sendemail.html">sendemail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_g4f_providers.html">test_g4f_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_working_providers_quality.html">test_working_providers_quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="ai_chat_bp.html" title="предыдущая глава">ai_chat_bp</a></li>
+      <li>Next: <a href="init.html" title="следующая глава">init</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Simonov Daniil Voloshina Alice.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/forms.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

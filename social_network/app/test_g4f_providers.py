@@ -5,7 +5,26 @@ from datetime import datetime
 import json
 
 class G4FProviderTester:
+    """
+    Класс для тестирования провайдеров текста и изображений из библиотеки g4f.
+
+    Этот класс позволяет:
+    - Получить список всех доступных провайдеров.
+    - Протестировать каждый провайдер на работоспособность.
+    - Сохранить результаты тестирования в JSON-файл.
+    - Вывести сводку по результатам тестирования.
+
+    Атрибуты:
+        results (dict): Словарь с результатами тестирования для текстовых и графических провайдеров.
+        test_message (str): Тестовое сообщение для проверки текстовых провайдеров.
+        test_image_prompt (str): Тестовый запрос для проверки графических провайдеров.
+    """
     def __init__(self):
+        """
+        Инициализирует экземпляр класса G4FProviderTester.
+
+        Создает структуру для хранения результатов тестирования и задает тестовые сообщения.
+        """
         self.results = {
             "text_providers": {},
             "image_providers": {},
@@ -15,8 +34,12 @@ class G4FProviderTester:
         self.test_image_prompt = "A beautiful sunset over mountains"
         
     def get_all_providers(self):
-        """Get all available providers from g4f"""
-        # Get all provider classes from g4f.Provider
+        """
+        Получает все доступные провайдеры из g4f.
+
+        Returns:
+            list: Список классов провайдеров, доступных в g4f.Provider.
+        """
         all_providers = []
         for attr_name in dir(g4f.Provider):
             attr = getattr(g4f.Provider, attr_name)
@@ -26,7 +49,15 @@ class G4FProviderTester:
         return all_providers
     
     def test_text_provider(self, provider):
-        """Test a single text provider"""
+        """
+        Тестирует текстового провайдера.
+
+        Args:
+            provider: Класс провайдера для тестирования.
+
+        Returns:
+            dict: Результат тестирования, включая статус, время отклика и ответ.
+        """
         provider_name = provider.__name__
         print(f"Testing text provider: {provider_name}")
         
@@ -63,7 +94,15 @@ class G4FProviderTester:
             }
     
     def test_image_provider(self, provider):
-        """Test a single image provider"""
+        """
+        Тестирует графического провайдера.
+
+        Args:
+            provider: Класс провайдера для тестирования.
+
+        Returns:
+            dict: Результат тестирования, включая статус, время отклика и URL изображения.
+        """
         provider_name = provider.__name__
         print(f"Testing image provider: {provider_name}")
         
@@ -104,7 +143,15 @@ class G4FProviderTester:
             }
     
     def run_tests(self):
-        """Run tests on all providers"""
+        """
+        Запускает тестирование всех доступных провайдеров.
+
+        Проходит по всем провайдерам, определяет их тип (текст или изображение),
+        тестирует их и сохраняет результаты.
+
+        Returns:
+            dict: Итоговые результаты тестирования.
+        """
         providers = self.get_all_providers()
         
         # Test each provider
@@ -133,13 +180,22 @@ class G4FProviderTester:
         return self.results
     
     def save_results(self, filename="g4f_provider_test_results.json"):
-        """Save test results to a JSON file"""
+        """
+        Сохраняет результаты тестирования в JSON-файл.
+
+        Args:
+            filename (str): Имя файла для сохранения результатов.
+        """
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(self.results, f, indent=2, ensure_ascii=False)
         print(f"Results saved to {filename}")
         
     def print_summary(self):
-        """Print a summary of the test results"""
+        """
+        Выводит сводку результатов тестирования.
+
+        Показывает количество рабочих и нерабочих провайдеров для текста и изображений.
+        """
         working_text = sum(1 for p, r in self.results["text_providers"].items() if r["status"] == "working")
         total_text = len(self.results["text_providers"])
         
@@ -163,7 +219,12 @@ class G4FProviderTester:
 
 
 def main():
-    """Main function to run the tests"""
+    """
+    Основная функция для запуска тестирования провайдеров.
+
+    Создает экземпляр G4FProviderTester, запускает тесты, выводит сводку
+    и сохраняет результаты в файл.
+    """
     print("Starting G4F provider tests...")
     tester = G4FProviderTester()
     tester.run_tests()

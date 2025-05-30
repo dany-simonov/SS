@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>quizzes_bp &#8212; документация StudySphere 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=e35015f7"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="routes" href="routes.html" />
+    <link rel="prev" title="models" href="models.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-social_network.app.quizzes_bp">
+<span id="quizzes-bp"></span><h1>quizzes_bp<a class="headerlink" href="#module-social_network.app.quizzes_bp" title="Ссылка на этот заголовок">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="social_network.app.quizzes_bp.answer">
+<span class="sig-prename descclassname"><span class="pre">social_network.app.quizzes_bp.</span></span><span class="sig-name descname"><span class="pre">answer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/quizzes_bp.html#answer"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.quizzes_bp.answer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет ответ пользователя на вопрос викторины.</p>
+<p>Функция получает ID вопроса и ответ пользователя из JSON-запроса, проверяет его на соответствие правильному ответу
+и возвращает результат в формате JSON.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>JSON-ответ с информацией о правильности ответа, правильном ответе и объяснении (если есть).
+Если вопрос не найден, возвращается ошибка 404.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="social_network.app.quizzes_bp.choose">
+<span class="sig-prename descclassname"><span class="pre">social_network.app.quizzes_bp.</span></span><span class="sig-name descname"><span class="pre">choose</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/quizzes_bp.html#choose"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.quizzes_bp.choose" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отображает страницу выбора викторины.</p>
+<p>Эта функция отвечает за рендеринг шаблона <cite>quizzes.html</cite>, где пользователь может выбрать тему и уровень сложности.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="social_network.app.quizzes_bp.results">
+<span class="sig-prename descclassname"><span class="pre">social_network.app.quizzes_bp.</span></span><span class="sig-name descname"><span class="pre">results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/quizzes_bp.html#results"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.quizzes_bp.results" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отображает страницу с результатами викторины.</p>
+<p>Эта функция отвечает за рендеринг шаблона <cite>results.html</cite>, где пользователь может увидеть свои результаты.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="social_network.app.quizzes_bp.start">
+<span class="sig-prename descclassname"><span class="pre">social_network.app.quizzes_bp.</span></span><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/quizzes_bp.html#start"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.quizzes_bp.start" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Начинает викторину на основе выбранных параметров.</p>
+<p>Функция получает тему и уровень сложности из POST-запроса, выбирает случайные вопросы из пула вопросов
+и сохраняет их в сессии пользователя. Затем рендерится шаблон <cite>quiz.html</cite> с выбранными вопросами.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>HTML-страница с вопросами для викторины.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">StudySphere</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ai_chat.html">ai_cjat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_chat_bp.html">ai_chat_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="init.html">init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">quizzes_bp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.quizzes_bp.answer"><code class="docutils literal notranslate"><span class="pre">answer()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.quizzes_bp.choose"><code class="docutils literal notranslate"><span class="pre">choose()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.quizzes_bp.results"><code class="docutils literal notranslate"><span class="pre">results()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.quizzes_bp.start"><code class="docutils literal notranslate"><span class="pre">start()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sendemail.html">sendemail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_g4f_providers.html">test_g4f_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_working_providers_quality.html">test_working_providers_quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="models.html" title="предыдущая глава">models</a></li>
+      <li>Next: <a href="routes.html" title="следующая глава">routes</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Simonov Daniil Voloshina Alice.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/quizzes_bp.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

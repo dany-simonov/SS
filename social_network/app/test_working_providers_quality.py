@@ -7,7 +7,28 @@ import os
 from tabulate import tabulate
 
 class WorkingProvidersTester:
+    """
+    Класс для тестирования работоспособности и качества ответов провайдеров из библиотеки g4f.
+
+    Этот класс позволяет:
+    - Протестировать список заранее отсортированных провайдеров.
+    - Оценить качество их ответов по заданным критериям.
+    - Сохранить результаты тестирования в файлы для дальнейшего анализа.
+
+    Атрибуты:
+        results (dict): Словарь с результатами тестирования для каждого провайдера.
+        timestamp (str): Временная метка начала тестирования.
+        working_providers (list): Список работающих провайдеров, отсортированный по скорости.
+        test_question (str): Сложный вопрос для тестирования провайдеров.
+        quality_criteria (list): Критерии оценки качества ответа.
+    """
     def __init__(self):
+        """
+        Инициализирует экземпляр класса WorkingProvidersTester.
+
+        Создает структуру для хранения результатов тестирования, задает тестовый вопрос,
+        критерии оценки и создает директории для сохранения результатов.
+        """
         self.results = {
             "providers": {},
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -53,8 +74,13 @@ class WorkingProvidersTester:
         
     def evaluate_response_quality(self, response):
         """
-        Автоматическая оценка качества ответа по заданным критериям
-        Возвращает словарь с оценками и общим баллом
+        Автоматическая оценка качества ответа по заданным критериям.
+
+        Args:
+            response (str): Ответ провайдера, который нужно оценить.
+
+        Returns:
+            dict: Словарь с оценками по каждому критерию и общим баллом.
         """
         evaluation = {}
         
@@ -90,7 +116,16 @@ class WorkingProvidersTester:
         return evaluation
     
     def test_provider(self, provider_info):
-        """Тестирование одного провайдера"""
+        """
+        Тестирует одного провайдера.
+
+        Args:
+            provider_info (dict): Информация о провайдере, включая имя и класс.
+
+        Returns:
+            dict: Результат тестирования, включая статус, время отклика, длину ответа,
+                  оценку качества и сам ответ.
+        """
         provider_name = provider_info["name"]
         provider = provider_info["provider"]
         
@@ -135,7 +170,15 @@ class WorkingProvidersTester:
             }
     
     def run_tests(self):
-        """Запуск тестов для всех работающих провайдеров"""
+        """
+        Запускает тесты для всех работающих провайдеров.
+
+        Для каждого провайдера из списка `working_providers` вызывается метод `test_provider`,
+        результаты сохраняются в словарь `results`.
+
+        Returns:
+            dict: Словарь с результатами тестирования для каждого провайдера.
+        """
         for provider_info in self.working_providers:
             provider_name = provider_info["name"]
             result = self.test_provider(provider_info)
@@ -144,7 +187,12 @@ class WorkingProvidersTester:
         return self.results
     
     def save_results(self):
-        """Сохранение результатов в JSON файл"""
+        """
+        Сохраняет результаты тестирования в JSON-файл и отдельные файлы с ответами провайдеров.
+
+        - Основные результаты сохраняются в файл `quality_test_results.json`.
+        - Ответы каждого работающего провайдера сохраняются в отдельные текстовые файлы.
+        """
         filename = "working_providers_analysis/quality_test_results.json"
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(self.results, f, indent=2, ensure_ascii=False)
@@ -159,7 +207,21 @@ class WorkingProvidersTester:
                 print(f"Ответ провайдера {provider_name} сохранен в {response_file}")
     
     def generate_report(self):
-        """Генерация отчета в формате Markdown"""
+        """
+        Генерирует отчет о тестировании провайдеров в формате Markdown.
+
+        Отчет включает:
+        - Дату тестирования.
+        - Тестовый вопрос.
+        - Сводную таблицу с результатами (статус, время отклика, длина ответа, общий балл).
+        - Детальную оценку по каждому критерию качества.
+        - Рекомендации по выбору оптимальных провайдеров.
+
+        Результат сохраняется в файл `quality_report.md`.
+
+        Returns:
+            str: Сгенерированный отчет в формате Markdown.
+        """
         report = "# Отчет о тестировании провайдеров g4f\n\n"
         report += f"Дата тестирования: {self.results['timestamp']}\n\n"
         report += f"## Тестовый вопрос\n\n{self.test_question}\n\n"
@@ -260,7 +322,12 @@ class WorkingProvidersTester:
 
 
 def main():
-    """Основная функция для запуска тестирования"""
+    """
+    Основная функция для запуска тестирования провайдеров.
+
+    Создает экземпляр класса `WorkingProvidersTester`, запускает тестирование,
+    сохраняет результаты и генерирует отчет.
+    """
     print("Начинаем тестирование качества ответов работающих провайдеров g4f...")
     tester = WorkingProvidersTester()
     tester.run_tests()

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>social_network.app.ai_chat &#8212; документация StudySphere 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Исходный код social_network.app.ai_chat</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">jsonify</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">g4f</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">social_network.app.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_image_url</span>
+
+<span class="c1"># Текстовые провайдеры</span>
+<span class="n">text_providers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">PollinationsAI</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">Qwen_Qwen_2_5M</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">Websim</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">Free2GPT</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">Qwen_Qwen_2_5</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">ChatGLM</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">GizAI</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">Qwen_Qwen_2_72B</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">AnyProvider</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">FreeGpt</span>
+<span class="p">]</span>
+
+<span class="c1"># Провайдеры для генерации изображений</span>
+<span class="n">image_providers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">ImageLabs</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">BlackForestLabs_Flux1Dev</span><span class="p">,</span>
+    <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">PollinationsImage</span>
+<span class="p">]</span>
+
+<span class="n">g4f</span><span class="o">.</span><span class="n">debug</span><span class="o">.</span><span class="n">logging</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">g4f</span><span class="o">.</span><span class="n">check_version</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="handle_ai_chat">
+<a class="viewcode-back" href="../../../ai_chat.html#social_network.app.ai_chat.handle_ai_chat">[документация]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">handle_ai_chat</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Обрабатывает запросы для AI-чатов и генерации текста или изображений.</span>
+
+<span class="sd">    Функция принимает JSON-запрос, содержащий историю диалога, параметры генерации</span>
+<span class="sd">    и тип запроса (текст или изображение). В зависимости от типа запроса, вызывается</span>
+<span class="sd">    соответствующий провайдер для генерации ответа.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (flask.Request): HTTP-запрос, содержащий JSON с данными для обработки.</span>
+<span class="sd">            Ожидаемые поля:</span>
+<span class="sd">            - history (list): История диалога (массив объектов с полями &quot;role&quot; и &quot;content&quot;).</span>
+<span class="sd">            - type (str): Тип генерации (&#39;text&#39; или &#39;image&#39;).</span>
+<span class="sd">            - model (str): Название модели или провайдера (опционально).</span>
+<span class="sd">            - tone (str): Тон ответа (например, &#39;friendly&#39;).</span>
+<span class="sd">            - maxLength (int): Максимальная длина ответа в словах.</span>
+<span class="sd">            - temperature (float): Уровень креативности (от 0 до 1).</span>
+<span class="sd">            - language (str): Язык ответа (&#39;ru&#39; или &#39;en&#39;).</span>
+<span class="sd">            - image_provider (str): Провайдер для генерации изображений (опционально).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        flask.Response: JSON-ответ с результатами обработки запроса.</span>
+<span class="sd">            Возможные поля:</span>
+<span class="sd">            - success (bool): Успех операции.</span>
+<span class="sd">            - response (str): Сгенерированный текст или HTML-код изображения.</span>
+<span class="sd">            - provider (str): Имя использованного провайдера.</span>
+<span class="sd">            - message (str): Сообщение об ошибке (если успех = False).</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        Exception: Если все провайдеры недоступны или возникла ошибка при обработке.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">history</span>        <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;history&#39;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">user_message</span>   <span class="o">=</span> <span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;content&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="n">history</span> <span class="k">else</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">generation_type</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span>
+    <span class="n">selected_model</span>  <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">text_providers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">tone</span>         <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tone&#39;</span><span class="p">,</span> <span class="s1">&#39;friendly&#39;</span><span class="p">)</span>
+    <span class="n">max_length</span>   <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;maxLength&#39;</span><span class="p">,</span> <span class="s1">&#39;500&#39;</span><span class="p">)</span>
+    <span class="n">temperature</span>  <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">language</span>     <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;ru&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user_message</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Пожалуйста, введите сообщение.&#39;</span><span class="p">})</span>
+
+    <span class="n">system_prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Ты — AI-ассистент StudySphere. Тон в котором надо разговаривать: </span><span class="si">{</span><span class="n">tone</span><span class="si">}</span><span class="s2">. &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Длина ответа ≤</span><span class="si">{</span><span class="n">max_length</span><span class="si">}</span><span class="s2"> слов. &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Язык: </span><span class="si">{</span><span class="s1">&#39;English&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">language</span><span class="o">==</span><span class="s1">&#39;en&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Русский&#39;</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;Креативность ответа: </span><span class="si">{</span><span class="n">temperature</span><span class="si">}</span><span class="s2"> из 1.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Представляться как StudySphere но только в 1 сообщение</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Помогать с учебными вопросами</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Объяснять простым языком</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Давать практические советы</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Поддерживать мотивацию</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Общаться в дружелюбном тоне</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Быть полезным и информативным&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">generation_type</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">:</span>
+        <span class="n">provider_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">p</span><span class="o">.</span><span class="vm">__name__</span><span class="p">:</span> <span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">text_providers</span><span class="p">}</span>
+        <span class="n">provider</span> <span class="o">=</span> <span class="n">provider_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">selected_model</span><span class="p">,</span> <span class="n">text_providers</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">provider</span> <span class="o">==</span> <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">FreeGpt</span><span class="p">:</span>
+            <span class="n">user_message</span> <span class="o">=</span> <span class="s2">&quot;Пожалуйста, отвечай на русском: &quot;</span> <span class="o">+</span> <span class="n">user_message</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">msgs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span><span class="s2">&quot;system&quot;</span><span class="p">,</span><span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="n">system_prompt</span><span class="p">}]</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">history</span><span class="p">:</span>
+                <span class="n">msgs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">],</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]})</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">g4f</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="n">msgs</span><span class="p">,</span>
+                <span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s1">&#39;response&#39;</span><span class="p">:</span> <span class="n">response</span><span class="p">,</span>
+                <span class="s1">&#39;provider&#39;</span><span class="p">:</span> <span class="n">provider</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">})</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="c1"># fallback</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">text_providers</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">provider</span><span class="p">:</span> <span class="k">continue</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="n">user_message</span>
+                    <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="o">.</span><span class="n">FreeGpt</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Пожалуйста, отвечай на русском: &quot;</span> <span class="o">+</span> <span class="n">user_message</span>
+                    <span class="n">resp</span> <span class="o">=</span> <span class="n">g4f</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+                        <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+                            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">system_prompt</span><span class="p">},</span>
+                            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>   <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">msg</span><span class="p">}</span>
+                        <span class="p">],</span>
+                        <span class="n">provider</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                        <span class="n">temperature</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+                        <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span>
+                    <span class="p">)</span>
+                    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+                        <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s1">&#39;response&#39;</span><span class="p">:</span> <span class="n">resp</span><span class="p">,</span>
+                        <span class="s1">&#39;provider&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">})</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">continue</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Все текстовые провайдеры недоступны.&#39;</span><span class="p">})</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">chosen</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;image_provider&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">chosen</span><span class="p">:</span>
+            <span class="n">image_providers</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="p">,</span> <span class="n">chosen</span><span class="p">,</span> <span class="n">image_providers</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">image_providers</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">raw</span> <span class="o">=</span> <span class="n">g4f</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;image-model&quot;</span><span class="p">,</span>
+                    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">user_message</span><span class="p">}],</span>
+                    <span class="n">provider</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+                    <span class="n">timeout</span><span class="o">=</span><span class="mi">120</span>
+                <span class="p">)</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">extract_image_url</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
+                    <span class="n">html</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="s1">&#39;&lt;div class=&quot;image-container&quot;&gt;&#39;</span>
+                        <span class="sa">f</span><span class="s1">&#39;&lt;img src=&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot; style=&quot;max-width:100%;border-radius:5px&quot;&gt;&#39;</span>
+                        <span class="s1">&#39;&lt;/div&gt;&#39;</span>
+                    <span class="p">)</span>
+                    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+                        <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s1">&#39;response&#39;</span><span class="p">:</span> <span class="n">html</span><span class="p">,</span>
+                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;provider&#39;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="p">})</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">continue</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;Не удалось сгенерировать изображение.&#39;</span><span class="p">})</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">StudySphere</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_chat.html">ai_cjat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_chat_bp.html">ai_chat_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../forms.html">forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../init.html">init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quizzes_bp.html">quizzes_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sendemail.html">sendemail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_g4f_providers.html">test_g4f_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_working_providers_quality.html">test_working_providers_quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Код модуля</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Simonov Daniil Voloshina Alice.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="447aa251-24d9-4ef3-97d8-c08d83e48f9f" name="Changes" comment="tests">
+      <change afterPath="$PROJECT_DIR$/docs/source/ai_chat.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/ai_chat_bp.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/forms.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/init.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/models.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/quizzes_bp.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/routes.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/sendemail.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/test_g4f_providers.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/test_working_providers_quality.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/source/utils.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/ai_chat.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/ai_chat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/ai_chat_bp.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/ai_chat_bp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/quizzes_bp.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/quizzes_bp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/sendemail.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/sendemail.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/test_g4f_providers.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/test_g4f_providers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/test_working_providers_quality.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/test_working_providers_quality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/social_network/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/social_network/app/utils.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SQL File" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="account" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vcNZbEfnDVUUVyRHCL0DZEtJv4" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python tests.Python tests for test_forms.test_invalid_email.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_login_form_valid.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_missing_required_fields.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_optional_fields.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_registration_form_invalid.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_registration_form_invalid_email.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_registration_form_invalid_password.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_registration_form_user_is_already_registered.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_registration_form_valid.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_forms.test_valid_form.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_models.test_course_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_models.test_course_default_values.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_models.test_set_password.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_models.test_user_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_models.test_user_messages_relationship.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_home_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_landing_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_login_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_login_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_logout_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_register_page.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_routes.test_register_user.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.init_db.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/alice/PycharmProjects/SS/social_network/tests&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;IntelliLang.Configuration&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/social_network/tests" />
+      <recent name="$PROJECT_DIR$/social_network/app/static" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/source" />
+      <recent name="$PROJECT_DIR$/social_network/app/instance" />
+      <recent name="$PROJECT_DIR$/social_network/app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_routes.test_logout_user">
+    <configuration name="Python tests for test_routes.test_login_page" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/social_network/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_routes.test_login_page&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_routes.test_login_user" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/social_network/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_routes.test_login_user&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_routes.test_logout_user" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/social_network/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_routes.test_logout_user&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_routes.test_register_page" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/social_network/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_routes.test_register_page&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_routes.test_register_user" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="SS" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/social_network/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_routes.test_register_user&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_routes.test_logout_user" />
+        <item itemvalue="Python tests.Python tests for test_routes.test_login_user" />
+        <item itemvalue="Python tests.Python tests for test_routes.test_register_user" />
+        <item itemvalue="Python tests.Python tests for test_routes.test_register_page" />
+        <item itemvalue="Python tests.Python tests for test_routes.test_login_page" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="447aa251-24d9-4ef3-97d8-c08d83e48f9f" name="Changes" comment="" />
+      <created>1744440459205</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744440459205</updated>
+      <workItem from="1744440460256" duration="9000" />
+      <workItem from="1744479509446" duration="3707000" />
+      <workItem from="1744724450781" duration="37826000" />
+      <workItem from="1744970875304" duration="7764000" />
+      <workItem from="1744992597009" duration="1034000" />
+      <workItem from="1744993636379" duration="956000" />
+      <workItem from="1744994604566" duration="11892000" />
+      <workItem from="1745330287697" duration="16295000" />
+      <workItem from="1745827913650" duration="7622000" />
+      <workItem from="1745854944251" duration="1460000" />
+      <workItem from="1746002730296" duration="599000" />
+      <workItem from="1746457627038" duration="54549000" />
+      <workItem from="1747149640585" duration="570000" />
+      <workItem from="1747154165675" duration="41000" />
+      <workItem from="1747155648558" duration="241000" />
+      <workItem from="1747155937845" duration="71000" />
+      <workItem from="1747156186271" duration="1910000" />
+      <workItem from="1747209997949" duration="5913000" />
+      <workItem from="1747562181361" duration="1491000" />
+      <workItem from="1747563689002" duration="23076000" />
+      <workItem from="1748626773295" duration="113000" />
+      <workItem from="1748627824830" duration="7682000" />
+    </task>
+    <task id="LOCAL-00001" summary="requirements">
+      <option name="closed" value="true" />
+      <created>1744893961104</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744893961104</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init, models, app">
+      <option name="closed" value="true" />
+      <created>1744894015243</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744894015243</updated>
+    </task>
+    <task id="LOCAL-00003" summary="изменения">
+      <option name="closed" value="true" />
+      <created>1744894583948</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1744894583948</updated>
+    </task>
+    <task id="LOCAL-00004" summary=".">
+      <option name="closed" value="true" />
+      <created>1744895412481</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1744895412481</updated>
+    </task>
+    <task id="LOCAL-00005" summary=".">
+      <option name="closed" value="true" />
+      <created>1744895535642</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1744895535642</updated>
+    </task>
+    <task id="LOCAL-00006" summary="delete external files">
+      <option name="closed" value="true" />
+      <created>1744898340099</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744898340099</updated>
+    </task>
+    <task id="LOCAL-00007" summary="структура">
+      <option name="closed" value="true" />
+      <created>1744915078673</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1744915078673</updated>
+    </task>
+    <task id="LOCAL-00008" summary="tasks">
+      <option name="closed" value="true" />
+      <created>1744970308921</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744970308921</updated>
+    </task>
+    <task id="LOCAL-00009" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1744971543122</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744971543122</updated>
+    </task>
+    <task id="LOCAL-00010" summary="gitignore2">
+      <option name="closed" value="true" />
+      <created>1744971976842</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744971976842</updated>
+    </task>
+    <task id="LOCAL-00011" summary=".">
+      <option name="closed" value="true" />
+      <created>1744973593710</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744973593710</updated>
+    </task>
+    <task id="LOCAL-00012" summary="login">
+      <option name="closed" value="true" />
+      <created>1744974518234</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744974518234</updated>
+    </task>
+    <task id="LOCAL-00013" summary="requirements">
+      <option name="closed" value="true" />
+      <created>1744975724903</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744975724903</updated>
+    </task>
+    <task id="LOCAL-00014" summary=".">
+      <option name="closed" value="true" />
+      <created>1744977138688</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744977138688</updated>
+    </task>
+    <task id="LOCAL-00015" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1744992685565</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744992685565</updated>
+    </task>
+    <task id="LOCAL-00016" summary=".">
+      <option name="closed" value="true" />
+      <created>1744992829930</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744992829930</updated>
+    </task>
+    <task id="LOCAL-00017" summary=".">
+      <option name="closed" value="true" />
+      <created>1745000964968</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1745000964968</updated>
+    </task>
+    <task id="LOCAL-00018" summary="migrations">
+      <option name="closed" value="true" />
+      <created>1745001272817</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1745001272817</updated>
+    </task>
+    <task id="LOCAL-00019" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1745001856428</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1745001856428</updated>
+    </task>
+    <task id="LOCAL-00020" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1745328669448</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1745328669448</updated>
+    </task>
+    <task id="LOCAL-00021" summary="gitignore">
+      <option name="closed" value="true" />
+      <created>1745329658992</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1745329658992</updated>
+    </task>
+    <task id="LOCAL-00022" summary="registration">
+      <option name="closed" value="true" />
+      <created>1745332057381</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1745332057381</updated>
+    </task>
+    <task id="LOCAL-00023" summary="add email">
+      <option name="closed" value="true" />
+      <created>1745332712413</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745332712413</updated>
+    </task>
+    <task id="LOCAL-00024" summary="db">
+      <option name="closed" value="true" />
+      <created>1745338222458</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1745338222458</updated>
+    </task>
+    <task id="LOCAL-00025" summary="db">
+      <option name="closed" value="true" />
+      <created>1745338317419</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745338317419</updated>
+    </task>
+    <task id="LOCAL-00026" summary="registration">
+      <option name="closed" value="true" />
+      <created>1745419877095</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1745419877095</updated>
+    </task>
+    <task id="LOCAL-00027" summary="redirect">
+      <option name="closed" value="true" />
+      <created>1745420983343</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1745420983343</updated>
+    </task>
+    <task id="LOCAL-00028" summary="resolved conflicts">
+      <option name="closed" value="true" />
+      <created>1746462519028</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1746462519028</updated>
+    </task>
+    <task id="LOCAL-00029" summary=" conflicts">
+      <option name="closed" value="true" />
+      <created>1746463228245</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1746463228245</updated>
+    </task>
+    <task id="LOCAL-00030" summary=" .">
+      <option name="closed" value="true" />
+      <created>1746550596530</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1746550596530</updated>
+    </task>
+    <task id="LOCAL-00031" summary=" profile edit form">
+      <option name="closed" value="true" />
+      <created>1746804201865</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1746804201865</updated>
+    </task>
+    <task id="LOCAL-00032" summary=" profile edit form 2">
+      <option name="closed" value="true" />
+      <created>1746804369386</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1746804369386</updated>
+    </task>
+    <task id="LOCAL-00033" summary="skript: add taks to bd">
+      <option name="closed" value="true" />
+      <created>1746808620270</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1746808620270</updated>
+    </task>
+    <task id="LOCAL-00034" summary="skript: add course name to bd">
+      <option name="closed" value="true" />
+      <created>1746810879653</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1746810879653</updated>
+    </task>
+    <task id="LOCAL-00035" summary="register email">
+      <option name="closed" value="true" />
+      <created>1747125906092</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1747125906092</updated>
+    </task>
+    <task id="LOCAL-00036" summary=".">
+      <option name="closed" value="true" />
+      <created>1747150175898</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1747150175898</updated>
+    </task>
+    <task id="LOCAL-00037" summary=".">
+      <option name="closed" value="true" />
+      <created>1747154199064</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1747154199064</updated>
+    </task>
+    <task id="LOCAL-00038" summary="changes">
+      <option name="closed" value="true" />
+      <created>1747232795195</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1747232795195</updated>
+    </task>
+    <task id="LOCAL-00039" summary="changes">
+      <option name="closed" value="true" />
+      <created>1747562289815</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1747562289815</updated>
+    </task>
+    <task id="LOCAL-00040" summary="tests">
+      <option name="closed" value="true" />
+      <created>1747755494291</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1747755494291</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init, models, app" />
+    <MESSAGE value="изменения" />
+    <MESSAGE value="delete external files" />
+    <MESSAGE value="структура" />
+    <MESSAGE value="tasks" />
+    <MESSAGE value="gitignore2" />
+    <MESSAGE value="login" />
+    <MESSAGE value="requirements" />
+    <MESSAGE value="migrations" />
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="add email" />
+    <MESSAGE value="db" />
+    <MESSAGE value="registration" />
+    <MESSAGE value="redirect" />
+    <MESSAGE value="resolved conflicts" />
+    <MESSAGE value=" conflicts" />
+    <MESSAGE value=" ." />
+    <MESSAGE value=" profile edit form" />
+    <MESSAGE value=" profile edit form 2" />
+    <MESSAGE value="skript: add taks to bd" />
+    <MESSAGE value="skript: add course name to bd" />
+    <MESSAGE value="register email" />
+    <MESSAGE value="." />
+    <MESSAGE value="changes" />
+    <MESSAGE value="tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="tests" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SS$.coverage" NAME=" Coverage Results" MODIFIED="1747755546223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_network/tests" />
+    <SUITE FILE_PATH="coverage/SS$init_db.coverage" NAME="init_db Coverage Results" MODIFIED="1746805619145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_network/scripts" />
+    <SUITE FILE_PATH="coverage/SS$app.coverage" NAME="app Coverage Results" MODIFIED="1747755339495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/social_network/app" />
+  </component>
+</project>

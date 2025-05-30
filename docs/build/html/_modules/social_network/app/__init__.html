@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>social_network.app.__init__ &#8212; документация StudySphere 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Исходный код social_network.app.__init__</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Этот модуль инициализирует и настраивает приложение Flask вместе с его расширениями.</span>
+
+<span class="sd">Он настраивает следующие компоненты:</span>
+<span class="sd">- SQLAlchemy для управления базой данных.</span>
+<span class="sd">- Flask-Migrate для обработки миграций базы данных.</span>
+<span class="sd">- Flask-Login для аутентификации пользователей.</span>
+<span class="sd">- Flask-Mail для отправки электронных писем.</span>
+<span class="sd">- Блюпринты для модульного разделения маршрутов.</span>
+
+<span class="sd">Функция `create_app` является основной точкой входа для инициализации приложения Flask.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_login</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoginManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_mail</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mail</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_sqlalchemy</span><span class="w"> </span><span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">flask_migrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">Migrate</span>
+
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Экземпляр SQLAlchemy для управления операциями с базой данных.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">login_manager</span> <span class="o">=</span> <span class="n">LoginManager</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Экземпляр LoginManager из Flask-Login для обработки аутентификации пользователей.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Экземпляр Flask-Migrate для управления миграциями схемы базы данных.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">mail</span> <span class="o">=</span> <span class="n">Mail</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Экземпляр Flask-Mail для отправки электронных писем.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="create_app">
+<a class="viewcode-back" href="../../../init.html#social_network.app.__init__.create_app">[документация]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_app</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="s1">&#39;social_network.app.instance.config&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Создает и настраивает новое приложение Flask.</span>
+
+<span class="sd">    Эта функция инициализирует приложение Flask, настраивает его с использованием предоставленной конфигурации</span>
+<span class="sd">    и регистрирует все необходимые расширения и блюпринты.</span>
+
+<span class="sd">    Аргументы:</span>
+<span class="sd">        conf (str): Путь к объекту конфигурации. По умолчанию &#39;social_network.app.instance.config&#39;.</span>
+
+<span class="sd">    Возвращает:</span>
+<span class="sd">        Flask: Полностью настроенное приложение Flask.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">migrate</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+    <span class="n">login_manager</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="n">mail</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">social_network.app.routes</span><span class="w"> </span><span class="kn">import</span> <span class="n">main_bp</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">main_bp</span><span class="p">)</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">social_network.app.ai_chat_bp</span><span class="w"> </span><span class="kn">import</span> <span class="n">ai_chat_bp</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">ai_chat_bp</span><span class="p">,</span> <span class="n">url_prefix</span><span class="o">=</span><span class="s1">&#39;/ai-chat&#39;</span><span class="p">)</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">social_network.app.script</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_tasks</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">import_tasks</span><span class="p">)</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">social_network.app.quizzes_bp</span><span class="w"> </span><span class="kn">import</span> <span class="n">quizzes_bp</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">quizzes_bp</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">app</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">StudySphere</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_chat.html">ai_cjat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_chat_bp.html">ai_chat_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../forms.html">forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../init.html">init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quizzes_bp.html">quizzes_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sendemail.html">sendemail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_g4f_providers.html">test_g4f_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_working_providers_quality.html">test_working_providers_quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Код модуля</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Simonov Daniil Voloshina Alice.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

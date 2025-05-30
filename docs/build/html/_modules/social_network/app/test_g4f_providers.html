@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>social_network.app.test_g4f_providers &#8212; документация StudySphere 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/alabaster.css?v=27fed22d" />
+    <script src="../../../_static/documentation_options.js?v=e35015f7"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Исходный код social_network.app.test_g4f_providers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">g4f</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<div class="viewcode-block" id="G4FProviderTester">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">G4FProviderTester</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Класс для тестирования провайдеров текста и изображений из библиотеки g4f.</span>
+
+<span class="sd">    Этот класс позволяет:</span>
+<span class="sd">    - Получить список всех доступных провайдеров.</span>
+<span class="sd">    - Протестировать каждый провайдер на работоспособность.</span>
+<span class="sd">    - Сохранить результаты тестирования в JSON-файл.</span>
+<span class="sd">    - Вывести сводку по результатам тестирования.</span>
+
+<span class="sd">    Атрибуты:</span>
+<span class="sd">        results (dict): Словарь с результатами тестирования для текстовых и графических провайдеров.</span>
+<span class="sd">        test_message (str): Тестовое сообщение для проверки текстовых провайдеров.</span>
+<span class="sd">        test_image_prompt (str): Тестовый запрос для проверки графических провайдеров.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Инициализирует экземпляр класса G4FProviderTester.</span>
+
+<span class="sd">        Создает структуру для хранения результатов тестирования и задает тестовые сообщения.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;text_providers&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;image_providers&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_message</span> <span class="o">=</span> <span class="s2">&quot;Hello, can you respond to this simple test message?&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_image_prompt</span> <span class="o">=</span> <span class="s2">&quot;A beautiful sunset over mountains&quot;</span>
+        
+<div class="viewcode-block" id="G4FProviderTester.get_all_providers">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester.get_all_providers">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_providers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Получает все доступные провайдеры из g4f.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: Список классов провайдеров, доступных в g4f.Provider.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_providers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="p">):</span>
+            <span class="n">attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g4f</span><span class="o">.</span><span class="n">Provider</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">)</span>
+            <span class="c1"># Check if it&#39;s a provider class (has working attribute)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="s1">&#39;working&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">attr_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">):</span>
+                <span class="n">all_providers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">all_providers</span></div>
+
+    
+<div class="viewcode-block" id="G4FProviderTester.test_text_provider">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester.test_text_provider">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_text_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Тестирует текстового провайдера.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            provider: Класс провайдера для тестирования.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Результат тестирования, включая статус, время отклика и ответ.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">provider_name</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Testing text provider: </span><span class="si">{</span><span class="n">provider_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">g4f</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_message</span><span class="p">}],</span>
+                <span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span>  <span class="c1"># Shorter timeout for testing</span>
+            <span class="p">)</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+            
+            <span class="c1"># Check if response is valid</span>
+            <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;working&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="k">else</span> <span class="n">response</span>
+                <span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid_response&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Empty or invalid response&quot;</span>
+                <span class="p">}</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="G4FProviderTester.test_image_provider">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester.test_image_provider">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_image_provider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">provider</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Тестирует графического провайдера.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            provider: Класс провайдера для тестирования.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Результат тестирования, включая статус, время отклика и URL изображения.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">provider_name</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Testing image provider: </span><span class="si">{</span><span class="n">provider_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">g4f</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="s2">&quot;image-model&quot;</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_image_prompt</span><span class="p">}],</span>
+                <span class="n">provider</span><span class="o">=</span><span class="n">provider</span><span class="p">,</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="mi">60</span>  <span class="c1"># Images may take longer</span>
+            <span class="p">)</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+            
+            <span class="c1"># For image providers, we expect a URL or base64 image data</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">social_network.app.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_image_url</span>
+            <span class="n">image_url</span> <span class="o">=</span> <span class="n">extract_image_url</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">image_url</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;working&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="s2">&quot;image_url&quot;</span><span class="p">:</span> <span class="n">image_url</span>
+                <span class="p">}</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;invalid_response&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="s2">&quot;Could not extract image URL&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;raw_response&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="p">}</span>
+                
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;response_time&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="G4FProviderTester.run_tests">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester.run_tests">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Запускает тестирование всех доступных провайдеров.</span>
+
+<span class="sd">        Проходит по всем провайдерам, определяет их тип (текст или изображение),</span>
+<span class="sd">        тестирует их и сохраняет результаты.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Итоговые результаты тестирования.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">providers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_all_providers</span><span class="p">()</span>
+        
+        <span class="c1"># Test each provider</span>
+        <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">providers</span><span class="p">:</span>
+            <span class="n">provider_name</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="vm">__name__</span>
+            
+            <span class="c1"># Skip abstract base classes or non-working providers</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="s1">&#39;working&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">provider_name</span> <span class="o">==</span> <span class="s1">&#39;BaseProvider&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+                
+            <span class="c1"># Check if it&#39;s an image provider</span>
+            <span class="n">is_image_provider</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">provider</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">attr_name</span> <span class="o">==</span> <span class="s1">&#39;supports_image_generation&#39;</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+                    <span class="n">is_image_provider</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">break</span>
+            
+            <span class="c1"># Test the provider</span>
+            <span class="k">if</span> <span class="n">is_image_provider</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_image_provider</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;image_providers&quot;</span><span class="p">][</span><span class="n">provider_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_text_provider</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;text_providers&quot;</span><span class="p">][</span><span class="n">provider_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span></div>
+
+    
+<div class="viewcode-block" id="G4FProviderTester.save_results">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester.save_results">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;g4f_provider_test_results.json&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Сохраняет результаты тестирования в JSON-файл.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename (str): Имя файла для сохранения результатов.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results saved to </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="G4FProviderTester.print_summary">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.G4FProviderTester.print_summary">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">print_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Выводит сводку результатов тестирования.</span>
+
+<span class="sd">        Показывает количество рабочих и нерабочих провайдеров для текста и изображений.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">working_text</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;text_providers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;working&quot;</span><span class="p">)</span>
+        <span class="n">total_text</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;text_providers&quot;</span><span class="p">])</span>
+        
+        <span class="n">working_image</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;image_providers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;working&quot;</span><span class="p">)</span>
+        <span class="n">total_image</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;image_providers&quot;</span><span class="p">])</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===== G4F PROVIDER TEST SUMMARY =====&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Text Providers: </span><span class="si">{</span><span class="n">working_text</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total_text</span><span class="si">}</span><span class="s2"> working&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image Providers: </span><span class="si">{</span><span class="n">working_image</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">total_image</span><span class="si">}</span><span class="s2"> working&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=====================================</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Working Text Providers:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">provider</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;text_providers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;working&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">provider</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;response_time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">s)&quot;</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Working Image Providers:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">provider</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="s2">&quot;image_providers&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;working&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">provider</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;response_time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">s)&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../../test_g4f_providers.html#social_network.app.test_g4f_providers.main">[документация]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Основная функция для запуска тестирования провайдеров.</span>
+
+<span class="sd">    Создает экземпляр G4FProviderTester, запускает тесты, выводит сводку</span>
+<span class="sd">    и сохраняет результаты в файл.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting G4F provider tests...&quot;</span><span class="p">)</span>
+    <span class="n">tester</span> <span class="o">=</span> <span class="n">G4FProviderTester</span><span class="p">()</span>
+    <span class="n">tester</span><span class="o">.</span><span class="n">run_tests</span><span class="p">()</span>
+    <span class="n">tester</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+    <span class="n">tester</span><span class="o">.</span><span class="n">save_results</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tests completed!&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">StudySphere</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_chat.html">ai_cjat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_chat_bp.html">ai_chat_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../forms.html">forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../init.html">init</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../models.html">models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quizzes_bp.html">quizzes_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sendemail.html">sendemail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_g4f_providers.html">test_g4f_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../test_working_providers_quality.html">test_working_providers_quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../utils.html">utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Код модуля</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Simonov Daniil Voloshina Alice.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

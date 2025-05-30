@@ -11,6 +11,15 @@ from .sendemail import send_email
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+    Загружает пользователя по его ID.
+
+    Args:
+        user_id (int): Уникальный идентификатор пользователя.
+
+    Returns:
+        User: Объект пользователя, если найден, иначе None.
+    """
     return User.query.get(int(user_id))
 
 
@@ -18,6 +27,15 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Обрабатывает страницу авторизации.
+
+    Если запрос POST и форма валидна, проверяет данные пользователя и выполняет вход.
+    В случае успеха перенаправляет на страницу аккаунта.
+
+    Returns:
+        HTML-страница: Страница авторизации или перенаправление на аккаунт.
+    """
     form = LoginForm()
     if form.validate_on_submit():
         print(form)
@@ -37,6 +55,12 @@ def login():
 
 @main_bp.route('/register', methods=['GET'])
 def register():
+    """
+    Отображает страницу регистрации.
+
+    Returns:
+        HTML-страница: Форма регистрации.
+    """
     form = RegistrationForm()
     if form.validate_on_submit():
         existing_user = User.query.filter_by(email=form.email.data).first()
@@ -48,6 +72,16 @@ def register():
 
 @main_bp.route('/register', methods=['POST'])
 def add_user():
+    """
+    Добавляет нового пользователя в базу данных.
+
+    Получает данные из формы, создает объект пользователя и сохраняет его в базе данных.
+    После успешной регистрации отправляет приветственное письмо.
+
+    Returns:
+        Перенаправление: На страницу входа при успехе.
+        JSON-ответ: Сообщение об ошибке при неудаче.
+    """
     # print(request.get_data())
     data = request.form
     print("================================================")
@@ -81,22 +115,55 @@ def add_user():
 
 @main_bp.route('/')
 def index():
+    """
+    Главная страница приложения.
+
+    Returns:
+        Перенаправление: На страницу лендинга.
+    """
     return redirect(url_for('main.landing'))
 
 @main_bp.route('/landing')
 def landing():
+    """
+    Отображает страницу лендинга.
+
+    Returns:
+        HTML-страница: Лендинг.
+    """
     return render_template('landing.html')
 
 @main_bp.route('/textbook')
 def textbook():
+    """
+    Отображает страницу учебника.
+
+    Returns:
+        HTML-страница: Учебник.
+    """
     return render_template('textbook.html')
 
 @main_bp.route('/tasks')
 def show_tasks():
+    """
+    Отображает список задач.
+
+    Returns:
+        HTML-страница: Список задач.
+    """
     return render_template('tasks.html', tasks=TASKS)
 
 @main_bp.route('/tasks/<int:task_id>')
 def task_view(task_id):
+    """
+    Отображает детали конкретной задачи.
+
+    Args:
+        task_id (int): Идентификатор задачи.
+
+    Returns:
+        HTML-страница: Детали задачи.
+    """
     # ищем задачу во всех уровнях сложности
     for lvl in TASKS.values():
         for t in lvl:
@@ -105,21 +172,23 @@ def task_view(task_id):
 
 @main_bp.route('/support', methods=['GET'])
 def support():
+    """
+    Отображает страницу поддержки.
+
+    Returns:
+        HTML-страница: Поддержка.
+    """
     return render_template('support.html')
 
-# @main_bp.route('/execute-code', methods=['POST'])
-# def execute_code():
-#     code = request.json.get('code')
-#     try:
-#         local_dict = {}
-#         exec(code, {"__builtins__": __builtins__}, local_dict)
-#         output = local_dict.get('result', 'Код выполнен успешно')
-#         return jsonify({'success': True, 'output': output})
-#     except Exception as e:
-#         return jsonify({'success': False, 'error': str(e)})
 
 @main_bp.route('/user-agreement', methods=['GET'])
 def user_agreement():
+    """
+    Отображает пользовательское соглашение.
+
+    Returns:
+        HTML-страница: Пользовательское соглашение.
+    """
     return render_template('user_agreement.html')
 
 ai_chat_bp = Blueprint('ai_chat', __name__)
@@ -127,6 +196,16 @@ ai_chat_bp = Blueprint('ai_chat', __name__)
 
 @ai_chat_bp.route('/ai_chat', methods=['GET', 'POST'])
 def ai_chat():
+    """
+    Обрабатывает страницу AI-чата.
+
+    Для GET-запросов отображает интерфейс чата.
+    Для POST-запросов вызывает функцию обработки запроса к AI.
+
+    Returns:
+        HTML-страница: Интерфейс чата.
+        JSON-ответ: Результаты обработки запроса.
+    """
     if request.method == 'POST':
         return handle_ai_chat(request)
     return render_template('ai_chat.html')
@@ -135,6 +214,14 @@ def ai_chat():
 @main_bp.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
+    """
+    Отображает и обновляет профиль пользователя.
+
+    Если форма валидна, обновляет данные пользователя в базе данных.
+
+    Returns:
+        HTML-страница: Профиль пользователя.
+    """
     print(current_user)
     form = EditProfileForm(obj=current_user)
 
@@ -152,10 +239,22 @@ def account():
 
 @main_bp.route('/logout')
 def logout():
+    """
+    Выполняет выход пользователя.
+
+    Returns:
+        Перенаправление: На главную страницу.
+    """
     logout_user()
     return redirect(url_for('main.index'))
 
 
 @main_bp.route('/my-courses')
 def my_courses():
+    """
+    Отображает страницу курсов пользователя.
+
+    Returns:
+        HTML-страница: Курсы пользователя.
+    """
     return render_template('courses.html', form=form)

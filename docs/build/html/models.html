@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>models &#8212; документация StudySphere 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=e35015f7"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=cd1d70c9"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="quizzes_bp" href="quizzes_bp.html" />
+    <link rel="prev" title="init" href="init.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-social_network.app.models">
+<span id="models"></span><h1>models<a class="headerlink" href="#module-social_network.app.models" title="Ссылка на этот заголовок">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="social_network.app.models.Courses">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">social_network.app.models.</span></span><span class="sig-name descname"><span class="pre">Courses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/models.html#Courses"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.models.Courses" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель курсов для образовательной платформы.</p>
+<dl class="simple">
+<dt>Поля:</dt><dd><p>id (Integer): Уникальный идентификатор курса (первичный ключ).
+course_name (String): Название курса. По умолчанию «_».
+difficulty (Integer): Сложность курса. Обязательное поле.
+title (String): Заголовок курса. Обязательное поле.
+description (Text): Описание курса. Обязательное поле.
+input_example (Text): Пример входных данных для курса. Обязательное поле.
+output_example (Text): Пример выходных данных для курса. Обязательное поле.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.course_name">
+<span class="sig-name descname"><span class="pre">course_name</span></span><a class="headerlink" href="#social_network.app.models.Courses.course_name" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#social_network.app.models.Courses.description" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.difficulty">
+<span class="sig-name descname"><span class="pre">difficulty</span></span><a class="headerlink" href="#social_network.app.models.Courses.difficulty" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#social_network.app.models.Courses.id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.input_example">
+<span class="sig-name descname"><span class="pre">input_example</span></span><a class="headerlink" href="#social_network.app.models.Courses.input_example" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.output_example">
+<span class="sig-name descname"><span class="pre">output_example</span></span><a class="headerlink" href="#social_network.app.models.Courses.output_example" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#social_network.app.models.Courses.query" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Предупреждение</p>
+<p>The query interface is considered legacy in SQLAlchemy. Prefer using
+<code class="docutils literal notranslate"><span class="pre">session.execute(select())</span></code> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Courses.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#social_network.app.models.Courses.title" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="social_network.app.models.Message">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">social_network.app.models.</span></span><span class="sig-name descname"><span class="pre">Message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/models.html#Message"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.models.Message" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель сообщений, отправленных пользователями.</p>
+<dl class="simple">
+<dt>Поля:</dt><dd><p>id (Integer): Уникальный идентификатор сообщения (первичный ключ).
+content (String): Текст сообщения. Обязательное поле.
+user_id (Integer): Идентификатор пользователя, отправившего сообщение. Связано с моделью User.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Message.content">
+<span class="sig-name descname"><span class="pre">content</span></span><a class="headerlink" href="#social_network.app.models.Message.content" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Message.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#social_network.app.models.Message.id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Message.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#social_network.app.models.Message.query" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Предупреждение</p>
+<p>The query interface is considered legacy in SQLAlchemy. Prefer using
+<code class="docutils literal notranslate"><span class="pre">session.execute(select())</span></code> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.Message.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#social_network.app.models.Message.user_id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="social_network.app.models.User">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">social_network.app.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/models.html#User"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.models.User" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Модель пользователя для системы аутентификации.</p>
+<dl class="simple">
+<dt>Поля:</dt><dd><p>id (Integer): Уникальный идентификатор пользователя (первичный ключ).
+username (String): Имя пользователя. Не уникальное, но обязательно для заполнения.
+email (String): Электронная почта пользователя. Уникальное поле, обязательно для заполнения.
+password_hash (String): Хэшированный пароль пользователя.
+messages (Relationship): Связь с моделью Message. Представляет сообщения, отправленные пользователем.
+first_name (String): Имя пользователя (необязательное поле).
+last_name (String): Фамилия пользователя (необязательное поле).
+age (Integer): Возраст пользователя (необязательное поле).</p>
+</dd>
+<dt>Методы:</dt><dd><p>set_password(password): Устанавливает хэшированный пароль для пользователя.
+check_password(password): Проверяет, совпадает ли переданный пароль с хэшированным паролем.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.age">
+<span class="sig-name descname"><span class="pre">age</span></span><a class="headerlink" href="#social_network.app.models.User.age" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="social_network.app.models.User.check_password">
+<span class="sig-name descname"><span class="pre">check_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/models.html#User.check_password"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.models.User.check_password" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет, совпадает ли переданный пароль с хэшированным паролем.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#social_network.app.models.User.email" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><a class="headerlink" href="#social_network.app.models.User.first_name" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#social_network.app.models.User.id" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><a class="headerlink" href="#social_network.app.models.User.last_name" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.messages">
+<span class="sig-name descname"><span class="pre">messages</span></span><a class="headerlink" href="#social_network.app.models.User.messages" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.password_hash">
+<span class="sig-name descname"><span class="pre">password_hash</span></span><a class="headerlink" href="#social_network.app.models.User.password_hash" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#social_network.app.models.User.query" title="Ссылка на это определение">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Предупреждение</p>
+<p>The query interface is considered legacy in SQLAlchemy. Prefer using
+<code class="docutils literal notranslate"><span class="pre">session.execute(select())</span></code> instead.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="social_network.app.models.User.set_password">
+<span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/social_network/app/models.html#User.set_password"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#social_network.app.models.User.set_password" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Устанавливает хэшированный пароль для пользователя.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="social_network.app.models.User.username">
+<span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#social_network.app.models.User.username" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">StudySphere</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ai_chat.html">ai_cjat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ai_chat_bp.html">ai_chat_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forms.html">forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="init.html">init</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.models.Courses"><code class="docutils literal notranslate"><span class="pre">Courses</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.models.Message"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#social_network.app.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quizzes_bp.html">quizzes_bp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sendemail.html">sendemail</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_g4f_providers.html">test_g4f_providers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_working_providers_quality.html">test_working_providers_quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="init.html" title="предыдущая глава">init</a></li>
+      <li>Next: <a href="quizzes_bp.html" title="следующая глава">quizzes_bp</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Simonov Daniil Voloshina Alice.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
