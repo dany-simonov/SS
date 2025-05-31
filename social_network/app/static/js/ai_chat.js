@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const language    = document.getElementById('language').value;
 
         // Отправка запроса на сервер
-        fetch('/ai-chat', {
+        fetch('/ai-chat/', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({
