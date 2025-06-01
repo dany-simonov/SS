@@ -1,11 +1,4 @@
-:root {
-  --primary-green: #008819;
-  --black: #000000;
-  --white: #ffffff;
-  --gray-light: #f7f7f7;
-  --gray-dark: #333333;
-  --font-sans: 'Inter', sans-serif;
-}
+:root {--primary-green: #008819;--black: #000000;--white: #ffffff;--gray-light: #f7f7f7;--gray-dark: #333333;--font-sans: 'Inter', sans-serif;}
 * { margin:0; padding:0; box-sizing:border-box; font-family:var(--font-sans); }
 body { background:var(--white); color:var(--black); }
 .container { width:90%; max-width:1200px; margin:0 auto; }
