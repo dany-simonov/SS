@@ -1,7 +1,31 @@
 // Открытие/закрытие панели настроек
-function toggleSettings() {
+function toggleSettings(e) {
   const panel = document.getElementById('settingsPanel');
-  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+  
+  // Если панель уже открыта, просто закрываем её
+  if (panel.style.display === 'block') {
+    panel.style.display = 'none';
+    return;
+  }
+  
+  // Открываем панель
+  panel.style.display = 'block';
+  
+  // Добавляем обработчик для закрытия при клике вне панели
+  const closeOnClickOutside = (event) => {
+    if (!panel.contains(event.target) && event.target.id !== 'settingsToggle') {
+      panel.style.display = 'none';
+      document.removeEventListener('click', closeOnClickOutside);
+    }
+  };
+  
+  // Добавляем обработчик с небольшой задержкой, чтобы избежать срабатывания на текущем клике
+  setTimeout(() => {
+    document.addEventListener('click', closeOnClickOutside);
+  }, 10);
+  
+  // Предотвращаем всплытие текущего события
+  if (e) e.stopPropagation();
 }
 
 const chatHistory = [];
