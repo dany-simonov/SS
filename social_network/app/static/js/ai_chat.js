@@ -104,18 +104,44 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
     }
 
-    // Простой парсер Markdown для форматирования сообщений
+// Расширенный парсер Markdown для форматирования сообщений
     function parseMarkdown(text) {
-        // code blocks ```
+        // Заголовки
+        text = text.replace(/^##### (.*$)/gm, '<h5>$1</h5>');
+        text = text.replace(/^#### (.*$)/gm, '<h4>$1</h4>');
+        text = text.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+        text = text.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+        text = text.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+        
+        // Блоки кода
         text = text.replace(/```([\s\S]+?)```/g, '<pre><code>$1</code></pre>');
-        // inline code `
+        
+        // Встроенный код
         text = text.replace(/`([^`]+?)`/g, '<code>$1</code>');
-        // bold **text**
+        
+        // Жирный текст
         text = text.replace(/\*\*([^*]+?)\*\*/g, '<strong>$1</strong>');
-        // italic *text*
+        
+        // Курсив
         text = text.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
-        // line breaks
+        
+        // Горизонтальная линия
+        text = text.replace(/^\s*---+\s*$/gm, '<hr>');
+        
+        // Маркированный список
+        text = text.replace(/^\s*[\*\-]\s+(.*)/gm, '<li>$1</li>');
+        text = text.replace(/(<li>.*<\/li>)\s+(?!<li>)/gs, '<ul>$1</ul>');
+        
+        // Нумерованный список
+        text = text.replace(/^\s*(\d+)\.\s+(.*)/gm, '<li>$2</li>');
+        text = text.replace(/(<li>.*<\/li>)\s+(?!<li>)/gs, '<ol>$1</ol>');
+        
+        // Ссылки
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+        
+        // Переносы строк
         text = text.replace(/\n/g, '<br>');
+        
         return text;
     }
 
