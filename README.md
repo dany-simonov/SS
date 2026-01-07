@@ -109,6 +109,14 @@ The neural network is selected in the user interface when working with chats and
 
 ---
 
+## Screencast
+
+
+
+https://github.com/user-attachments/assets/bda558b6-5449-48f7-b9b0-fd5d2ac838a5
+
+
+
 ## 📣 Feedback & Ideas
 
 We welcome your suggestions, ideas, and collaborations!
